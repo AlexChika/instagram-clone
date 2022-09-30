@@ -13,9 +13,28 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
+/*
+ *
+ *
+ *  debugger classes
+ *
+ */
+
+.red {
+  outline: 2px solid red;
+}
+.blue {
+  outline: 2px solid blue;
+}
+.green {
+  outline: 2px solid green;
+}
+
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
@@ -23,4 +42,4 @@ a {
     color: white;
     background: black;
   }
-}
+} */
