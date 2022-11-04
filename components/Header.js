@@ -2,8 +2,8 @@ import Image from "next/image";
 import useImage from "../utils/hooks/useImage";
 
 // app => the header / nav container
-const { instaWordSvg, instaIconSvg } = useImage();
 function Header() {
+  const { instaWordSvg, instaIconSvg } = useImage();
   return (
     <nav className="">
       <div className="flex mx-auto justify-between  max-w-3xl py-1 red">
@@ -13,7 +13,7 @@ function Header() {
             objectFit="cover"
             layout="fill"
             src={instaWordSvg}
-            alt="insta logo"
+            alt="insta brand logo"
           />
         </div>
         {/* <div className="md:hidden red">
