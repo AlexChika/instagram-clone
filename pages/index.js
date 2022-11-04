@@ -3,13 +3,19 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
+import mobileCheck from "../utils/helpers/mobileCheck";
 
-export default function Home() {
+export default function Home({ isMobile }) {
+  console.log(isMobile);
   let [screen, setScreen] = useState(false);
 
   useEffect(() => {
     // console.log(window.matchMedia("(max-width: 600px)"));
+    // console.log(navigator.maxTouchPoints);
     const UA = navigator.userAgent;
+
+    const ismobile = mobileCheck(UA);
+    // console.log(UA, ismobile);
     let hasTouchScreen =
       /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
       /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
@@ -29,7 +35,7 @@ export default function Home() {
         <title>Insta Cloned</title>
       </Head>
       <Header />
-      <h1 className="relative">Hello guys.. iam alex</h1>x{" "}
+      <h1 className="relative">Hello guys.. ismobile {isMobile.toString()} </h1>
       {screen ? (
         <div>
           <p>we have a link ... this is mobile screen</p>
@@ -44,3 +50,14 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = ({ req }) => {
+  console.log(req.headers["user-agent"]);
+  const UA = req.headers["user-agent"];
+  const isMobile = mobileCheck(UA);
+  return {
+    props: {
+      isMobile: isMobile,
+    },
+  };
+};
