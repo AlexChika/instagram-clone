@@ -36,7 +36,7 @@ export default function Home({ isMobile }) {
       </Head>
       <Header />
       <h1 className="relative">Hello guys.. ismobile {isMobile.toString()} </h1>
-      {screen ? (
+      {isMobile ? (
         <div>
           <p>we have a link ... this is mobile screen</p>
           <Link href="/test">Click to test</Link>
