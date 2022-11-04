@@ -1,38 +1,6 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-/*
- *
- *
- *  debugger classes
- *
- */
-
-.red {
-  outline: 2px solid red;
-}
-.blue {
-  outline: 2px solid blue;
-}
-.green {
-  outline: 2px solid green;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* @media (prefers-color-scheme: dark) {
   html {
@@ -43,3 +11,13 @@ a {
     background: black;
   }
 } */
+.red {
+  border: 2px solid red;
+  /* @apply border border-solid border-emerald-500; */
+}
+.blue {
+  border: 2px solid blue;
+}
+.green {
+  border: 2px solid green;
+}

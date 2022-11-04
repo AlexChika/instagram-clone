@@ -1,18 +1,27 @@
 import Image from "next/image";
 import useImage from "../utils/hooks/useImage";
-// import instaWordSvg from "../public/insta-word-svg.svg";
 
-// app
+// app => the header / nav container
+const { instaWordSvg, instaIconSvg } = useImage();
 function Header() {
-  const { instaWordSvg, instaIconSvg } = useImage();
-
   return (
     <nav className="">
-      <span className="blue">
-        <Image height={30} width={150} src={instaIconSvg} alt="insta logo" />
-      </span>
-
-      <h1>hello here</h1>
+      <div className="flex mx-auto justify-between  max-w-3xl py-1 red">
+        {/* left - side => instagram icon*/}
+        <div className="relative h-9 w-32 md:w-36">
+          <Image
+            objectFit="cover"
+            layout="fill"
+            src={instaWordSvg}
+            alt="insta logo"
+          />
+        </div>
+        {/* <div className="md:hidden red">
+          <Image height={40} width={40} src={instaIconSvg} alt="insta logo" />
+        </div> */}
+        {/* middle */}
+        {/* right */}
+      </div>
     </nav>
   );
 }
@@ -22,4 +31,3 @@ export default Header;
 {
   /* <img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" />; */
 }
-// return <h1>𝓘𝓷𝓼𝓽𝓪𝓰𝓻𝓪𝓶</h1>;
