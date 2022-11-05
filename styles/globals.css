@@ -11,6 +11,26 @@
     background: black;
   }
 } */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+a,
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
 .red {
   border: 2px solid red;
   /* @apply border border-solid border-emerald-500; */

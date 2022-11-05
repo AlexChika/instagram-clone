@@ -1,5 +1,5 @@
 import Image from "next/image";
-import useImage from "../utils/hooks/useImage";
+import useImage from "../../utils/hooks/getImage";
 
 // app => the header / nav container
 function Header() {
