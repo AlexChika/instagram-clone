@@ -1,14 +1,14 @@
 import React from "react";
-import layout from "./layout.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import tempImage from "../../../Assets/alex.png";
+
 import {
   HomeIcon,
-  SearchIcon,
-  ReelsIcon,
+  ExploreIcon,
   MessagingIcon,
   AvatarIcon,
+  PlusIcon,
 } from "../../../utils/icons";
 
 const NavBottom = () => {
@@ -25,13 +25,13 @@ const NavBottom = () => {
 
       <Link href="/explore" passHref>
         <a aria-label="Search icon">
-          <SearchIcon />
+          <ExploreIcon />
         </a>
       </Link>
 
       <Link href="/reels" passHref>
         <a aria-label="reels Icon">
-          <ReelsIcon />
+          <PlusIcon />
         </a>
       </Link>
 
@@ -50,7 +50,7 @@ const NavBottom = () => {
             <Image
               className="rounded-full"
               layout="fill"
-              src={tempIMage}
+              src={tempImage}
             ></Image>
           </a>
         ) : (

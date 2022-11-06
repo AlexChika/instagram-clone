@@ -1,0 +1,13 @@
+/* Map to NavButtom.js */
+.pointerNone * {
+  pointer-events: none;
+}
+
+.iconActive {
+  transform: scale(1.2);
+}
+
+/* Map to HomeNavTop.js */
+.searchBar:has(input:focus) svg {
+  display: none;
+}

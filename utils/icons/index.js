@@ -11,6 +11,7 @@ import AvatarIcon from "./AvatarIcon";
 import PostIcon from "./PostIcon";
 import StoryIcon from "./StoryIcon";
 import InstaGrayIcon from "./InstaGrayIcon";
+import ExploreIcon from "./ExploreIcon";
 
 export {
   PlusIcon,
@@ -26,4 +27,5 @@ export {
   PostIcon,
   StoryIcon,
   InstaGrayIcon,
+  ExploreIcon,
 };
