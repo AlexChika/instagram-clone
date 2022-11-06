@@ -72,15 +72,15 @@ const HomeNavTop = () => {
 
         {/* right side icons */}
         <div className="relative flex justify-between items-center w-16 mr-6">
-          <button
-            type="button"
+          <span
+            className="cursor-pointer"
             onClick={() => setPlusIconDropDown(true)}
             ref={plusIconCon}
           >
             <PlusIcon className={"pointer-events-none"} />
 
             {/*plusIcon dropdown menu */}
-            <div
+            <span
               style={{ "--translate-x": "-50%" }}
               className={`flex flex-col absolute top-[90%] left-[16px] bg-white text-black p-1 z-[1] shadow rounded-md transition origin-bottom ${
                 plusIconDropDown ? layout.showDropDown : layout.hideDropDown
@@ -101,9 +101,9 @@ const HomeNavTop = () => {
                 <span className="pr-7">Story</span>
                 <StoryIcon />
               </button>
-            </div>
+            </span>
             {/*end of plusIcon dropdown menu */}
-          </button>
+          </span>
 
           <Link href="/somewhere" passHref>
             <a className="relative">
