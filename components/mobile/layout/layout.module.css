@@ -13,3 +13,6 @@
   visibility: hidden;
   transform: translateY(-100%);
 }
+.iconActive {
+  transform: scale(1.2);
+}

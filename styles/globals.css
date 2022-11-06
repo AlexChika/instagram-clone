@@ -31,6 +31,10 @@ input {
   background-color: transparent;
 }
 
+img {
+  border-radius: inherit;
+}
+
 .red {
   border: 2px solid red;
   /* @apply border border-solid border-emerald-500; */

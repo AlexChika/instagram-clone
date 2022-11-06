@@ -13,7 +13,7 @@ import {
 
 // app => the header / top nav container
 const { instaWordSvg } = getImage();
-const NavTop = () => {
+const HomeNavTop = () => {
   const instaLogoCon = useRef(null);
   const [isDropDown, setIsDropDown] = useState(false);
 
@@ -41,7 +41,7 @@ const NavTop = () => {
   }, []);
 
   return (
-    <nav className="border-b border-b-slate-200 max-w-3xl mx-auto">
+    <nav className="sticky top-0 z-10 bg-white border-b border-b-slate-200 max-w-3xl mx-auto">
       <div className="flex mx-auto justify-between py-1 relative">
         {/* left - side => insta logo container*/}
         <div
@@ -113,4 +113,4 @@ const NavTop = () => {
   );
 };
 
-export default NavTop;
+export default HomeNavTop;

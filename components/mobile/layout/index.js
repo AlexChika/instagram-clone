@@ -1,13 +1,18 @@
-import "./layout.module.css";
-import NavTop from "./NavTop";
 import NavBottom from "./NavBottom";
-
-function MobileLayout() {
+function MobileLayout({ children, top, showBottomNav = true }) {
   return (
-    <div>
-      <NavTop />
-      <NavBottom />
-    </div>
+    <main>
+      {/* Top Navigation */}
+      {top}
+
+      {/* Page Content */}
+      <section className={showBottomNav ? "pb-[54px]" : "pb-[10px]"}>
+        {children}
+      </section>
+
+      {/* bottom Navigation */}
+      {showBottomNav && <NavBottom />}
+    </main>
   );
 }
 
