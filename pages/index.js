@@ -21,9 +21,9 @@ export default function Home({ isMobile }) {
   // splash screen delay
   if (timer < 2) return <div>splash</div>;
 
-  if (isMobile) return <MobileHomePage />;
+  if (timer >= 2 && isMobile) return <MobileHomePage />;
 
-  return <>Hello desktop</>;
+  if (timer > 2 && !isMobile) return <>Hello desktop</>;
 }
 
 export const getServerSideProps = ({ req }) => {
