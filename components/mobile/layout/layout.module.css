@@ -4,15 +4,16 @@
 
 .showDropDown {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateX(var(--translate-x));
   visibility: visible;
 }
 
 .hideDropDown {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-100%);
+  transform: translateY(-100%) translateX(var(--translate-x));
 }
+
 .iconActive {
   transform: scale(1.2);
 }

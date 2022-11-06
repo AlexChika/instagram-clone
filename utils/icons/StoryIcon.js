@@ -1,19 +1,19 @@
 import React from "react";
 
-const PlusIcon = ({ className }) => {
+const StoryIcon = ({ className }) => {
   return (
     <svg
+      aria-label="Story"
       className={className}
-      aria-label="dropdown button"
       color="#262626"
       fill="#262626"
-      height="24"
+      height="16"
       role="img"
       viewBox="0 0 24 24"
-      width="24"
+      width="16"
     >
       <path
-        d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552Z"
+        d="M3.914 5.32q.338-.406.714-.778m-3.122 7.855a9.903 9.903 0 0 1-.007-.386 10.49 10.49 0 0 1 .517-3.265m3.242 11.337a10.568 10.568 0 0 1-2.89-3.864m14.482 5.109a10.535 10.535 0 0 1-8.162.649M12.001 1.51a10.505 10.505 0 0 1 7.926 17.392"
         fill="none"
         stroke="currentColor"
         strokeLinecap="round"
@@ -26,10 +26,10 @@ const PlusIcon = ({ className }) => {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
-        x1="6.545"
-        x2="17.455"
-        y1="12.001"
-        y2="12.001"
+        x1="12"
+        x2="12"
+        y1="8.006"
+        y2="16.006"
       ></line>
       <line
         fill="none"
@@ -37,13 +37,13 @@ const PlusIcon = ({ className }) => {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
-        x1="12.003"
-        x2="12.003"
-        y1="6.545"
-        y2="17.455"
+        x1="16"
+        x2="8"
+        y1="12.006"
+        y2="12.006"
       ></line>
     </svg>
   );
 };
 
-export default PlusIcon;
+export default StoryIcon;

@@ -8,6 +8,8 @@ import SearchIcon from "./SearchIcon";
 import ReelsIcon from "./ReelsIcon";
 import MessagingIcon from "./MessagingIcon";
 import AvatarIcon from "./AvatarIcon";
+import PostIcon from "./PostIcon";
+import StoryIcon from "./StoryIcon";
 
 export {
   PlusIcon,
@@ -20,4 +22,6 @@ export {
   ReelsIcon,
   MessagingIcon,
   AvatarIcon,
+  PostIcon,
+  StoryIcon,
 };

@@ -6,7 +6,7 @@ function MobileLayout({ children, top, showBottomNav = true }) {
       {top}
 
       {/* Page Content */}
-      <section className={showBottomNav ? "pb-[54px]" : "pb-[10px]"}>
+      <section className={showBottomNav ? "pb-[54px] px-3" : "pb-[10px] px-3"}>
         {children}
       </section>
 

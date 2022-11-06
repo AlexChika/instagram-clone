@@ -6,8 +6,8 @@ import MobileLayout from "../components/mobile/layout";
 import mobileCheck from "../utils/helpers/mobileCheck";
 
 export default function Home({ isMobile }) {
-  return (
-    <>
+  if (isMobile) {
+    return (
       <MobileLayout showBottomNav={true} top={<HomeNavTop />}>
         <h1 className="relative">
           Hello guys.. ismobile = {isMobile.toString()}{" "}
@@ -80,8 +80,10 @@ export default function Home({ isMobile }) {
           corporis aliquid a? Quasi laudantium tempora saepe in perspiciatis?
         </div>
       </MobileLayout>
-    </>
-  );
+    );
+  }
+
+  return <div>hello</div>;
 }
 
 export const getServerSideProps = ({ req }) => {
