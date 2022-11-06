@@ -1,7 +1,7 @@
 import NavBottom from "./NavBottom";
 function MobileLayout({ children, topNav, showBottomNav = true }) {
   return (
-    <main>
+    <main className="max-w-3xl mx-auto">
       {/* Top Navigation */}
       {topNav()}
 
