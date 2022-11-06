@@ -4,18 +4,11 @@ import mobileCheck from "../utils/helpers/mobileCheck";
 
 export default function Home({ isMobile }) {
   const [timer, setTimer] = useState(0);
-  const [interval, setInterval] = useState("");
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer(timer++);
-    }, 1000);
-
-    setInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (timer === 2) clearInterval(interval);
+    if (timer < 2) {
+      setTimer(timer + 1);
+    }
   }, [timer]);
 
   // splash screen delay
@@ -23,7 +16,7 @@ export default function Home({ isMobile }) {
 
   if (timer >= 2 && isMobile) return <MobileHomePage />;
 
-  if (timer > 2 && !isMobile) return <>Hello desktop</>;
+  if (timer >= 2 && !isMobile) return <>Hello desktop</>;
 }
 
 export const getServerSideProps = ({ req }) => {
