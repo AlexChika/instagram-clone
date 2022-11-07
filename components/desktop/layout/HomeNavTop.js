@@ -24,6 +24,11 @@ const HomeNavTop = () => {
     setSearchValue(e.target.value);
   };
 
+  const handleClearSearchBar = () => {
+    setSearchValue("");
+    setShowResultsContainer("false");
+  };
+
   //   temporal
   const isNotification = true;
 
@@ -65,6 +70,7 @@ const HomeNavTop = () => {
               searchValue ? "hidden" : "block"
             }`}
           />
+
           <input
             arial-label="search bar"
             value={searchValue}
@@ -76,13 +82,23 @@ const HomeNavTop = () => {
             ref={inputElement}
           />
 
-          <span role="button" aria-label="clear the search bar">
-            x
+          {/* cleaer search bar */}
+          <span
+            className={`h-5 w-5 text-xs bg-gray-300 text-slate-100 rounded-[50%] flex items-center justify-center ${
+              searchValue ? "flex" : "hidden"
+            }`}
+            role="button"
+            aria-label="clear the search bar"
+            onClick={handleClearSearchBar}
+          >
+            X
           </span>
 
+          {/* search results container*/}
           <SearchResults show={showResultsContainer} />
         </div>
 
+        {/* heart icon  */}
         <Link href="/somewhere" passHref>
           <a className="relative">
             <HeartIcon />
