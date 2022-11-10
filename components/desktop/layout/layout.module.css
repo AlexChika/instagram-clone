@@ -1,4 +1,4 @@
-/* Map to NavButtom.js */
+/* Map to layout/NavButtom.js */
 .pointerNone * {
   pointer-events: none;
 }
@@ -7,7 +7,45 @@
   transform: scale(1.2);
 }
 
-/* Map to HomeNavTop.js */
+/* Map to layout/HomeNavTop.js */
 .searchBar:has(input:focus) svg {
   display: none;
+}
+
+/* map to layout/index.js */
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100vh;
+  overflow-y: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "navTop"
+    "body"
+    "navBottom";
+
+  position: relative;
+}
+
+.main .navTop {
+  grid-area: navTop;
+}
+
+.main .body {
+  grid-area: body;
+}
+
+.main .navBottom {
+  grid-area: navBottom;
+}
+
+.main .sideBar {
+  grid-area: sideBar;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "sideBar body";
+  }
 }

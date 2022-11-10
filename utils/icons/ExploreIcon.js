@@ -21,7 +21,7 @@ const ExploreIcon = ({ className }) => {
         strokeWidth="2"
       ></polygon>
       <polygon
-        fill-rule="evenodd"
+        fillRule="evenodd"
         points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"
       ></polygon>
       <circle

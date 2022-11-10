@@ -4,7 +4,7 @@ import DesktopLayout from "../../layout";
 const DesktopHomePage = () => {
   return (
     <DesktopLayout>
-      <main className="justify-center items-center flex h-screen">
+      <main className="justify-center items-center flex h-screen red">
         <h1>Hello Desktop</h1>
         <p>Build in progress</p>
       </main>
