@@ -2,7 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import layout from "./layout.module.css";
-import getImage from "../../../utils/hooks/getImage";
+import IconHOC from "./IconHOC";
+import tempImage from "../../../Assets/alex.png";
+
 import {
   InstaLogo,
   InstaIcon,
@@ -13,78 +15,82 @@ import {
   HeartIcon,
   PlusIcon,
   SearchIcon,
+  AvatarIcon,
 } from "../../../utils/icons";
 
 const _Links = [
   {
     url: "/",
-    icon: <HomeIcon />,
+    icon: HomeIcon,
     name: "Home",
-  },
-  {
-    url: "/search",
-    icon: <SearchIcon />,
-    name: "Search",
-  },
-  {
-    url: "/explore",
-    icon: <ExploreIcon />,
-    name: "Explore",
-  },
-  {
-    url: "/profile/messages",
-    icon: <MessagingIcon />,
-    name: "Message",
-  },
-  {
-    url: "#",
-    icon: <HeartIcon />,
-    name: "Notification",
+    path: "",
   },
 
   {
+    url: "/search",
+    icon: SearchIcon,
+    name: "Search",
+    path: "search",
+  },
+  {
+    url: "/explore",
+    icon: ExploreIcon,
+    name: "Explore",
+    path: "explore",
+  },
+  {
+    url: "/profile/messages",
+    icon: MessagingIcon,
+    name: "Message",
+    path: "message",
+  },
+  {
     url: "#",
-    icon: <PlusIcon />,
+    icon: HeartIcon,
+    name: "Notification",
+    path: "notification",
+  },
+  {
+    url: "#",
+    icon: PlusIcon,
     name: "Create",
+    path: "create",
   },
 ];
 
 const SideBar = () => {
   return (
-    <div className="sticky h-screen flex flex-col justify-between py-10 pl-[1.32rem] pr-24 blue">
+    <div className="sticky h-screen flex flex-col justify-between py-10 pl-[1.32rem] xl:w-[250px] pr-4 xl:pr-10 border-r-[1px] border-gray-400">
       <section>
         {/* instagram logo screen from 1264px */}
         <Link href="/" passHref>
-          <a className="hidden xl:inline">
+          <a className="hidden xl:flex items-center">
             <InstaLogo />
           </a>
         </Link>
 
         {/*instagram logo screen from 768 and below 1264 */}
         <Link href="/" passHref>
-          <a className="hidden md:inline xl:hidden">
+          <a className="hidden md:flex xl:hidden items-center px-2 p-2">
             <InstaIcon />
           </a>
         </Link>
 
         {/* links container */}
-        <div className="links mt-[3.18rem]">
+        <div className="links mt-[2.6rem] w-full">
           {_Links.map((link) => {
             return (
-              <Link
-                key={link.name}
-                className="relative"
-                href={link.url}
-                passHref
-                active={true}
-              >
-                <a className="link flex mb-[32px]">
-                  {link.icon}
+              <Link key={link.name} href={link.url} passHref>
+                <a
+                  className={`link items-center flex mb-[22px] rounded-full xl:rounded-xl px-2 p-2 w-full xl:hover:bg-gray-100 ${layout.linkTextWrapper}`}
+                >
+                  {IconHOC(link.icon, link.path)}
 
                   <span
-                    className={`capitalize pl-3 text-lg ${
+                    data-text={link.name}
+                    className={`relative invisible xl:visible w-0 xl:w-auto capitalize pl-3 text-lg ${
                       false ? "font-semibold" : ""
-                    }`}
+                    } ${layout.linkText}`}
                   >
                     {link.name}
                   </span>
@@ -92,13 +98,61 @@ const SideBar = () => {
               </Link>
             );
           })}
+
+          <Link href="/userNames" passHref>
+            {true ? (
+              <a
+                aria-label="User avatar"
+                className={`link flex items-center px-2 p-2 xl:hover:bg-gray-100 rounded-full xl:rounded-xl ${layout.linkTextWrapper}`}
+              >
+                <span className="flex relative h-[26px] w-[26px] rounded-full items-center justify-center">
+                  <Image
+                    className="rounded-full"
+                    layout="fill"
+                    alt="user image"
+                    src={tempImage}
+                  ></Image>
+                </span>
+
+                <span
+                  data-text={"Profile" + " " + "Alex Chika"}
+                  className={`relative invisible xl:visible  w-0 xl:w-auto pl-3 text-lg ${layout.linkText}`}
+                >
+                  Profile
+                </span>
+              </a>
+            ) : (
+              <a
+                className={`link flex items-center px-2 p-2 xl:hover:bg-gray-100 rounded-full xl:rounded-xl ${layout.linkTextWrapper}`}
+                aria-label="User avatar"
+              >
+                <AvatarIcon />
+                <span
+                  data-text={"Profile"}
+                  className={`relative invisible xl:visible w-0 xl:w-auto text-lg ${layout.linkText}`}
+                >
+                  Profile
+                </span>
+              </a>
+            )}
+          </Link>
         </div>
       </section>
 
       {/* footer  */}
-      <div className="footer">
-        <ListIcon />
-      </div>
+      <Link href="#" passHref>
+        <a
+          className={`flex items-center px-2 p-2 xl:hover:bg-gray-100 rounded-xl ${layout.linkTextWrapper}`}
+        >
+          <ListIcon />
+          <span
+            data-text="More"
+            className={`relative invisible xl:visible w-0 xl:w-auto pl-3 text-lg ${layout.linkText}`}
+          >
+            More
+          </span>
+        </a>
+      </Link>
     </div>
   );
 };

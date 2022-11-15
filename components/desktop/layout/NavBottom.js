@@ -50,6 +50,7 @@ const NavBottom = () => {
             <Image
               className="rounded-full"
               layout="fill"
+              alt="user image"
               src={tempImage}
             ></Image>
           </a>

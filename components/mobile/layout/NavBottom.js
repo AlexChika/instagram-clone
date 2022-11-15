@@ -51,6 +51,7 @@ const NavBottom = () => {
               className="rounded-full"
               layout="fill"
               src={tempIMage}
+              alt="user image"
             ></Image>
           </a>
         ) : (

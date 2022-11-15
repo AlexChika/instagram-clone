@@ -12,7 +12,7 @@ import PostIcon from "./PostIcon";
 import StoryIcon from "./StoryIcon";
 import InstaGrayIcon from "./InstaGrayIcon";
 import ExploreIcon from "./ExploreIcon";
-import InstaLogo from "./instaLogo";
+import InstaLogo from "./InstaLogo";
 import InstaIcon from "./InstaIcon";
 import ListIcon from "./ListIcon";
 
