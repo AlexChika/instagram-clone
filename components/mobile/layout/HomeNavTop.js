@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import layout from "./layout.module.css";
 import Link from "next/link";
-import Image from "next/image";
-import getImage from "../../../utils/hooks/getImage";
 import {
   CaretDown,
   PlusIcon,
@@ -11,10 +9,10 @@ import {
   FollowingIcon,
   PostIcon,
   StoryIcon,
+  InstaLogo,
 } from "../../../utils/icons";
 
 // app => the header / top nav container
-const { instaWordSvg } = getImage();
 const HomeNavTop = () => {
   const instaLogoCon = useRef(null);
   const plusIconCon = useRef(null);
@@ -49,23 +47,21 @@ const HomeNavTop = () => {
 
   return (
     <nav className="sticky top-0 z-10 bg-white border-b border-b-slate-200 max-w-3xl mx-auto">
-      <div className="flex mx-auto justify-between py-1 relative">
+      <div className="flex mx-auto justify-between items-center py-2 relative">
         {/* left - side => insta logo container*/}
         <div
           ref={instaLogoCon}
           onClick={() => setLogoDropDown(true)}
-          className={`flex items-center cursor-pointer ${layout.pointerNone}`}
+          className={`flex items-center cursor-pointer group px-4 ${layout.pointerNone}`}
         >
-          <div className="relative h-9 w-32 md:w-36 pt-10">
-            <Image
-              objectFit="cover"
-              layout="fill"
-              src={instaWordSvg}
-              alt="insta brand logo"
-            />
+          <div>
+            <InstaLogo />
           </div>
 
-          <span aria-hidden="true" className="-ml-2">
+          <span
+            aria-hidden="true"
+            className=" group-hover:visible invisible pl-2"
+          >
             <CaretDown />
           </span>
         </div>
@@ -149,6 +145,3 @@ const HomeNavTop = () => {
 };
 
 export default HomeNavTop;
-// ${
-//                 plusIconDropDown ? layout.showDropDown : layout.hideDropDown
-//               }

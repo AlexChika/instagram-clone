@@ -13,7 +13,6 @@
 }
 
 /* map to layout/sideBar.js */
-
 @media screen and (max-width: 1280px) {
   .linkTextWrapper:hover .linkText::before,
   .linkTextWrapper:hover .linkText::after {

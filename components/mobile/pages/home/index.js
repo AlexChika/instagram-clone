@@ -4,7 +4,7 @@ import HomeNavTop from "../../layout/HomeNavTop";
 
 const MobileHomePage = () => {
   return (
-    <MobileLayout showBottomNav={true} topNav={HomeNavTop}>
+    <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
       <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae fugiat
         distinctio! Nostrum animi temporibus, illum, facilis hic rem qui tempora
