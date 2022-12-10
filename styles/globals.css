@@ -2,19 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-} */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -24,7 +16,6 @@ html {
 a,
 button,
 input {
-  -webkit-tap-highlight-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
@@ -35,13 +26,15 @@ img {
   border-radius: inherit;
 }
 
+/* debuggers */
 .red {
   border: 2px solid red;
-  /* @apply border border-solid border-emerald-500; */
 }
+
 .blue {
   border: 2px solid blue;
 }
+
 .green {
   border: 2px solid green;
 }

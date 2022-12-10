@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import MobileHomePage from "../components/mobile/pages/home";
 import DesktopHomePage from "../components/desktop/pages/home";
 import mobileCheck from "../utils/helpers/mobileCheck";
-import DesktopFlashScreen from "../components/desktop/flashScreen";
-import MobileFlashScreen from "../components/mobile/flashScreen";
+import FlashScreen from "../components/general/Flashscreen";
 
 export default function Home({ isMobile }) {
   const [timer, setTimer] = useState(0);
@@ -25,7 +24,8 @@ export default function Home({ isMobile }) {
 
   // splash screen delay
   if (timer < 2) {
-    return isMobile ? <MobileFlashScreen /> : <DesktopFlashScreen />;
+    return <FlashScreen />;
+    // return isMobile ? <MobileFlashScreen /> : <DesktopFlashScreen />;
   }
 
   if (timer >= 2 && isMobile) return <MobileHomePage />;

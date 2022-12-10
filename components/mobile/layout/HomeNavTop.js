@@ -29,7 +29,7 @@ const HomeNavTop = () => {
 
   //   effect for navbar dropdown
   useEffect(() => {
-    function removeDRopDown(e) {
+    function removeDropDown(e) {
       if (e.target !== instaLogoCon.current) {
         setLogoDropDown(false);
       }
@@ -38,25 +38,25 @@ const HomeNavTop = () => {
         setPlusIconDropDown(false);
       }
     }
-    window.addEventListener("click", removeDRopDown);
+    window.addEventListener("click", removeDropDown);
 
     return () => {
-      window.removeEventListener("click", removeDRopDown);
+      window.removeEventListener("click", removeDropDown);
     };
   }, []);
 
   return (
-    <nav className="sticky top-0 z-10 bg-white border-b border-b-slate-200 max-w-3xl mx-auto">
-      <div className="flex mx-auto justify-between items-center py-2 relative">
+    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white border-b border-b-slate-300  h-11">
+      <div className="flex justify-between items-center relative w-full max-w-3xl mx-auto">
         {/* left - side => insta logo container*/}
         <div
           ref={instaLogoCon}
           onClick={() => setLogoDropDown(true)}
           className={`flex items-center cursor-pointer group px-4 ${layout.pointerNone}`}
         >
-          <div>
+          <span>
             <InstaLogo />
-          </div>
+          </span>
 
           <span
             aria-hidden="true"
