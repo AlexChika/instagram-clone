@@ -1,12 +1,13 @@
 import React from "react";
 
-const StoryIcon = ({ className }) => {
+const StoryIcon = ({ color }) => {
   return (
     <svg
       aria-label="Story"
-      className={className}
-      color="#262626"
-      fill="#262626"
+      color={color}
+      fill="currentColor"
+      // color="#262626"
+      // fill="#262626"
       height="16"
       role="img"
       viewBox="0 0 24 24"

@@ -1,12 +1,13 @@
 import React from "react";
 
-const SearchIcon = ({ className }) => {
+const SearchIcon = ({ color }) => {
   return (
     <svg
       aria-label="Search &amp; Explore"
-      className={className}
-      color="#262626"
-      fill="#262626"
+      color={color}
+      fill="currentColor"
+      // color="#262626"
+      // fill="#262626"
       height="24"
       role="img"
       viewBox="0 0 24 24"

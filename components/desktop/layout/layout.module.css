@@ -3,10 +3,6 @@
   pointer-events: none;
 }
 
-.iconActive {
-  transform: scale(1.05);
-}
-
 /* Map to layout/HomeNavTop.js */
 .searchBar:has(input:focus) svg {
   display: none;

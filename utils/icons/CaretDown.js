@@ -1,12 +1,13 @@
 import React from "react";
 
-const CaretDown = ({ className }) => {
+const CaretDown = ({ color }) => {
   return (
     <svg
-      className={className}
       aria-label="Down chevron icon"
-      color="#262626"
-      fill="#262626"
+      color={color}
+      fill="currentColor"
+      // color="#262626"
+      // fill="#262626"
       height="12"
       role="img"
       viewBox="0 0 24 24"

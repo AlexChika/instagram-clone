@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import layout from "./layout.module.css";
+import IconHOC from "../../general/IconHOC";
 import Link from "next/link";
 import {
   CaretDown,
@@ -46,7 +47,7 @@ const HomeNavTop = () => {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white border-b border-b-slate-300  h-11">
+    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white dark:bg-gray-700 border-b border-b-slate-300  h-11">
       <div className="flex justify-between items-center relative w-full max-w-3xl mx-auto">
         {/* left - side => insta logo container*/}
         <div
@@ -54,27 +55,23 @@ const HomeNavTop = () => {
           onClick={() => setLogoDropDown(true)}
           className={`flex items-center cursor-pointer group px-4 ${layout.pointerNone}`}
         >
-          <span>
-            <InstaLogo />
-          </span>
-
+          <span>{IconHOC(InstaLogo, "none")}</span>
           <span
             aria-hidden="true"
             className=" group-hover:visible invisible pl-2"
           >
-            <CaretDown />
+            <span>{IconHOC(CaretDown, "none")}</span>
           </span>
         </div>
 
         {/* right side icons */}
         <div className="relative flex justify-between items-center w-16 mr-6">
           <span
-            className="cursor-pointer"
+            className={`cursor-pointer ${layout.pointerNone}`}
             onClick={() => setPlusIconDropDown(true)}
             ref={plusIconCon}
           >
-            <PlusIcon className={"pointer-events-none"} />
-
+            {IconHOC(PlusIcon, "none")}
             {/*plusIcon dropdown menu */}
             <span
               style={{ "--translate-x": "-50%" }}
@@ -87,7 +84,7 @@ const HomeNavTop = () => {
                 className="flex justify-between items-center text-base py-1 px-2"
               >
                 <span className="pr-7">post</span>
-                <PostIcon />
+                {IconHOC(PostIcon, "none")}
               </button>
 
               <button
@@ -95,7 +92,7 @@ const HomeNavTop = () => {
                 className="flex justify-between items-center text-base py-1 px-2"
               >
                 <span className="pr-7">Story</span>
-                <StoryIcon />
+                {IconHOC(StoryIcon, "none")}
               </button>
             </span>
             {/*end of plusIcon dropdown menu */}
@@ -103,7 +100,7 @@ const HomeNavTop = () => {
 
           <Link href="/somewhere" passHref>
             <a className="relative">
-              <HeartIcon />
+              {IconHOC(HeartIcon, "none")}
               <span
                 aria-hidden="true"
                 className={`absolute h-[9px] w-[9px] rounded-full bg-red-500 top-0 right-0 ${
@@ -125,7 +122,7 @@ const HomeNavTop = () => {
             <Link href="/someweher/following">
               <a className="flex justify-between items-center text-base">
                 <span className="pr-7">Following</span>
-                <FollowingIcon />
+                {IconHOC(FollowingIcon, "none")}
               </a>
             </Link>
           </span>
@@ -134,7 +131,7 @@ const HomeNavTop = () => {
             <Link href="/someweher/Favourites">
               <a className="flex justify-between items-center text-base">
                 <span className="pr-7">Favorites</span>
-                <FavouritesIcon />
+                {IconHOC(FavouritesIcon, "none")}
               </a>
             </Link>
           </span>

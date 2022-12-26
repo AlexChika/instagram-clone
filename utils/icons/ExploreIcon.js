@@ -1,12 +1,13 @@
 import React from "react";
 
-const ExploreIcon = ({ className }) => {
+const ExploreIcon = ({ color }) => {
   return (
     <svg
       aria-label="Explore"
-      className={className}
-      color="#262626"
-      fill="#262626"
+      color={color}
+      fill="currentColor"
+      // color="#262626"
+      // fill="#262626"
       height="24"
       role="img"
       viewBox="0 0 24 24"

@@ -1,12 +1,13 @@
 import React from "react";
 
-const ReelsIcon = ({ className }) => {
+const ReelsIcon = ({ color }) => {
   return (
     <svg
       aria-label="Reels"
-      className={className}
-      color="#262626"
-      fill="#262626"
+      color={color}
+      fill="currentColor"
+      // color="#262626"
+      // fill="#262626"
       height="24"
       role="img"
       viewBox="0 0 24 24"

@@ -3,6 +3,7 @@ import layout from "./layout.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import tempIMage from "../../../Assets/alex.png";
+import IconHOC from "../../general/IconHOC";
 import {
   HomeIcon,
   SearchIcon,
@@ -11,6 +12,34 @@ import {
   AvatarIcon,
 } from "../../../utils/icons";
 
+const _Links = [
+  {
+    url: "/",
+    icon: HomeIcon,
+    name: "Home",
+    path: "",
+  },
+
+  {
+    url: "/explore",
+    icon: SearchIcon,
+    name: "Search",
+    path: "explore",
+  },
+  {
+    url: "/reels",
+    icon: ReelsIcon,
+    name: "Reels",
+    path: "reels",
+  },
+  {
+    url: "/profile/messages",
+    icon: MessagingIcon,
+    name: "Message",
+    path: "message",
+  },
+];
+
 const NavBottom = () => {
   return (
     <div
@@ -18,29 +47,15 @@ const NavBottom = () => {
       aria-label="navigation"
     >
       <div className="justify-between flex items-center max-w-3xl mx-auto">
-        <Link href="/" passHref>
-          <a aria-label="Home Icon">
-            <HomeIcon active={true} />
-          </a>
-        </Link>
-
-        <Link href="/explore" passHref>
-          <a aria-label="Search icon">
-            <SearchIcon />
-          </a>
-        </Link>
-
-        <Link href="/reels" passHref>
-          <a aria-label="reels Icon">
-            <ReelsIcon />
-          </a>
-        </Link>
-
-        <Link href="/direact-messaging" passHref>
-          <a aria-label="Messaging icon">
-            <MessagingIcon />
-          </a>
-        </Link>
+        {_Links.map((link, index) => {
+          return (
+            <Link key={index} href={link.url} passHref>
+              <a aria-label={link.name + "icon"}>
+                {IconHOC(link.icon, link.path)}
+              </a>
+            </Link>
+          );
+        })}
 
         <Link href="/userNames" passHref>
           {true ? (
@@ -56,9 +71,7 @@ const NavBottom = () => {
               ></Image>
             </a>
           ) : (
-            <a aria-label="User avatar">
-              <AvatarIcon />
-            </a>
+            <a aria-label="User avatar">{IconHOC(AvatarIcon, "user")}</a>
           )}
         </Link>
       </div>

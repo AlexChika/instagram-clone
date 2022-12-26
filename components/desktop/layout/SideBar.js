@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import layout from "./layout.module.css";
-import IconHOC from "./IconHOC";
+import IconHOC from "../../general/IconHOC";
 import tempImage from "../../../Assets/alex.png";
 
 import {

@@ -1,12 +1,13 @@
 import React from "react";
 
-const InstaLogo = ({ className }) => {
+const InstaLogo = ({ color }) => {
   return (
     <svg
       aria-label="Instagram"
-      className={className}
-      color="#262626"
-      fill="#262626"
+      color={color}
+      fill="currentColor"
+      // color="#262626"
+      // fill="#262626"
       height="29"
       role="img"
       viewBox="32 4 113 32"

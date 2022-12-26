@@ -1,10 +1,22 @@
 import React from "react";
 import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
-
+import { App } from "../../../../pages/_app";
+import { ListIcon, StoryIcon } from "../../../../utils/icons";
+// app
 const MobileHomePage = () => {
+  const { changeTheme, theme } = App();
+  console.log(theme);
+
   return (
     <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
+      <h1 className="text-red-500 dark:text-black text-2xl">
+        App in progress ...
+      </h1>
+
+      <ListIcon />
+      <StoryIcon />
+      <button onClick={changeTheme}>hit me</button>
       <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae fugiat
         distinctio! Nostrum animi temporibus, illum, facilis hic rem qui tempora

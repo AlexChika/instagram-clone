@@ -13,9 +13,3 @@
   visibility: hidden;
   transform: translateY(-100%) translateX(var(--translate-x));
 }
-
-.iconActive {
-  transform: scale(1.2);
-}
-
-/* Page styles ===> SearchNavTop.js */
