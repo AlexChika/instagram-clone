@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useContext, createContext } from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 import "../styles/globals.css";
 import Header from "../components/general/Header";
 const AppContext = createContext();
@@ -7,6 +7,9 @@ function MyApp({ Component, pageProps }) {
   // if theme is true ==> dark mode
   // if theme is false ==> light mode
   const [theme, setTheme] = useState(false);
+
+  // temp implementation
+  const [timer, setTimer] = useState(0);
 
   function setDarkMode(condition) {
     if (condition) {
@@ -23,7 +26,7 @@ function MyApp({ Component, pageProps }) {
     setTheme(localStorage.theme === "dark");
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const isThemeStored = "theme" in localStorage;
     if (isThemeStored) {
       const isDarkSet = localStorage.theme === "dark";
@@ -38,10 +41,24 @@ function MyApp({ Component, pageProps }) {
     }
   }, []);
 
-  // console.log(theme);
+  // splash screen effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (timer < 2) {
+        setTimer(timer + 1);
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
 
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timer]);
+
+  // app
   return (
-    <AppContext.Provider value={{ changeTheme, theme }}>
+    <AppContext.Provider value={{ changeTheme, theme, timer }}>
       <Header />
       <Component {...pageProps} />
     </AppContext.Provider>

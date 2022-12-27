@@ -1,8 +1,17 @@
 import React from "react";
+import { App } from "../_app";
+import FlashScreen from "../../components/general/Flashscreen";
 import mobileCheck from "../../utils/helpers/mobileCheck";
 import MobileExplorePage from "../../components/mobile/pages/explore";
 
 const Explore = ({ isMobile }) => {
+  const { timer } = App();
+
+  // splash screen delay
+  if (timer < 2) {
+    return <FlashScreen />;
+  }
+
   if (isMobile) return <MobileExplorePage />;
 
   if (!isMobile) return <div>hello world</div>;

@@ -47,7 +47,7 @@ const HomeNavTop = () => {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white dark:bg-gray-700 border-b border-b-slate-300  h-11">
+    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 h-11">
       <div className="flex justify-between items-center relative w-full max-w-3xl mx-auto">
         {/* left - side => insta logo container*/}
         <div
@@ -75,7 +75,7 @@ const HomeNavTop = () => {
             {/*plusIcon dropdown menu */}
             <span
               style={{ "--translate-x": "-50%" }}
-              className={`flex flex-col absolute top-[90%] left-[16px] bg-white text-black p-1 z-[1] shadow rounded-md transition origin-bottom ${
+              className={`flex flex-col absolute top-[90%] left-[16px] bg-white dark:bg-black text-black dark:text-white p-1 z-[1] shadow rounded-md transition origin-bottom ${
                 plusIconDropDown ? layout.showDropDown : layout.hideDropDown
               }`}
             >
@@ -114,7 +114,7 @@ const HomeNavTop = () => {
         {/* logo dropdown menu //-- position absolute */}
         <div
           style={{ "--translate-x": "0" }}
-          className={`flex flex-col absolute top-[90%] left-[10px]  bg-white text-black p-1 z-[1] shadow  rounded-md transition origin-bottom ${
+          className={`flex flex-col absolute top-[90%] left-[10px]  bg-white dark:bg-black text-black dark:text-white p-1 z-[1] shadow  rounded-md transition origin-bottom ${
             logoDropDown ? layout.showDropDown : layout.hideDropDown
           }`}
         >

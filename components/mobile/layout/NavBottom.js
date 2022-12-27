@@ -33,17 +33,17 @@ const _Links = [
     path: "reels",
   },
   {
-    url: "/profile/messages",
+    url: "/messages",
     icon: MessagingIcon,
-    name: "Message",
-    path: "message",
+    name: "Messages",
+    path: "messages",
   },
 ];
-
+// border - b - slate - 300;
 const NavBottom = () => {
   return (
     <div
-      className="fixed z-10 bg-white bottom-0 w-full border-t border-b-slate-300 h-[44px] py-2 px-5 md:px-0"
+      className="fixed z-10 bg-white dark:bg-black bottom-0 w-full border-t border-t-slate-300 dark:border-t-gray-700 h-[44px] py-2 px-5 md:px-0"
       aria-label="navigation"
     >
       <div className="justify-between flex items-center max-w-3xl mx-auto">
@@ -57,7 +57,7 @@ const NavBottom = () => {
           );
         })}
 
-        <Link href="/userNames" passHref>
+        <Link href="/user" passHref>
           {true ? (
             <a
               aria-label="User avatar"

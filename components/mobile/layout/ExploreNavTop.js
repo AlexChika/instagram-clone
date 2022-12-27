@@ -11,13 +11,13 @@ const ExploreNavTop = () => {
   }
 
   return (
-    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white border-b border-b-slate-300 px-4 h-11">
+    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 px-4 h-11">
       <div
         onClick={handleClick}
-        className="rounded flex justify-center w-full py-1 border border-slate-200 max-w-3xl mx-auto"
+        className="rounded flex justify-center w-full py-1 border border-slate-200  dark:border-gray-300 dark:bg-white max-w-3xl mx-auto"
       >
-        <span className="scale-50">
-          <SearchIcon className="text-slate-500" />
+        <span className="scale-50 text-slate-500">
+          <SearchIcon />
         </span>
         <span className="text-slate-500">Search</span>
       </div>

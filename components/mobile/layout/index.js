@@ -1,17 +1,15 @@
 import NavBottom from "./NavBottom";
 function MobileLayout({ children, TopNav, showBottomNav = true }) {
   return (
-    <main>
+    <main className=" text-black bg-white dark:bg-black dark:text-white">
       {/* Top Navigation */}
       <TopNav />
 
       {/* Page Content */}
       <section
-        className={
-          showBottomNav
-            ? "pb-[54px] max-w-3xl mx-auto"
-            : "pb-[10px] max-w-3xl mx-auto"
-        }
+        className={`max-w-3xl mx-auto ${
+          showBottomNav ? "pb-[54px]" : "pb-[10px]"
+        }`}
       >
         {children}
       </section>

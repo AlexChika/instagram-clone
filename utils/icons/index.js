@@ -1,37 +1,20 @@
-import PlusIcon from "./PlusIcon";
-import CaretDown from "./CaretDown";
-import HeartIcon from "./HeartIcon";
-import FavouritesIcon from "./FavouritesIcon";
-import FollowingIcon from "./FollowingIcon";
-import HomeIcon from "./HomeIcon";
-import SearchIcon from "./SearchIcon";
-import ReelsIcon from "./ReelsIcon";
-import MessagingIcon from "./MessagingIcon";
-import AvatarIcon from "./AvatarIcon";
-import PostIcon from "./PostIcon";
-import StoryIcon from "./StoryIcon";
-import InstaGrayIcon from "./InstaGrayIcon";
-import ExploreIcon from "./ExploreIcon";
-import InstaLogo from "./InstaLogo";
-import InstaIcon from "./InstaIcon";
-import ListIcon from "./ListIcon";
-
-export {
-  PlusIcon,
-  CaretDown,
-  HeartIcon,
-  FavouritesIcon,
-  FollowingIcon,
-  HomeIcon,
-  SearchIcon,
-  ReelsIcon,
-  MessagingIcon,
-  AvatarIcon,
-  PostIcon,
-  StoryIcon,
-  InstaGrayIcon,
-  ExploreIcon,
-  InstaLogo,
-  InstaIcon,
-  ListIcon,
-};
+export { default as PlusIcon } from "./PlusIcon";
+export { default as CaretDown } from "./CaretDown";
+export { default as HeartIcon } from "./HeartIcon";
+export { default as FavouritesIcon } from "./FavouritesIcon";
+export { default as FollowingIcon } from "./FollowingIcon";
+export { default as HomeIcon } from "./HomeIcon";
+export { default as SearchIcon } from "./SearchIcon";
+export { default as ReelsIcon } from "./ReelsIcon";
+export { default as MessagingIcon } from "./MessagingIcon";
+export { default as AvatarIcon } from "./AvatarIcon";
+export { default as PostIcon } from "./PostIcon";
+export { default as StoryIcon } from "./StoryIcon";
+export { default as InstaGrayIcon } from "./InstaGrayIcon";
+export { default as ExploreIcon } from "./ExploreIcon";
+export { default as InstaLogo } from "./InstaLogo";
+export { default as InstaIcon } from "./InstaIcon";
+export { default as ListIcon } from "./ListIcon";
+export { default as CaretLeftIcon } from "./CaretLeftIcon";
+export { default as EditIcon } from "./EditIcon";
+export { default as CheckIcon } from "./CheckIcon";

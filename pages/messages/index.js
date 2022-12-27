@@ -2,9 +2,9 @@ import React from "react";
 import { App } from "../_app";
 import FlashScreen from "../../components/general/Flashscreen";
 import mobileCheck from "../../utils/helpers/mobileCheck";
-import MobileSearchPage from "../../components/mobile/pages/search";
+import MobileMessagesPage from "../../components/mobile/pages/messages";
 
-const Search = ({ isMobile }) => {
+const Messages = ({ isMobile }) => {
   const { timer } = App();
 
   // splash screen delay
@@ -12,12 +12,12 @@ const Search = ({ isMobile }) => {
     return <FlashScreen />;
   }
 
-  if (isMobile) return <MobileSearchPage />;
+  if (isMobile) return <MobileMessagesPage />;
 
-  if (!isMobile) return <div>hello desktop</div>;
+  if (!isMobile) return <div>hello world</div>;
 };
 
-export default Search;
+export default Messages;
 
 export const getServerSideProps = ({ req }) => {
   const UA = req.headers["user-agent"];

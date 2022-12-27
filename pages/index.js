@@ -3,24 +3,10 @@ import MobileHomePage from "../components/mobile/pages/home";
 import DesktopHomePage from "../components/desktop/pages/home";
 import mobileCheck from "../utils/helpers/mobileCheck";
 import FlashScreen from "../components/general/Flashscreen";
+import { App } from "./_app";
 
 export default function Home({ isMobile }) {
-  const [timer, setTimer] = useState(0);
-
-  // splash screen effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (timer < 2) {
-        setTimer(timer + 1);
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [timer]);
+  const { timer } = App();
 
   // splash screen delay
   if (timer < 2) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import layout from "../desktop/layout/layout.module.css";
 import { App } from "../../pages/_app";
@@ -8,16 +8,18 @@ const IconHOC = (Icon, path) => {
   const { theme } = App();
   const [isActive, setIsActive] = useState(false);
 
-  const _colors = {
-    light: {
-      color: "#000000",
-      active: "yellow",
-    },
-    dark: {
-      color: "#ffffff",
-      active: "green",
-    },
-  };
+  const _colors = useMemo(() => {
+    return {
+      light: {
+        color: "#000000",
+        active: "#e60000", //dark red
+      },
+      dark: {
+        color: "#ffffff",
+        active: "purple",
+      },
+    };
+  }, []);
 
   const [colors, setColors] = useState(theme ? _colors.dark : _colors.light);
 
@@ -34,12 +36,9 @@ const IconHOC = (Icon, path) => {
 
   useEffect(() => {
     setColors(theme ? _colors.dark : _colors.light);
-  }, [theme]);
+  }, [theme, _colors]);
 
-  return (
-    <Icon color={isActive ? colors.active : colors.color} />
-    // <Icon className={isActive ? layout.iconActive : ""} active={isActive} />
-  );
+  return <Icon color={isActive ? colors.active : colors.color} />;
 };
 
 export default IconHOC;
