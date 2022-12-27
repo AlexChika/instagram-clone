@@ -9,7 +9,7 @@ const FlashScreen = () => {
     <section className="h-screen flex-col flex justify-center items-center relative">
       <Image src={instaIconSvg} alt="Insta icon" />
 
-      <div className="absolute h-10 w-16 bottom-20">
+      <div className="absolute h-10 w-16 bottom-[150px]">
         <Image layout="fill" src={metaLogoPng} alt="insta logo" />
       </div>
     </section>
