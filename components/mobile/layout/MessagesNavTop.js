@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import IconHOC from "../../general/IconHOC";
 import tempImage from "../../../Assets/alex.png";
@@ -11,6 +12,7 @@ import {
 
 const MessagesNavTop = () => {
   const [showPopUp, setShowPopUp] = useState(false);
+  const router = useRouter();
 
   function handleSwitchAccountPopUp() {
     setShowPopUp(true);
@@ -20,7 +22,9 @@ const MessagesNavTop = () => {
     <>
       <nav className="sticky top-0 z-10 flex items-center justify-center bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 h-11">
         <div className="flex justify-between px-3 pr-4 w-full py-1 max-w-3xl mx-auto">
-          <span className="text-xs">{IconHOC(CaretLeftIcon, "none")}</span>
+          <button onClick={() => router.push("/")} className="text-xs">
+            {IconHOC(CaretLeftIcon, "none")}
+          </button>
 
           <button
             onClick={handleSwitchAccountPopUp}
@@ -30,7 +34,9 @@ const MessagesNavTop = () => {
             {IconHOC(CaretDown, "none")}
           </button>
 
-          <span>{IconHOC(EditIcon, "none")}</span>
+          <button onClick={() => router.push("/messages/new")}>
+            {IconHOC(EditIcon, "none")}
+          </button>
         </div>
       </nav>
 

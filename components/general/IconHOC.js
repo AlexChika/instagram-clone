@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
-import layout from "../desktop/layout/layout.module.css";
 import { App } from "../../pages/_app";
 
 const IconHOC = (Icon, path) => {
@@ -16,7 +15,7 @@ const IconHOC = (Icon, path) => {
       },
       dark: {
         color: "#ffffff",
-        active: "purple",
+        active: "purple", //purple
       },
     };
   }, []);

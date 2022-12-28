@@ -6,7 +6,7 @@ const { instaIconSvg, metaLogoPng } = getImage();
 // app
 const FlashScreen = () => {
   return (
-    <section className="h-screen flex-col flex justify-center items-center relative">
+    <section className="bg-white h-screen flex-col flex justify-center items-center relative">
       <Image src={instaIconSvg} alt="Insta icon" />
 
       <div className="absolute h-10 w-16 bottom-[150px]">

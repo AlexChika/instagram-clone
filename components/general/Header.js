@@ -22,7 +22,7 @@ const Header = ({
         key="X-UA-Compatible"
       />
 
-      <link rel="icon" href="/insta-icon-png.png" key="icon" />
+      <link rel="icon" href="/insta-icon-svg.svg" key="icon" />
 
       <meta name="robots" content="index, follow" key="robots" />
 
