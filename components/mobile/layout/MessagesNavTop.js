@@ -57,7 +57,7 @@ function SwitchAccounts({ showPopUp, setShowPopUp }) {
   }
 
   return (
-    <main
+    <div
       ref={switchRef}
       onClick={closePopUp}
       className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-20 transition-all ${
@@ -100,6 +100,6 @@ function SwitchAccounts({ showPopUp, setShowPopUp }) {
           Log into an existing Account
         </button>
       </section>
-    </main>
+    </div>
   );
 }

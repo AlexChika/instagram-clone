@@ -1,6 +1,7 @@
 import React from "react";
 import { App } from "../_app";
-import FlashScreen from "../../components/general/Flashscreen";
+import MobileFlashScreen from "../../components/desktop/flashScreen";
+import DesktopFlashScreen from "../../components/mobile/flashScreen";
 import mobileCheck from "../../utils/helpers/mobileCheck";
 import MobileExplorePage from "../../components/mobile/pages/explore";
 
@@ -9,7 +10,7 @@ const Explore = ({ isMobile }) => {
 
   // splash screen delay
   if (timer < 2) {
-    return <FlashScreen />;
+    return isMobile ? <MobileFlashScreen /> : <DesktopFlashScreen />;
   }
 
   if (isMobile) return <MobileExplorePage />;
