@@ -9,12 +9,15 @@ const Video = () => {
   }
 
   // memoized list video dom elements
-  const vidEl = useMemo(() => {
-    return [...document.querySelectorAll(`[data-vid="reels"]`)];
-  }, []);
+  // const vidEl = useMemo(() => {
+  //   return [...document.querySelectorAll(`[data-vid="reels"]`)];
+  // }, []);
+
+  // console.log(vidEl);
 
   // autoplay observer logic
   useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
     let options = {
       root: null,
       rootMargin: "0px",
@@ -33,18 +36,20 @@ const Video = () => {
 
     let observer = new IntersectionObserver(observerHandler, options);
 
-    vidEl.forEach((el) => {
+    vid.forEach((el) => {
       observer.observe(el);
     });
     return () => {};
-  }, [vidEl]);
+  }, []);
 
-  //   mute and unmute logick
+  //   mute and unmute logic
   useEffect(() => {
-    vidEl.forEach((vid) => {
+    const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
+
+    vid.forEach((vid) => {
       vid.muted = muted;
     });
-  }, [muted, vidEl]);
+  }, [muted]);
 
   return (
     <>
