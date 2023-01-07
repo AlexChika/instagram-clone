@@ -15,6 +15,12 @@ const Video = () => {
 
   // console.log(vidEl);
 
+  // obj.addEventListener("loadeddata", () => {
+  //   if (obj.readyState >= 2) {
+  //     obj.play();
+  //   }
+  // });
+
   // autoplay observer logic
   useEffect(() => {
     const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
@@ -27,6 +33,7 @@ const Video = () => {
     function observerHandler(entries, observer) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          entry.target.muted = muted;
           entry.target.play();
         } else {
           entry.target.pause();
@@ -40,16 +47,16 @@ const Video = () => {
       observer.observe(el);
     });
     return () => {};
-  }, []);
+  }, [muted]);
 
   //   mute and unmute logic
-  useEffect(() => {
-    const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
+  // useEffect(() => {
+  //   const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
 
-    vid.forEach((vid) => {
-      vid.muted = muted;
-    });
-  }, [muted]);
+  //   vid.forEach((vid) => {
+  //     vid.muted = muted;
+  //   });
+  // }, [muted]);
 
   return (
     <>
