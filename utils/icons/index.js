@@ -18,3 +18,5 @@ export { default as ListIcon } from "./ListIcon";
 export { default as CaretLeftIcon } from "./CaretLeftIcon";
 export { default as EditIcon } from "./EditIcon";
 export { default as CheckIcon } from "./CheckIcon";
+export { default as SpeakerOnIcon } from "./SpeakerOnIcon";
+export { default as SpeakerOffIcon } from "./SpeakerOffIcon";

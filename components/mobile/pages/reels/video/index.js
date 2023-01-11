@@ -1,4 +1,8 @@
+/* --------------------------------------- */
+/*              Video Element              */
+/* --------------------------------------- */
 import React, { useEffect, useState, useMemo } from "react";
+import Overlay from "./VidOverlay";
 
 const Video = () => {
   const [muted, setMuted] = useState(false);
@@ -34,6 +38,7 @@ const Video = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.muted = muted;
+          console.log(muted);
           entry.target.play();
         } else {
           entry.target.pause();
@@ -60,13 +65,10 @@ const Video = () => {
 
   return (
     <>
+      {/* ------------ Parent Wrapper ----------- */}
       <article className="h-[calc(100vh-44px)] relative">
-        <video
-          onClick={handleVideoOnTap}
-          data-vid="reels"
-          loop
-          className="w-full h-full"
-        >
+        {/* ----------- Video Element ----------- */}
+        <video data-vid="reels" loop className="w-full h-full">
           <source src="/insta-vid.mp4" type="video/mp4" />
 
           <p className="italic font-medium text-red-600">
@@ -74,20 +76,14 @@ const Video = () => {
           </p>
         </video>
 
-        <span
-          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-          role="mute button"
-        >
-          {muted ? "mute" : "volume"}
-        </span>
+        {/* --------------- Overlay --------------- */}
+        <Overlay params={{ handleVideoOnTap, muted }} />
       </article>
+
+      {/* ------------ Parent Wrapper ----------- */}
       <article className="h-[calc(100vh-44px)] relative">
-        <video
-          onClick={handleVideoOnTap}
-          data-vid="reels"
-          loop
-          className="w-full h-full"
-        >
+        {/* ----------- Video Element ----------- */}
+        <video data-vid="reels" loop className="w-full h-full">
           <source src="/insta-vid.mp4" type="video/mp4" />
 
           <p className="italic font-medium text-red-600">
@@ -95,20 +91,14 @@ const Video = () => {
           </p>
         </video>
 
-        <span
-          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-          role="mute button"
-        >
-          {muted ? "mute" : "volume"}
-        </span>
+        {/* --------------- Overlay --------------- */}
+        <Overlay params={{ handleVideoOnTap, muted }} />
       </article>
+
+      {/* ------------ Parent Wrapper ----------- */}
       <article className="h-[calc(100vh-44px)] relative">
-        <video
-          onClick={handleVideoOnTap}
-          data-vid="reels"
-          loop
-          className="w-full h-full"
-        >
+        {/* ----------- Video Element ----------- */}
+        <video data-vid="reels" loop className="w-full h-full">
           <source src="/insta-vid.mp4" type="video/mp4" />
 
           <p className="italic font-medium text-red-600">
@@ -116,54 +106,8 @@ const Video = () => {
           </p>
         </video>
 
-        <span
-          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-          role="mute button"
-        >
-          {muted ? "mute" : "volume"}
-        </span>
-      </article>
-      <article className="h-[calc(100vh-44px)] relative">
-        <video
-          onClick={handleVideoOnTap}
-          data-vid="reels"
-          loop
-          className="w-full h-full"
-        >
-          <source src="/insta-vid.mp4" type="video/mp4" />
-
-          <p className="italic font-medium text-red-600">
-            Your browser does not support mp4 video formats
-          </p>
-        </video>
-
-        <span
-          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-          role="mute button"
-        >
-          {muted ? "mute" : "volume"}
-        </span>
-      </article>
-      <article className="h-[calc(100vh-44px)] relative">
-        <video
-          onClick={handleVideoOnTap}
-          data-vid="reels"
-          loop
-          className="w-full h-full"
-        >
-          <source src="/insta-vid.mp4" type="video/mp4" />
-
-          <p className="italic font-medium text-red-600">
-            Your browser does not support mp4 video formats
-          </p>
-        </video>
-
-        <span
-          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-          role="mute button"
-        >
-          {muted ? "mute" : "volume"}
-        </span>
+        {/* --------------- Overlay --------------- */}
+        <Overlay params={{ handleVideoOnTap, muted }} />
       </article>
     </>
   );
