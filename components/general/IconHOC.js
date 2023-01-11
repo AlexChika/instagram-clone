@@ -11,11 +11,11 @@ const IconHOC = (Icon, path) => {
     return {
       light: {
         color: "#000000",
-        active: "#e60000", //dark red
+        active: "tomato", //dark red
       },
       dark: {
         color: "#ffffff",
-        active: "purple", //purple
+        active: "teal", //teal
       },
     };
   }, []);

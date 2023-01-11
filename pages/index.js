@@ -10,7 +10,7 @@ export default function Home({ isMobile }) {
   const { timer } = App();
 
   // return <DesktopFlashScreen />;
-  return <MobileFlashScreen />;
+  // return <MobileFlashScreen />;
 
   // splash screen delay
   if (timer < 2) {
