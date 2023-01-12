@@ -1,3 +1,7 @@
+/* --------------------------------------- */
+/*          Sound Volume Indicator         */
+/* --------------------------------------- */
+
 import React, { useEffect, useState } from "react";
 import video from "./video.module.css";
 import { SpeakerOffIcon, SpeakerOnIcon } from "../../../../../utils/icons";
@@ -10,7 +14,7 @@ const Sound = ({ muted }) => {
 
     setTimeout(() => {
       setIndicator("sound__off");
-    }, [1000]);
+    }, [800]);
   }, [muted]);
 
   return (

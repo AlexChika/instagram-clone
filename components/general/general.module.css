@@ -1,0 +1,43 @@
+/* --------------------------------------- */
+/*             Spinner.js styles           */
+/* --------------------------------------- */
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border-right: 2px solid;
+  border-radius: 50%;
+  color: white;
+  -webkit-animation: rotate 0.1s linear both infinite;
+  animation: rotate 0.3s linear both infinite;
+}
+
+.spinner.sm {
+  width: 30px;
+  height: 30px;
+}
+
+.spinner.stop {
+  display: none;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
