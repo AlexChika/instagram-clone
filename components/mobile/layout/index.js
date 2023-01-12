@@ -2,7 +2,7 @@ import NavBottom from "./NavBottom";
 function MobileLayout({ children, TopNav, showBottomNav = true }) {
   return (
     //TODO check necessitty of height declaration
-    <main className="min-h-screen">
+    <main className="h-screen">
       {/* Top Navigation */}
       {TopNav && <TopNav />}
 
