@@ -17,11 +17,10 @@
   display: none;
 }
 
-/* video (index.js*/
+/* ----------- video (index.js) ---------- */
 .video__wrapper {
   scroll-snap-stop: always;
   scroll-snap-align: start;
-  border: 2px solid teal;
 }
 
 /* --------------------------------------- */
