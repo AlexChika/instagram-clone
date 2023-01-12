@@ -2,7 +2,7 @@
 /*         Reels Wrapper (Reels.js)        */
 /* --------------------------------------- */
 .reels__wrapper {
-  height: calc(100vh);
+  height: calc(100vh - 44px);
   overflow-y: auto;
   -ms-scroll-snap-type: y mandatory;
   scroll-snap-type: y mandatory;

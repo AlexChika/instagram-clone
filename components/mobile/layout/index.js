@@ -1,7 +1,7 @@
 import NavBottom from "./NavBottom";
 function MobileLayout({ children, TopNav, showBottomNav = true }) {
   return (
-    <main>
+    <main className="min-h-screen green">
       {/* Top Navigation */}
       {TopNav && <TopNav />}
 
