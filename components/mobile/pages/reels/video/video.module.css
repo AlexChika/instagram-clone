@@ -2,13 +2,14 @@
 /*         Reels Wrapper (Reels.js)        */
 /* --------------------------------------- */
 .reels__wrapper {
-  height: calc(100vh - 44px);
+  height: calc(100vh);
   overflow-y: auto;
   -ms-scroll-snap-type: y mandatory;
   scroll-snap-type: y mandatory;
   -ms-scroll-snap-type: mandatory;
   scroll-snap-type: mandatory;
   -webkit-scroll-snap-type: mandatory;
+  border: 2px solid blue;
 }
 
 .reels__wrapper::-webkit-scrollbar {
@@ -20,7 +21,7 @@
 /* video (index.js*/
 .video__wrapper {
   scroll-snap-stop: always;
-  scroll-snap-align: end;
+  scroll-snap-align: start;
 }
 
 /* --------------------------------------- */
