@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
 import { App } from "../../../../pages/_app";
@@ -6,6 +6,12 @@ import { App } from "../../../../pages/_app";
 // app
 const MobileHomePage = () => {
   const { changeTheme, theme } = App();
+  const [height, setHeight] = useState(0);
+
+  const getHeight = () => {
+    let height = document.innerHeight;
+    setHeight(height);
+  };
 
   return (
     <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
@@ -21,6 +27,8 @@ const MobileHomePage = () => {
         {/*
       <ListIcon />
       <StoryIcon /> */}
+        <h3>Height = {height}</h3>
+        <button onClick={getHeight}>Get Height</button>
         <br />
         <button
           className="text-blue-600 font-bold italic border-2 border-blue-600 border-solid p-1 mx-auto block"
