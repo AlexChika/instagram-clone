@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
 import { App } from "../../../../pages/_app";
