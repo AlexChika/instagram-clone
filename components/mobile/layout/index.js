@@ -8,13 +8,7 @@ function MobileLayout({ children, TopNav, showBottomNav = true }) {
       {TopNav && <TopNav />}
 
       {/* Page Content */}
-      <section
-        className={`${
-          TopNav ? "" : "h-[calc(100vh-44px)] relative"
-        } red max-w-3xl mx-auto`}
-      >
-        {children}
-      </section>
+      <section className={`red max-w-3xl mx-auto`}>{children}</section>
 
       {/* bottom Navigation */}
       {showBottomNav && <NavBottom />}
@@ -23,6 +17,9 @@ function MobileLayout({ children, TopNav, showBottomNav = true }) {
 }
 // ${
 //           showBottomNav ? "pb-[44px]" : "pb-[10px]"
+//         }
+// ${
+//           TopNav ? "" : "h-[calc(100vh-44px)] relative"
 //         }
 
 export default MobileLayout;
