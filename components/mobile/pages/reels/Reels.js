@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Video from "./video";
 import video from "./video/video.module.css";
-import getHeight from "../../../../utils/helpers/getHeight";
 
 const Reels = () => {
   const ReelsREf = useRef(null);
@@ -62,7 +61,7 @@ const Reels = () => {
     });
   }, [muted]);
 
-  /* ---- dynamic window Height logic ---- */
+  /* -- dynamic Reels Wrapper Height logic - */
   useEffect(() => {
     let _height;
     const refElement = ReelsREf.current;
@@ -74,16 +73,16 @@ const Reels = () => {
       // 44px serves as the bottom navbar height
     }
 
-    refElement.addEventListener("scroll", handleScrollEvent);
+    refElement.addEventListener("resize", handleScrollEvent);
 
     return () => {
-      refElement.removeEventListener("scroll", handleScrollEvent);
+      refElement.removeEventListener("resize", handleScrollEvent);
     };
   }, []);
 
   return (
     <div ref={ReelsREf} className={video.reels__wrapper}>
-      {[1, 2, 3, 4, 5, 6].map((vid, index) => {
+      {[1, 2, 3].map((vid, index) => {
         return (
           <Video
             muted={muted}
