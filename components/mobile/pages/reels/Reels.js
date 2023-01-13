@@ -5,20 +5,18 @@ import video from "./video/video.module.css";
 const Reels = () => {
   const ReelsREf = useRef(null);
   const [muted, setMuted] = useState(true);
-  let vidEl;
+  const [loading, setLoading] = useState(true);
 
   //   func ...
   function handleVideoOnTap() {
     setMuted(!muted);
   }
 
-  function handleVideoLoaded() {
-    console.log(vidEl.readyState);
-    if (vidEl.readyState >= 2) {
-      vidEl.play();
-    } else {
-      vidEl.pause();
-    }
+  function handleWaiting() {
+    setLoading(true);
+  }
+  function handlePlaying() {
+    setLoading(false);
   }
 
   /* ------- autoplay observer logic ------- */
@@ -33,12 +31,12 @@ const Reels = () => {
     function observerHandler(entries, observer) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          //   vidEl = entry.target;
-          //   console.log(vidEl);
-          //   entry.target.addEventListener("loadeddata", handleVideoLoaded);
+          entry.target.addEventListener("waiting", handleWaiting);
+          entry.target.addEventListener("playing", handlePlaying);
           entry.target.play();
         } else {
-          //   entry.target.removeEventListener("loadeddata", handleVideoLoaded);
+          entry.target.removeEventListener("waiting", handleWaiting);
+          entry.target.removeEventListener("playing", handlePlaying);
           entry.target.pause();
         }
       });
@@ -86,6 +84,7 @@ const Reels = () => {
         return (
           <Video
             muted={muted}
+            loading={loading}
             handleVideoOnTap={handleVideoOnTap}
             key={index}
           />
