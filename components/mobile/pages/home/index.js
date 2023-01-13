@@ -9,7 +9,7 @@ const MobileHomePage = () => {
   const [height, setHeight] = useState(0);
 
   const getHeight = () => {
-    let height = document.innerHeight;
+    let height = window.innerHeight;
     setHeight(height);
   };
 
@@ -28,7 +28,9 @@ const MobileHomePage = () => {
       <ListIcon />
       <StoryIcon /> */}
         <h3>Height = {height}</h3>
-        <button onClick={getHeight}>Get Height</button>
+        <button className="red" onClick={getHeight}>
+          Get Height
+        </button>
         <br />
         <button
           className="text-blue-600 font-bold italic border-2 border-blue-600 border-solid p-1 mx-auto block"
