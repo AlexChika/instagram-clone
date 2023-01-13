@@ -11,6 +11,11 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+htnl,
+body {
+  height: 100vh;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
