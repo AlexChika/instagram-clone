@@ -49,31 +49,35 @@ const NavBottom = () => {
       <div className="justify-between flex items-center max-w-3xl mx-auto">
         {_Links.map((link, index) => {
           return (
-            <Link key={index} href={link.url} passHref>
-              <a aria-label={link.name + "icon"}>
-                {IconHOC(link.icon, link.path)}
-              </a>
-            </Link>
+            <span key={index}>
+              <Link href={link.url} passHref>
+                <a aria-label={link.name + "icon"}>
+                  {IconHOC(link.icon, link.path)}
+                </a>
+              </Link>
+            </span>
           );
         })}
 
-        <Link href="/user" passHref>
-          {true ? (
-            <a
-              aria-label="User avatar"
-              className="relative h-[26px] w-[26px] rounded-full flex items-center justify-center"
-            >
-              <Image
-                className="rounded-full"
-                layout="fill"
-                src={tempIMage}
-                alt="user image"
-              ></Image>
-            </a>
-          ) : (
-            <a aria-label="User avatar">{IconHOC(AvatarIcon, "user")}</a>
-          )}
-        </Link>
+        <span>
+          <Link href="/user" passHref>
+            {true ? (
+              <a
+                aria-label="User avatar"
+                className="relative h-[26px] w-[26px] rounded-full flex items-center justify-center"
+              >
+                <Image
+                  className="rounded-full"
+                  layout="fill"
+                  src={tempIMage}
+                  alt="user image"
+                ></Image>
+              </a>
+            ) : (
+              <a aria-label="User avatar">{IconHOC(AvatarIcon, "user")}</a>
+            )}
+          </Link>
+        </span>
       </div>
     </footer>
   );

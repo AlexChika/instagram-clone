@@ -1,8 +1,8 @@
 import React from "react";
 import Error from "next/error";
 import { App } from "../_app";
-import MobileFlashScreen from "../../components/desktop/flashScreen";
-import DesktopFlashScreen from "../../components/mobile/flashScreen";
+import DesktopFlashScreen from "../../components/desktop/flashScreen";
+import MobileFlashScreen from "../../components/mobile/flashScreen";
 import mobileCheck from "../../utils/helpers/mobileCheck";
 import MobileReelsPage from "../../components/mobile/pages/reels";
 

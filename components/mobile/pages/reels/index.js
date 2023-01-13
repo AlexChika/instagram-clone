@@ -1,14 +1,14 @@
 import React from "react";
 import MobileLayout from "../../layout";
-import Video from "./video";
+import Reels from "./Reels";
 
 // app
-const Reels = () => {
+const ReelsPage = () => {
   return (
     <MobileLayout showBottomNav={true}>
-      <Video />
+      <Reels />
     </MobileLayout>
   );
 };
 
-export default Reels;
+export default ReelsPage;

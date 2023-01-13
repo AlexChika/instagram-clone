@@ -1,0 +1,100 @@
+/* --------------------------------------- */
+/*         Reels Wrapper (Reels.js)        */
+/* --------------------------------------- */
+.reels__wrapper {
+  height: calc(100vh - 44px);
+  overflow-y: scroll;
+  -ms-scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: mandatory;
+  scroll-snap-type: mandatory;
+  -webkit-scroll-snap-type: mandatory;
+}
+
+.reels__wrapper::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+/* ----------- video (index.js) ---------- */
+.video__wrapper {
+  scroll-snap-stop: always;
+  scroll-snap-align: start;
+  position: relative;
+  height: 100%;
+}
+
+/* --------------------------------------- */
+/*            sound indicator.js           */
+/* --------------------------------------- */
+.sound__indicator {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
+.sound__on {
+  -webkit-animation: scale-up-center 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-center 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.sound__off {
+  -webkit-animation: scale-down 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-down 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+/* ---------- Scale up animation --------- */
+@-webkit-keyframes scale-up-center {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+}
+
+@keyframes scale-up-center {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+}
+
+/* --------- scale down animation -------- */
+@-webkit-keyframes scale-down {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@keyframes scale-down {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
