@@ -73,10 +73,10 @@ const Reels = () => {
       // 44px serves as the bottom navbar height
     }
 
-    refElement.addEventListener("resize", handleScrollEvent);
+    refElement.addEventListener("scroll", handleScrollEvent);
 
     return () => {
-      refElement.removeEventListener("resize", handleScrollEvent);
+      refElement.removeEventListener("scroll", handleScrollEvent);
     };
   }, []);
 
