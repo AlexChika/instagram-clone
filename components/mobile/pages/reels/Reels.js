@@ -32,11 +32,12 @@ const Reels = () => {
     function observerHandler(entries, observer) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          vidEl = entry.target;
-          console.log(vidEl);
-          entry.target.addEventListener("loadeddata", handleVideoLoaded);
+          //   vidEl = entry.target;
+          //   console.log(vidEl);
+          //   entry.target.addEventListener("loadeddata", handleVideoLoaded);
+          entry.target.play();
         } else {
-          entry.target.removeEventListener("loadeddata", handleVideoLoaded);
+          //   entry.target.removeEventListener("loadeddata", handleVideoLoaded);
           entry.target.pause();
         }
       });

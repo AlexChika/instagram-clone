@@ -8,7 +8,7 @@ import VideoEl from "./VideoEl";
 
 const Video = (props) => {
   const { muted, handleVideoOnTap } = props;
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   // .............................
   // memoized list video dom elements
   // const vidEl = useMemo(() => {

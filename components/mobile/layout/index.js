@@ -6,7 +6,7 @@ function MobileLayout({ children, TopNav, showBottomNav = true }) {
       {TopNav && <TopNav />}
 
       {/* Page Content */}
-      <section className={`max-w-3xl mx-auto min-h-[100vh-44px] `}>
+      <section className={`max-w-3xl mx-auto min-h-[calc(100vh-44px)] `}>
         {children}
       </section>
 
