@@ -7,7 +7,7 @@ import Overlay from "./VidOverlay";
 import VideoEl from "./VideoEl";
 
 const Video = (props) => {
-  const { muted, handleVideoOnTap, loading } = props;
+  const { muted, handleVideoOnTap, loading, url } = props;
   // const [loading, setLoading] = useState(false);
   // .............................
   // memoized list video dom elements
@@ -22,7 +22,7 @@ const Video = (props) => {
       {/* ------------ Parent Wrapper ----------- */}
       <article className={` ${video.video__wrapper}`}>
         {/* ----------- Video Element ----------- */}
-        <VideoEl />
+        <VideoEl src={url} />
 
         {/* --------------- Overlay --------------- */}
         <Overlay params={{ handleVideoOnTap, muted, loading }} />

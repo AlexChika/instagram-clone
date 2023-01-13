@@ -8,7 +8,9 @@ const Spinner = ({ style, sm = false, stop = false }) => {
         stop ? general.stop : null
       }`}
       style={style}
-    ></div>
+    >
+      <span></span>
+    </div>
   );
 };
 
