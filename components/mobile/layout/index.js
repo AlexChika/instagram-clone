@@ -10,7 +10,7 @@ function MobileLayout({ children, TopNav, showBottomNav = true }) {
       {/* Page Content */}
       <section
         className={`${
-          TopNav ? "" : "h-[calc(100vh-44px)]"
+          TopNav ? "" : "h-[calc(100vh-44px)] relative"
         } red max-w-3xl mx-auto`}
       >
         {children}

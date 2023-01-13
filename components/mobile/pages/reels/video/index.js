@@ -27,9 +27,7 @@ const Video = (props) => {
   return (
     <>
       {/* ------------ Parent Wrapper ----------- */}
-      <article
-        className={`h-[calc(100vh-44px)] relative ${video.video__wrapper}`}
-      >
+      <article className={` ${video.video__wrapper}`}>
         {/* ----------- Video Element ----------- */}
         <VideoEl />
 

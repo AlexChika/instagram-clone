@@ -2,8 +2,12 @@
 /*         Reels Wrapper (Reels.js)        */
 /* --------------------------------------- */
 .reels__wrapper {
-  height: 100%;
-  /*  */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* height: 100%; */
   /* height: calc(100vh - 44px); */
   overflow-y: scroll;
   -ms-scroll-snap-type: y mandatory;
@@ -23,6 +27,8 @@
 .video__wrapper {
   scroll-snap-stop: always;
   scroll-snap-align: start;
+  position: relative;
+  height: 100%;
 }
 
 /* --------------------------------------- */
