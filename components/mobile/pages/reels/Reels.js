@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Video from "./video";
 import video from "./video/video.module.css";
+// import setHeight from "../../../../utils/helpers/setHeight";
+import SetHeight from "../../../../utils/hooks/setHeight";
 
+// app
 const Reels = () => {
   const ReelsREf = useRef(null);
   const [muted, setMuted] = useState(true);
@@ -16,6 +19,7 @@ const Reels = () => {
     console.log("fired");
     setLoading(true);
   }
+
   function handlePlaying() {
     console.log("firing");
     setLoading(false);
@@ -61,24 +65,32 @@ const Reels = () => {
     });
   }, [muted]);
 
+  SetHeight(ReelsREf);
+
   /* -- dynamic Reels Wrapper Height logic - */
-  useEffect(() => {
-    let _height;
-    const refElement = ReelsREf.current;
-    function handleScrollEvent() {
-      if (_height === window.innerHeight) return;
-      _height = window.innerHeight;
-      ReelsREf.current.style.height = `${_height - 44}px`;
-      console.log(_height);
-      // 44px serves as the bottom navbar height
-    }
+  // useEffect(() => {
+  //   const unsubscribe = setHeight(ReelsREf)
 
-    refElement.addEventListener("scroll", handleScrollEvent);
+  //   return unsubscribe;
+  // }, [ReelsREf])
 
-    return () => {
-      refElement.removeEventListener("scroll", handleScrollEvent);
-    };
-  }, []);
+  // useEffect(() => {
+  //   let _height;
+  //   const refElement = ReelsREf.current;
+  //   function handleScrollEvent() {
+  //     if (_height === window.innerHeight) return;
+  //     _height = window.innerHeight;
+  //     ReelsREf.current.style.height = `${_height - 44}px`;
+  //     console.log(_height);
+  //     // 44px serves as the bottom navbar height
+  //   }
+
+  //   window.addEventListener("scroll", handleScrollEvent);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScrollEvent);
+  //   };
+  // }, []);
 
   const urls = [
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",

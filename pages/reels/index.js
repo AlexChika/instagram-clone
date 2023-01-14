@@ -1,8 +1,9 @@
 import React from "react";
 import Error from "next/error";
 import { App } from "../_app";
-import DesktopFlashScreen from "../../components/desktop/flashScreen";
-import MobileFlashScreen from "../../components/mobile/flashScreen";
+// import DesktopFlashScreen from "../../components/desktop/flashScreen";
+// import MobileFlashScreen from "../../components/mobile/flashScreen";
+import FlashScreen from "../../components/general/FlashScreen";
 import mobileCheck from "../../utils/helpers/mobileCheck";
 import MobileReelsPage from "../../components/mobile/pages/reels";
 
@@ -11,7 +12,7 @@ const Reels = ({ isMobile }) => {
 
   // splash screen delay
   if (timer < 2) {
-    return isMobile ? <MobileFlashScreen /> : <DesktopFlashScreen />;
+    return <FlashScreen />;
   }
 
   if (isMobile) return <MobileReelsPage />;

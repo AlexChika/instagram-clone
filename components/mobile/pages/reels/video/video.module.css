@@ -25,6 +25,13 @@
   height: 100%;
 }
 
+.video__wrapper video {
+  border: 2px solid blue;
+  aspect-ratio: 2/9;
+  max-width: 100vh;
+  max-height: 100vh;
+}
+
 /* --------------------------------------- */
 /*            sound indicator.js           */
 /* --------------------------------------- */
