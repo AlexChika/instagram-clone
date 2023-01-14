@@ -33,7 +33,8 @@
   border: 2px solid blue;
   max-width: 100vh;
   max-height: 100vh;
-  /* aspect-ratio: 9/16; */
+  -o-object-fit: var(--object-fit);
+  object-fit: var(--object-fit);
 }
 
 /* --------------------------------------- */

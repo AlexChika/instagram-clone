@@ -95,6 +95,12 @@ const Reels = () => {
           />
         );
       })}
+      <Video
+        muted={muted}
+        loading={loading}
+        handleVideoOnTap={handleVideoOnTap}
+        key={"insta"}
+      />
     </div>
   );
 };
