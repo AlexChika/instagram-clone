@@ -1,24 +1,28 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Video from "./video";
 import video from "./video/video.module.css";
+// import setHeight from "../../../../utils/helpers/setHeight";
+import SetHeight from "../../../../utils/hooks/setHeight";
 
+// app
 const Reels = () => {
   const ReelsREf = useRef(null);
   const [muted, setMuted] = useState(true);
-  let vidEl;
+  const [loading, setLoading] = useState(true);
 
   //   func ...
   function handleVideoOnTap() {
     setMuted(!muted);
   }
 
-  function handleVideoLoaded() {
-    console.log(vidEl.readyState);
-    if (vidEl.readyState >= 2) {
-      vidEl.play();
-    } else {
-      vidEl.pause();
-    }
+  function handleWaiting() {
+    console.log("fired");
+    setLoading(true);
+  }
+
+  function handlePlaying() {
+    console.log("firing");
+    setLoading(false);
   }
 
   /* ------- autoplay observer logic ------- */
@@ -33,12 +37,12 @@ const Reels = () => {
     function observerHandler(entries, observer) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          //   vidEl = entry.target;
-          //   console.log(vidEl);
-          //   entry.target.addEventListener("loadeddata", handleVideoLoaded);
+          entry.target.addEventListener("waiting", handleWaiting);
+          entry.target.addEventListener("playing", handlePlaying);
           entry.target.play();
         } else {
-          //   entry.target.removeEventListener("loadeddata", handleVideoLoaded);
+          entry.target.removeEventListener("waiting", handleWaiting);
+          entry.target.removeEventListener("playing", handlePlaying);
           entry.target.pause();
         }
       });
@@ -61,33 +65,54 @@ const Reels = () => {
     });
   }, [muted]);
 
+  SetHeight(ReelsREf);
+
   /* -- dynamic Reels Wrapper Height logic - */
-  useEffect(() => {
-    let _height;
-    const refElement = ReelsREf.current;
-    function handleScrollEvent() {
-      if (_height === window.innerHeight) return;
-      _height = window.innerHeight;
-      ReelsREf.current.style.height = `${_height - 44}px`;
-      console.log(_height);
-      // 44px serves as the bottom navbar height
-    }
+  // useEffect(() => {
+  //   const unsubscribe = setHeight(ReelsREf)
 
-    refElement.addEventListener("scroll", handleScrollEvent);
+  //   return unsubscribe;
+  // }, [ReelsREf])
 
-    return () => {
-      refElement.removeEventListener("scroll", handleScrollEvent);
-    };
-  }, []);
+  // useEffect(() => {
+  //   let _height;
+  //   const refElement = ReelsREf.current;
+  //   function handleScrollEvent() {
+  //     if (_height === window.innerHeight) return;
+  //     _height = window.innerHeight;
+  //     ReelsREf.current.style.height = `${_height - 44}px`;
+  //     console.log(_height);
+  //     // 44px serves as the bottom navbar height
+  //   }
 
+  //   window.addEventListener("scroll", handleScrollEvent);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScrollEvent);
+  //   };
+  // }, []);
+
+  const urls = [
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+  ];
   return (
     <div ref={ReelsREf} className={video.reels__wrapper}>
-      {[1, 2, 3].map((vid, index) => {
+      {urls.map((url, index) => {
         return (
           <Video
             muted={muted}
+            loading={loading}
             handleVideoOnTap={handleVideoOnTap}
             key={index}
+            url={url}
           />
         );
       })}

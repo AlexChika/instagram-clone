@@ -7,8 +7,8 @@ import Overlay from "./VidOverlay";
 import VideoEl from "./VideoEl";
 
 const Video = (props) => {
-  const { muted, handleVideoOnTap } = props;
-  const [loading, setLoading] = useState(false);
+  const { muted, handleVideoOnTap, loading, url } = props;
+  // const [loading, setLoading] = useState(false);
   // .............................
   // memoized list video dom elements
   // const vidEl = useMemo(() => {
@@ -17,19 +17,12 @@ const Video = (props) => {
 
   // console.log(vidEl);
 
-  // obj.addEventListener("loadeddata", () => {
-  //   if (obj.readyState >= 2) {
-  //     obj.play();
-  //   }
-  // });
-  // ..................................
-
   return (
     <>
       {/* ------------ Parent Wrapper ----------- */}
       <article className={` ${video.video__wrapper}`}>
         {/* ----------- Video Element ----------- */}
-        <VideoEl />
+        <VideoEl src={url} />
 
         {/* --------------- Overlay --------------- */}
         <Overlay params={{ handleVideoOnTap, muted, loading }} />
