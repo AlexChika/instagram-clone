@@ -4,8 +4,6 @@ const SetHeight = (elementREf, sub = 44) => {
   // elementRef is an html element ref from useRef
   // 44 serves as the bottom navbar height
 
-  console.log(elementREf);
-
   /* -- dynamic  Wrapper Height logic - */
   useEffect(() => {
     const refElement = elementREf.current;
@@ -22,10 +20,10 @@ const SetHeight = (elementREf, sub = 44) => {
       console.log(_height);
     }
 
-    window.addEventListener("scroll", handleScrollEvent);
+    refElement.addEventListener("scroll", handleScrollEvent);
 
     return () => {
-      window.removeEventListener("scroll", handleScrollEvent);
+      refElement.removeEventListener("scroll", handleScrollEvent);
     };
   }, [elementREf]); //dep is almost unnexessary
 };
