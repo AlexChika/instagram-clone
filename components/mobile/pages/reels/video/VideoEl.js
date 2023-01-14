@@ -6,7 +6,7 @@ import React from "react";
 
 const VideoEl = ({ src = "/insta-vid.mp4" }) => {
   return (
-    <video data-vid="reels" loop className="w-full h-full ">
+    <video data-vid="reels" loop className="w-full h-full mx-auto">
       <source src={src} type="video/mp4" />
 
       <p className="italic font-medium text-red-600">

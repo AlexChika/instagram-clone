@@ -25,6 +25,9 @@ const Reels = () => {
     setLoading(false);
   }
 
+  // one more listener for first vid loaded data
+  // listener will control html skeleton
+
   /* ------- autoplay observer logic ------- */
   useEffect(() => {
     const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
@@ -65,32 +68,8 @@ const Reels = () => {
     });
   }, [muted]);
 
+  /* -- dynamic Reels Wrapper Height hook - */
   SetHeight(ReelsREf);
-
-  /* -- dynamic Reels Wrapper Height logic - */
-  // useEffect(() => {
-  //   const unsubscribe = setHeight(ReelsREf)
-
-  //   return unsubscribe;
-  // }, [ReelsREf])
-
-  // useEffect(() => {
-  //   let _height;
-  //   const refElement = ReelsREf.current;
-  //   function handleScrollEvent() {
-  //     if (_height === window.innerHeight) return;
-  //     _height = window.innerHeight;
-  //     ReelsREf.current.style.height = `${_height - 44}px`;
-  //     console.log(_height);
-  //     // 44px serves as the bottom navbar height
-  //   }
-
-  //   window.addEventListener("scroll", handleScrollEvent);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScrollEvent);
-  //   };
-  // }, []);
 
   const urls = [
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
