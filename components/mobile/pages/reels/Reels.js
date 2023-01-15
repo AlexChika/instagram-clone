@@ -10,7 +10,7 @@ const Reels = () => {
   const [loading, setLoading] = useState(true);
 
   //   func ...
-  function handleVideoOnTap() {
+  function muteFn() {
     setMuted(!muted);
   }
 
@@ -22,10 +22,6 @@ const Reels = () => {
   function handlePlaying() {
     console.log("firing");
     setLoading(false);
-  }
-
-  function handleCanPlay() {
-    console.log("I was called");
   }
 
   /* ------- autoplay observer logic ------- */
@@ -65,30 +61,8 @@ const Reels = () => {
 
     vid.forEach((vid) => {
       vid.muted = muted;
-      vid.addEventListener("canplay", handleCanPlay);
     });
-
-    return () => {
-      vid.forEach((vid) => {
-        vid.removeEventListener("canplay", handleCanPlay);
-      });
-    };
   }, [muted]);
-
-  /* ------- Effect for vid skeleton ------- */
-  useEffect(() => {
-    const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
-
-    vid.forEach((vid) => {
-      vid.addEventListener("canplay", handleCanPlay);
-    });
-
-    return () => {
-      vid.forEach((vid) => {
-        vid.removeEventListener("canplay", handleCanPlay);
-      });
-    };
-  }, []);
 
   /* -- dynamic Reels Wrapper Height hook - */
   SetHeight(ReelsREf);
@@ -98,7 +72,6 @@ const Reels = () => {
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-    "https://static.videezy.com/system/resources/previews/000/005/755/original/xylophone.mp4",
   ];
 
   return (
@@ -108,18 +81,13 @@ const Reels = () => {
           <Video
             muted={muted}
             loading={loading}
-            handleVideoOnTap={handleVideoOnTap}
+            muteFn={muteFn}
             key={index}
             url={url}
           />
         );
       })}
-      {/* <Video
-        muted={muted}
-        loading={loading}
-        handleVideoOnTap={handleVideoOnTap}
-        key={"insta"}
-      /> */}
+      <Video muted={muted} loading={loading} muteFn={muteFn} key={"insta"} />
     </div>
   );
 };

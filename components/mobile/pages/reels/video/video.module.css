@@ -33,11 +33,8 @@
   max-height: 100vh;
   -o-object-fit: var(--object-fit);
   object-fit: var(--object-fit);
-  background-size: cover;
-  background-image: url("/"),
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(253deg, #ff5e6233, #ff996633);
 }
-
 /* --------------------------------------- */
 /*            sound indicator.js           */
 /* --------------------------------------- */
@@ -111,3 +108,7 @@
     transform: scale(0);
   }
 }
+
+/* --------------------------------------- */
+/*                 SKELETON                */
+/* --------------------------------------- */
