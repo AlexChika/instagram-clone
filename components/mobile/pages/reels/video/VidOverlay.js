@@ -4,6 +4,7 @@ import Loading from "./Loading";
 
 const Overlay = ({ params }) => {
   const { handleVideoOnTap, muted, loading } = params;
+  // const [originalSize, setOriginalSize] = useState(true);
 
   function handleAspectRatio(type) {
     const root = document.querySelector(":root");

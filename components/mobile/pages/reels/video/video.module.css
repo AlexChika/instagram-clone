@@ -26,15 +26,16 @@
   position: relative;
   height: 100%;
   width: 100%;
-  border: 2px solid yellow;
 }
 
 .video__wrapper video {
-  border: 2px solid blue;
   max-width: 100vh;
   max-height: 100vh;
   -o-object-fit: var(--object-fit);
   object-fit: var(--object-fit);
+  background-size: cover;
+  background-image: url("/"),
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7));
 }
 
 /* --------------------------------------- */

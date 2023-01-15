@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Video from "./video";
 import video from "./video/video.module.css";
-// import setHeight from "../../../../utils/helpers/setHeight";
 import SetHeight from "../../../../utils/hooks/setHeight";
 
 // app
@@ -25,8 +24,9 @@ const Reels = () => {
     setLoading(false);
   }
 
-  // one more listener for first vid loaded data
-  // listener will control html skeleton
+  function handleCanPlay() {
+    console.log("I was called");
+  }
 
   /* ------- autoplay observer logic ------- */
   useEffect(() => {
@@ -57,7 +57,7 @@ const Reels = () => {
       observer.observe(el);
     });
     return () => {};
-  }, [muted]);
+  }, []); //vid urls dep here later
 
   /* -------- mute and unmute logic -------- */
   useEffect(() => {
@@ -65,8 +65,30 @@ const Reels = () => {
 
     vid.forEach((vid) => {
       vid.muted = muted;
+      vid.addEventListener("canplay", handleCanPlay);
     });
+
+    return () => {
+      vid.forEach((vid) => {
+        vid.removeEventListener("canplay", handleCanPlay);
+      });
+    };
   }, [muted]);
+
+  /* ------- Effect for vid skeleton ------- */
+  useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="reels"]`)];
+
+    vid.forEach((vid) => {
+      vid.addEventListener("canplay", handleCanPlay);
+    });
+
+    return () => {
+      vid.forEach((vid) => {
+        vid.removeEventListener("canplay", handleCanPlay);
+      });
+    };
+  }, []);
 
   /* -- dynamic Reels Wrapper Height hook - */
   SetHeight(ReelsREf);
@@ -74,14 +96,11 @@ const Reels = () => {
   const urls = [
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    "https://static.videezy.com/system/resources/previews/000/005/755/original/xylophone.mp4",
   ];
+
   return (
     <div ref={ReelsREf} className={video.reels__wrapper}>
       {urls.map((url, index) => {
@@ -95,12 +114,12 @@ const Reels = () => {
           />
         );
       })}
-      <Video
+      {/* <Video
         muted={muted}
         loading={loading}
         handleVideoOnTap={handleVideoOnTap}
         key={"insta"}
-      />
+      /> */}
     </div>
   );
 };

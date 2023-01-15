@@ -37,7 +37,7 @@ const IconHOC = (Icon, path) => {
     setColors(theme ? _colors.dark : _colors.light);
   }, [theme, _colors]);
 
-  return <Icon color={isActive ? colors.active : colors.color} />;
+  return <Icon theme={theme} color={isActive ? colors.active : colors.color} />;
 };
 
 export default IconHOC;
