@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import { App } from "../../pages/_app";
 
-const IconHOC = (Icon, path) => {
+const IconHOC = (Icon, path, _class) => {
   const router = useRouter();
   const { theme } = App();
   const [isActive, setIsActive] = useState(false);
@@ -37,7 +37,9 @@ const IconHOC = (Icon, path) => {
     setColors(theme ? _colors.dark : _colors.light);
   }, [theme, _colors]);
 
-  return <Icon theme={theme} color={isActive ? colors.active : colors.color} />;
+  return (
+    <Icon class={_class} color={isActive ? colors.active : colors.color} />
+  );
 };
 
 export default IconHOC;

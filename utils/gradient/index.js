@@ -1,35 +1,50 @@
 const colors = [
   {
-    first: "#0000004d",
-    second: "#ffffff4d",
+    first: "#0000001A",
+    second: "#ffffff1A",
   },
   {
-    first: "#f562174d",
-    second: "#0b486b4d",
+    first: "#1D43501a",
+    second: "#A439311a",
   },
   {
-    first: "#ffffff33",
-    second: "#6dd5fa33",
+    first: "#ffffff1A",
+    second: "#6dd5fa1A",
   },
   {
-    first: "#ca0d0d33",
-    second: "#0584b233",
+    first: "#ca0d0d1A",
+    second: "#0584b21A",
+  },
+
+  {
+    first: "#3a61861a",
+    second: "#89253e1a",
   },
   {
-    first: "#1f800233",
-    second: "#00000033",
+    first: "#0213991A",
+    second: "#0505051A",
   },
   {
-    first: "#80024133",
-    second: "#142aa333",
+    first: "#8e44ad1A",
+    second: "#c0392b1A",
   },
   {
-    first: "#02139933",
-    second: "#05050533",
+    first: "#20002c1A",
+    second: "#cbb4d41A",
   },
   {
-    first: "#ff5e6233",
-    second: "#ff996633",
+    first: "#F0F2F01A",
+    second: "#000c401A",
+  },
+  {
+    first: "#ADA9961A",
+    second: "#F2F2F21A",
+    third: "#DBDBDB1A",
+    fourth: "#EAEAEA1A",
+  },
+  {
+    first: "#1c92d21A",
+    second: "#f2fcfe1A",
   },
 ];
 
@@ -37,11 +52,11 @@ function getGradient() {
   const length = colors.length;
   const index = Math.floor(Math.random() * length);
   const color = colors[index];
+  const all = Object.values(color);
 
   return `linear-gradient(
     253deg,
-    ${color.first},
-    ${color.second}
+    ${all}
   )`;
 }
 

@@ -5,12 +5,8 @@
 import React, { useEffect, useRef } from "react";
 import getGradient from "../../../../../utils/gradient";
 
-const VideoEl = ({ src = "/insta-vid.mp4", setCanPlay, fullScreen }) => {
+const VideoEl = ({ src = "/insta-vid.mp4", fullScreen }) => {
   const videoRef = useRef(null);
-
-  function handleCanPlay() {
-    setCanPlay(true);
-  }
 
   /* -------- set video aspect ratio ------- */
   useEffect(() => {
@@ -24,18 +20,7 @@ const VideoEl = ({ src = "/insta-vid.mp4", setCanPlay, fullScreen }) => {
   /* ------- Effect for vid skeleton ------- */
   useEffect(() => {
     const video = videoRef.current;
-
-    function handleCanPlay() {
-      if (video.readyState > 2) setCanPlay(true);
-    }
-
     video.style.background = getGradient();
-    video.addEventListener("loadeddata", handleCanPlay);
-
-    return () => {
-      video.removeEventListener("loadeddata", handleCanPlay);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // ....

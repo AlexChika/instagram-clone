@@ -1,11 +1,13 @@
 import React from "react";
 
-const HeartIcon = ({ color }) => {
+const HeartIcon = ({ color, class: cs }) => {
   return (
     <svg
-      aria-label="Notifications"
+      scale="21.6"
+      aria-label="Notifications and likes"
       color={color}
       fill="currentColor"
+      className={cs}
       // color="#262626"
       // fill="#262626"
       height="24"

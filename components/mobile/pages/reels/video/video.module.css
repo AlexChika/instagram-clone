@@ -5,6 +5,7 @@
   height: calc(100vh - 44px);
   width: 100%;
   max-width: 768px;
+  margin: 0 auto;
   overflow-y: scroll;
   -ms-scroll-snap-type: y mandatory;
   scroll-snap-type: y mandatory;
@@ -29,12 +30,12 @@
 }
 
 .video__wrapper video {
-  max-width: 100vh;
-  max-height: 100vh;
+  margin: 0 auto;
   -o-object-fit: var(--object-fit);
   object-fit: var(--object-fit);
-  background: linear-gradient(253deg, #ff5e6233, #ff996633);
+  background: linear-gradient(253deg, #ff55001a, #0797eb1a);
 }
+
 /* --------------------------------------- */
 /*            sound indicator.js           */
 /* --------------------------------------- */
@@ -110,5 +111,46 @@
 }
 
 /* --------------------------------------- */
-/*                 SKELETON                */
+/*                 BUTTONS.js                */
 /* --------------------------------------- */
+
+/* utils */
+.pointernone * {
+  pointer-events: none;
+}
+
+.buttons__wrapper {
+}
+
+/* .buttons__wrapper div {
+  align-self: flex-end;
+} */
+
+/* ----------- likes component ----------- */
+
+.like__scale {
+  -webkit-animation: scale-up-hor-center 0.2s
+    cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up-hor-center 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@-webkit-keyframes scale-up-hor-center {
+  0% {
+    -webkit-transform: scaleX(0.8);
+    transform: scaleX(0.8);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+@keyframes scale-up-hor-center {
+  0% {
+    -webkit-transform: scaleX(0.8);
+    transform: scaleX(0.8);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
