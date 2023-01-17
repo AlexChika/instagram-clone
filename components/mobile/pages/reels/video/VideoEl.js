@@ -17,7 +17,7 @@ const VideoEl = ({ src = "/insta-vid.mp4", fullScreen }) => {
       : video.style.setProperty("--object-fit", "contain");
   }, [fullScreen]);
 
-  /* ------- Effect for vid skeleton ------- */
+  /* ------- Effect for vid bg ------- */
   useEffect(() => {
     const video = videoRef.current;
     video.style.background = getGradient();

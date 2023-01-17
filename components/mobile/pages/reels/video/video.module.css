@@ -114,17 +114,26 @@
 /*                 BUTTONS.js                */
 /* --------------------------------------- */
 
-/* utils */
+/* ---------------- utils ---------------- */
 .pointernone * {
   pointer-events: none;
 }
 
-.buttons__wrapper {
+/* -------------- Wrapper 1 -------------- */
+/* -------------- Wrapper 2 -------------- */
+
+.buttons__wrapper span {
+  font-weight: 500;
+  font-size: 12px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-/* .buttons__wrapper div {
-  align-self: flex-end;
-} */
+.buttons__wrapper svg,
+.buttons__wrapper span {
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.7));
+}
 
 /* ----------- likes component ----------- */
 
@@ -136,8 +145,8 @@
 
 @-webkit-keyframes scale-up-hor-center {
   0% {
-    -webkit-transform: scaleX(0.8);
-    transform: scaleX(0.8);
+    -webkit-transform: scaleX(0.6);
+    transform: scaleX(0.6);
   }
   100% {
     -webkit-transform: scaleX(1);
@@ -146,8 +155,8 @@
 }
 @keyframes scale-up-hor-center {
   0% {
-    -webkit-transform: scaleX(0.8);
-    transform: scaleX(0.8);
+    -webkit-transform: scaleX(0.6);
+    transform: scaleX(0.6);
   }
   100% {
     -webkit-transform: scaleX(1);

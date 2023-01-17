@@ -11,7 +11,7 @@ const IconHOC = (Icon, path, _class) => {
     return {
       light: {
         color: "#000000",
-        active: "tomato", //dark red
+        active: "#ff006f", //dark red
       },
       dark: {
         color: "#ffffff",

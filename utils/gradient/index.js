@@ -1,50 +1,57 @@
 const colors = [
   {
-    first: "#0000001A",
-    second: "#ffffff1A",
+    first: "#00000033",
+    second: "#ffffff33",
   },
   {
-    first: "#1D43501a",
-    second: "#A439311a",
+    first: "#1D435033",
+    second: "#A4393133",
   },
   {
-    first: "#ffffff1A",
-    second: "#6dd5fa1A",
+    first: "#ffffff33",
+    second: "#6dd5fa33",
   },
   {
-    first: "#ca0d0d1A",
-    second: "#0584b21A",
+    first: "#ca0d0d33",
+    second: "#0584b233",
   },
 
   {
-    first: "#3a61861a",
-    second: "#89253e1a",
+    first: "#c6ffdd33",
+    second: "#fbd78633",
+    third: "#f7797d33",
   },
   {
-    first: "#0213991A",
-    second: "#0505051A",
+    first: "#02139933",
+    second: "#05050533",
   },
   {
-    first: "#8e44ad1A",
-    second: "#c0392b1A",
+    first: "#8e44ad33",
+    second: "#c0392b33",
   },
   {
-    first: "#20002c1A",
-    second: "#cbb4d41A",
+    first: "#12c2e933",
+    second: "#c471ed33",
+    third: "#f64f5933",
   },
   {
-    first: "#F0F2F01A",
-    second: "#000c401A",
+    first: "#1e960033",
+    second: "#fff20033",
+    third: "#ff000033",
   },
   {
-    first: "#ADA9961A",
-    second: "#F2F2F21A",
-    third: "#DBDBDB1A",
-    fourth: "#EAEAEA1A",
+    first: "#3a1c7133",
+    second: "#d76d7733",
+    third: "#ffaf7b33",
   },
   {
-    first: "#1c92d21A",
-    second: "#f2fcfe1A",
+    first: "#1c92d233",
+    second: "#f2fcfe33",
+  },
+  {
+    first: "#833ab433",
+    second: "#fd1d1d33",
+    third: "#fcb04533",
   },
 ];
 

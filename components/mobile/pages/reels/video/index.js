@@ -8,7 +8,7 @@ import VideoEl from "./VideoEl";
 
 const Video = (props) => {
   const { muted, muteFn, loading, url } = props;
-  const [fullScreen, setFullScreen] = useState(false);
+  const [fullScreen, setFullScreen] = useState(true);
   // .............................
   // memoized list video dom elements
   // const vidEl = useMemo(() => {

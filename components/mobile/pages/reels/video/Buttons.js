@@ -23,14 +23,14 @@ function Buttons({ params }) {
 
   //   ......
   return (
-    <div
-      className={`absolute bottom-0 right-0 left-0  flex justify-between ${video.buttons__wrapper}`}
-    >
+    <div className={`absolute bottom-0 right-0 left-0  flex justify-between`}>
       {/* video - details - wrap */}
       <div className="flex-[0.7] self-end"></div>
 
       {/* buttons - wrap*/}
-      <div className="flex-[0.3] max-w-[65px] self-end flex flex-col">
+      <div
+        className={`flex-[0.3] max-w-[65px] self-end flex flex-col  ${video.buttons__wrapper}`}
+      >
         <Like params={{ liked, setLiked }} />
 
         <Comment />
@@ -46,11 +46,6 @@ function Buttons({ params }) {
 }
 
 export default Buttons;
-// -webkit-user-select: none;
-// word-break: break-word;
-// cursor: pointer;
-// word-wrap: break-word;
-// data-role="button"
 
 /* --------------------------------------- */
 /*              like component             */
@@ -73,14 +68,14 @@ const Like = ({ params }) => {
   }, [liked]);
 
   return (
-    <div className="w-100 mb-[25px] flex flex-col items-center">
+    <div className="w-100 mb-[30px] flex flex-col items-center">
       {liked ? (
         <button
           className={`${video.pointernone} ${video[css]}`}
           data-role="button"
           onClick={handleLiked}
         >
-          <HeartIconRed class="w-[30px] h-[30px] shadow-sm" color="tomato" />
+          <HeartIconRed class="w-[35px] h-[35px] " color="tomato" />
         </button>
       ) : (
         <button
@@ -88,10 +83,10 @@ const Like = ({ params }) => {
           data-role="button"
           onClick={handleLiked}
         >
-          <HeartIcon class="w-[30px] h-[30px] shadow-sm" color="white" />
+          <HeartIcon class="w-[35px] h-[35px] " color="white" />
         </button>
       )}
-      <span className="shadow-sm text-base font-light">{likes || "100k"}</span>
+      <span className="text-white text-base font-light">{likes || "100k"}</span>
     </div>
   );
 };
@@ -105,16 +100,16 @@ const Comment = ({ params, comment = "1000" }) => {
 
   return (
     <>
-      <div className="w-100 mb-[25px] flex flex-col items-center">
+      <div className="w-100 mb-[30px] flex flex-col items-center">
         <button
           className={`${video.pointernone} `}
           data-role="button"
           //   onClick={handleLiked}
         >
-          <CommentIcon class="w-[30px] h-[30px] shadow-sm" color="white" />
+          <CommentIcon class="w-[35px] h-[35px] " color="white" />
         </button>
 
-        <span className="shadow-sm text-base font-light">
+        <span className=" text-white drop-shadow-md text-base font-light">
           {comment || "10,000"}
         </span>
       </div>
@@ -134,13 +129,13 @@ const Message = () => {
   //   ......
   return (
     <>
-      <div className="w-100 mb-[15px] flex flex-col items-center">
+      <div className="w-100 mb-[20px] flex flex-col items-center">
         <button
           className={`${video.pointernone} `}
           data-role="button"
           onClick={handleNavigate}
         >
-          <MessagingIcon class="w-[30px] h-[30px] shadow-sm" color="white" />
+          <MessagingIcon class="w-[35px] h-[35px] " color="white" />
         </button>
       </div>
     </>
@@ -167,14 +162,14 @@ const Aspect = ({ params }) => {
   }, [fullScreen]);
 
   return (
-    <div className="w-100 mb-[15px] flex flex-col items-center">
+    <div className="w-100 mb-[20px] flex flex-col items-center">
       {fullScreen ? (
         <button
           className={`${video.pointernone} ${video[css]}`}
           data-role="button"
           onClick={handleToggleAspectRatio}
         >
-          <AspectFullIcon class="w-[30px] h-[30px] shadow-sm" color="white" />
+          <AspectHalfIcon class="w-[35px] h-[35px] " color="white" />
         </button>
       ) : (
         <button
@@ -182,7 +177,7 @@ const Aspect = ({ params }) => {
           data-role="button"
           onClick={handleToggleAspectRatio}
         >
-          <AspectHalfIcon class="w-[30px] h-[30px] shadow-sm" color="white" />
+          <AspectFullIcon class="w-[35px] h-[35px] " color="white" />
         </button>
       )}
     </div>
@@ -198,13 +193,13 @@ const Options = () => {
   //   ......
   return (
     <>
-      <div className="w-100 mb-[15px] flex flex-col items-center">
+      <div className="w-100 mb-[20px] flex flex-col items-center">
         <button
           className={`${video.pointernone} `}
           data-role="button"
           onClick={() => setShowModal(true)}
         >
-          <ThreeDotsIcon class="w-[30px] h-[30px] shadow-sm" color="white" />
+          <ThreeDotsIcon class="w-[35px] h-[35px]" color="white" />
         </button>
       </div>
 

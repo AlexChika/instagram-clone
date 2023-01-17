@@ -68,10 +68,15 @@ const Reels = () => {
   SetHeight(ReelsREf);
 
   const urls = [
+    "/insta-vid.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "/insta-vid1.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "/insta-vid2.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    "/insta-vid3.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    "/insta-vid4.mp4",
   ];
 
   return (
@@ -87,7 +92,6 @@ const Reels = () => {
           />
         );
       })}
-      <Video muted={muted} loading={loading} muteFn={muteFn} key={"insta"} />
     </div>
   );
 };
