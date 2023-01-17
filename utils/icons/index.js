@@ -1,6 +1,8 @@
 export { default as PlusIcon } from "./PlusIcon";
 export { default as CaretDown } from "./CaretDown";
+export { default as CommentIcon } from "./CommentIcon";
 export { default as HeartIcon } from "./HeartIcon";
+export { default as HeartIconRed } from "./HeartIconRed";
 export { default as FavouritesIcon } from "./FavouritesIcon";
 export { default as FollowingIcon } from "./FollowingIcon";
 export { default as HomeIcon } from "./HomeIcon";
@@ -20,3 +22,6 @@ export { default as EditIcon } from "./EditIcon";
 export { default as CheckIcon } from "./CheckIcon";
 export { default as SpeakerOnIcon } from "./SpeakerOnIcon";
 export { default as SpeakerOffIcon } from "./SpeakerOffIcon";
+export { default as AspectHalfIcon } from "./AspectHalfIcon";
+export { default as AspectFullIcon } from "./AspectFullIcon";
+export { default as ThreeDotsIcon } from "./ThreeDotsIcon";

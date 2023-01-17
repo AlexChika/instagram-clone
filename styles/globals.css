@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --object-fit: fill;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +18,8 @@
 html,
 body {
   height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 html {

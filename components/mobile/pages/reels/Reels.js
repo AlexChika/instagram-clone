@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Video from "./video";
 import video from "./video/video.module.css";
-// import setHeight from "../../../../utils/helpers/setHeight";
 import SetHeight from "../../../../utils/hooks/setHeight";
 
 // app
@@ -11,7 +10,7 @@ const Reels = () => {
   const [loading, setLoading] = useState(true);
 
   //   func ...
-  function handleVideoOnTap() {
+  function muteFn() {
     setMuted(!muted);
   }
 
@@ -54,7 +53,7 @@ const Reels = () => {
       observer.observe(el);
     });
     return () => {};
-  }, [muted]);
+  }, []); //vid urls dep here later
 
   /* -------- mute and unmute logic -------- */
   useEffect(() => {
@@ -65,44 +64,21 @@ const Reels = () => {
     });
   }, [muted]);
 
+  /* -- dynamic Reels Wrapper Height hook - */
   SetHeight(ReelsREf);
 
-  /* -- dynamic Reels Wrapper Height logic - */
-  // useEffect(() => {
-  //   const unsubscribe = setHeight(ReelsREf)
-
-  //   return unsubscribe;
-  // }, [ReelsREf])
-
-  // useEffect(() => {
-  //   let _height;
-  //   const refElement = ReelsREf.current;
-  //   function handleScrollEvent() {
-  //     if (_height === window.innerHeight) return;
-  //     _height = window.innerHeight;
-  //     ReelsREf.current.style.height = `${_height - 44}px`;
-  //     console.log(_height);
-  //     // 44px serves as the bottom navbar height
-  //   }
-
-  //   window.addEventListener("scroll", handleScrollEvent);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScrollEvent);
-  //   };
-  // }, []);
-
   const urls = [
+    "/insta-vid.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "/insta-vid1.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+    "/insta-vid2.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    "/insta-vid3.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    "/insta-vid4.mp4",
   ];
+
   return (
     <div ref={ReelsREf} className={video.reels__wrapper}>
       {urls.map((url, index) => {
@@ -110,7 +86,7 @@ const Reels = () => {
           <Video
             muted={muted}
             loading={loading}
-            handleVideoOnTap={handleVideoOnTap}
+            muteFn={muteFn}
             key={index}
             url={url}
           />

@@ -1,14 +1,14 @@
 /* --------------------------------------- */
 /*              Video Component              */
 /* --------------------------------------- */
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import video from "./video.module.css";
 import Overlay from "./VidOverlay";
 import VideoEl from "./VideoEl";
 
 const Video = (props) => {
-  const { muted, handleVideoOnTap, loading, url } = props;
-  // const [loading, setLoading] = useState(false);
+  const { muted, muteFn, loading, url } = props;
+  const [fullScreen, setFullScreen] = useState(true);
   // .............................
   // memoized list video dom elements
   // const vidEl = useMemo(() => {
@@ -22,10 +22,12 @@ const Video = (props) => {
       {/* ------------ Parent Wrapper ----------- */}
       <article className={` ${video.video__wrapper}`}>
         {/* ----------- Video Element ----------- */}
-        <VideoEl src={url} />
+        <VideoEl fullScreen={fullScreen} src={url} />
 
         {/* --------------- Overlay --------------- */}
-        <Overlay params={{ handleVideoOnTap, muted, loading }} />
+        <Overlay
+          params={{ muteFn, muted, loading, setFullScreen, fullScreen }}
+        />
       </article>
     </>
   );

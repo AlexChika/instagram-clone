@@ -17,7 +17,7 @@ const FlashScreen = () => {
     >
       <Image src={instaIconSvg} alt="Insta icon" />
 
-      <div className="absolute h-10 w-16 bottom-[50px]">
+      <div className="absolute h-10 w-16 bottom-[40px]">
         <Image layout="fill" src={metaLogoPng} alt="insta logo" />
       </div>
     </section>

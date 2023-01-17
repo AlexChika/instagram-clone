@@ -1,9 +1,10 @@
 import React from "react";
 
-const MessagingIcon = ({ color }) => {
+const MessagingIcon = ({ color, class: cs }) => {
   return (
     <svg
       aria-label="Direct messaging"
+      className={cs}
       color={color}
       fill="currentColor"
       // color="#262626"
