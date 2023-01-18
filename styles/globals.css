@@ -59,4 +59,11 @@ img {
   border: 2px solid green;
 }
 
-/* color: rgba(255,255,255,0.7); */
+/* desktop  >  layouts > layout.module.css */
+.arrow::after {
+  border-color: transparent rgba(0, 0, 0, 0.2) transparent transparent;
+}
+
+html.dark .arrow::after {
+  border-color: transparent rgba(255, 255, 255, 0.2) transparent transparent;
+}

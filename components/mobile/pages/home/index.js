@@ -16,12 +16,11 @@ const MobileHomePage = () => {
   return (
     <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
       <section className="p-[10px] pb-[54px]">
-        <h2 className="text-lg font-extrabold">App in progress 22%...</h2>
+        <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
         <br />
         <h5 className="font-bold">steps to completion</h5>
-        <h4 className="font-medium">
-          1. Building components (mobile and desktop) 45%
-        </h4>
+        <h4 className="font-medium">1. Building Mobile components 30%</h4>
+        <h4 className="font-medium">1. Building Desktop components 15%</h4>
         <h4 className="font-medium">2. implementing the backend 7%</h4>
         <h4 className="font-medium">3. connecting the dots 10%</h4>
         {/*
