@@ -5,8 +5,13 @@ const DesktopHomePage = () => {
   return (
     <DesktopLayout>
       <main className="justify-center items-center flex h-screen">
-        <h1>Hello Desktop</h1>
-        <p>Build in progress</p>
+        <div>
+          <h1>Desktop buil in progress</h1> <br />
+          <h3 className="font-semibold">
+            Please use a mobile phone Or Chrome emultaors <br /> to view more
+            progress <br />
+          </h3>
+        </div>
       </main>
     </DesktopLayout>
   );

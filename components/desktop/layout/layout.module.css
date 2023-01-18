@@ -26,10 +26,11 @@
     position: absolute;
     content: attr(data-text);
     background-color: white;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1), -2px -2px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
     z-index: 10;
     font-size: 1rem;
     width: max-content;
+    color: black;
   }
 
   .linkText::after {
@@ -41,7 +42,8 @@
     left: calc(100% - 5px);
     border-width: 8px;
     border-style: solid;
-    border-color: transparent rgba(0, 0, 0, 0.1) transparent transparent;
+    /* for border color forming the arrow pointer,
+     check global css arrow class */
   }
 }
 

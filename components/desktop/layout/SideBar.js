@@ -16,6 +16,7 @@ import {
   PlusIcon,
   SearchIcon,
   AvatarIcon,
+  ReelsIcon,
 } from "../../../utils/icons";
 
 const _Links = [
@@ -39,6 +40,12 @@ const _Links = [
     path: "explore",
   },
   {
+    url: "/reels",
+    icon: ReelsIcon,
+    name: "Reels",
+    path: "reels",
+  },
+  {
     url: "/profile/messages",
     icon: MessagingIcon,
     name: "Message",
@@ -60,37 +67,35 @@ const _Links = [
 
 const SideBar = () => {
   return (
-    <div className="sticky h-screen flex flex-col justify-between py-10 pl-[1.32rem] xl:w-[250px] pr-4 xl:pr-10 border-r-[1px] border-gray-400">
+    <div className="sticky h-screen flex flex-col justify-between py-8 pl-[1.32rem] xl:w-[250px] pr-4 xl:pr-10 border-r-[1px] border-gray-400">
       <section>
         {/* instagram logo screen from 1264px */}
         <Link href="/" passHref>
           <a className="hidden xl:flex items-center">
-            <InstaLogo />
+            {IconHOC(InstaLogo, "/")}
           </a>
         </Link>
 
         {/*instagram logo screen from 768 and below 1264 */}
         <Link href="/" passHref>
           <a className="hidden md:flex xl:hidden items-center px-2 p-2">
-            <InstaIcon />
+            {IconHOC(InstaIcon, "/")}
           </a>
         </Link>
 
         {/* links container */}
-        <div className="links mt-[2.6rem] w-full">
+        <div className="links mt-[2.4rem] w-full">
           {_Links.map((link) => {
             return (
               <Link key={link.name} href={link.url} passHref>
                 <a
-                  className={`link items-center flex mb-[22px] rounded-full xl:rounded-xl px-2 p-2 w-full xl:hover:bg-gray-100 ${layout.linkTextWrapper}`}
+                  className={`link items-center flex mb-[12px] rounded-full xl:rounded-xl px-2 p-2 w-full xl:hover:bg-gray-100  dark:xl:hover:bg-neutral-900  ${layout.linkTextWrapper}`}
                 >
                   {IconHOC(link.icon, link.path)}
 
                   <span
                     data-text={link.name}
-                    className={`relative invisible xl:visible w-0 xl:w-auto capitalize pl-3 text-lg ${
-                      false ? "font-semibold" : ""
-                    } ${layout.linkText}`}
+                    className={`relative invisible xl:visible w-0 xl:w-auto capitalize pl-3 text-lg arrow ${layout.linkText}`}
                   >
                     {link.name}
                   </span>
@@ -99,11 +104,11 @@ const SideBar = () => {
             );
           })}
 
-          <Link href="/userNames" passHref>
+          <Link href="/usernames" passHref>
             {true ? (
               <a
                 aria-label="User avatar"
-                className={`link flex items-center px-2 p-2 xl:hover:bg-gray-100 rounded-full xl:rounded-xl ${layout.linkTextWrapper}`}
+                className={`link flex items-center px-2 p-2 xl:hover:bg-gray-100 dark:xl:hover:bg-neutral-900 rounded-full xl:rounded-xl ${layout.linkTextWrapper}`}
               >
                 <span className="flex relative h-[26px] w-[26px] rounded-full items-center justify-center">
                   <Image
@@ -116,20 +121,20 @@ const SideBar = () => {
 
                 <span
                   data-text={"Profile" + " " + "Alex Chika"}
-                  className={`relative invisible xl:visible  w-0 xl:w-auto pl-3 text-lg ${layout.linkText}`}
+                  className={`relative invisible  xl:visible  w-0 xl:w-auto pl-3 text-lg arrow ${layout.linkText}`}
                 >
                   Profile
                 </span>
               </a>
             ) : (
               <a
-                className={`link flex items-center px-2 p-2 xl:hover:bg-gray-100 rounded-full xl:rounded-xl ${layout.linkTextWrapper}`}
+                className={`link flex items-center px-2 p-2 xl:hover:bg-gray-100 dark:xl:hover:bg-neutral-900 rounded-full xl:rounded-xl ${layout.linkTextWrapper}`}
                 aria-label="User avatar"
               >
-                <AvatarIcon />
+                {IconHOC(AvatarIcon, "usernames")}
                 <span
                   data-text={"Profile"}
-                  className={`relative invisible xl:visible w-0 xl:w-auto text-lg ${layout.linkText}`}
+                  className={`relative invisible  xl:visible w-0 xl:w-auto text-lg arrow ${layout.linkText}`}
                 >
                   Profile
                 </span>
@@ -142,12 +147,12 @@ const SideBar = () => {
       {/* footer  */}
       <Link href="#" passHref>
         <a
-          className={`flex items-center px-2 p-2 xl:hover:bg-gray-100 rounded-xl ${layout.linkTextWrapper}`}
+          className={`flex items-center px-2 p-2 xl:hover:bg-gray-100 dark:xl:hover:bg-neutral-900 rounded-xl ${layout.linkTextWrapper}`}
         >
-          <ListIcon />
+          {IconHOC(ListIcon, "none")}
           <span
             data-text="More"
-            className={`relative invisible xl:visible w-0 xl:w-auto pl-3 text-lg ${layout.linkText}`}
+            className={`relative invisible xl:visible w-0 xl:w-auto pl-3 text-lg arrow ${layout.linkText}`}
           >
             More
           </span>

@@ -119,9 +119,9 @@
   pointer-events: none;
 }
 
-/* -------------- Wrapper 1 -------------- */
-/* -------------- Wrapper 2 -------------- */
+/* ------ Wrapper 1 detailsz-wrapper ----- */
 
+/* ------ Wrapper 2  buttons_wrapper ----- */
 .buttons__wrapper span {
   font-weight: 500;
   font-size: 12px;

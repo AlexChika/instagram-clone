@@ -17,9 +17,7 @@ const DesktopLayout = ({ children }) => {
       </div>
 
       {/* body */}
-      <div className={`${layout.body} mb-[56px] md:mb-[0px] bg-gray-50`}>
-        {children}
-      </div>
+      <div className={`${layout.body} mb-[56px] md:mb-[0px] `}>{children}</div>
 
       {/* nav bottom */}
       <div className={`${layout.navBottom} md:hidden`}>
