@@ -14,6 +14,14 @@ export default function Home({ isMobile }) {
   // return <MobileFlashScreen />;
 
   // splash screen delay
+  // ...... testing devices
+  return (
+    <div>
+      is mobile?{isMobile ? "true" : "false"}
+      <h1>heystring ? {mobileCheck("heyy") ? "true" : "false"}</h1>
+    </div>
+  );
+
   if (timer < 2) {
     return <FlashScreen />;
   }
