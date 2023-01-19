@@ -14,9 +14,6 @@ export default function Home({ isMobile }) {
   // return <MobileFlashScreen />;
 
   // splash screen delay
-  // ...... testing devices
-  return <MobileHomePage />;
-
   if (timer < 2) {
     return <FlashScreen />;
   }

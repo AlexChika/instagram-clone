@@ -9,7 +9,8 @@ const MobileHomePage = () => {
   const [height, setHeight] = useState(0);
 
   const getHeight = () => {
-    let height = window.innerHeight;
+    // let height = window.innerHeight;
+    let height = 10;
     setHeight(height);
   };
 
