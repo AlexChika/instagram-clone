@@ -9,14 +9,15 @@ const MobileHomePage = () => {
   const [height, setHeight] = useState(0);
 
   const getHeight = () => {
-    // let height = window.innerHeight;
-    let height = 10;
+    let height = window.innerHeight;
     setHeight(height);
   };
 
   return (
     <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
-      <section className="p-[10px] pb-[54px]">
+      <h1>hello</h1>
+
+      {/* <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
         <br />
         <h5 className="font-bold">steps to completion</h5>
@@ -24,9 +25,7 @@ const MobileHomePage = () => {
         <h4 className="font-medium">1. Building Desktop components 15%</h4>
         <h4 className="font-medium">2. implementing the backend 7%</h4>
         <h4 className="font-medium">3. connecting the dots 10%</h4>
-        {/*
-      <ListIcon />
-      <StoryIcon /> */}
+
         <h3>Height = {height}</h3>
         <button className="red" onClick={getHeight}>
           Get Height
@@ -80,8 +79,14 @@ const MobileHomePage = () => {
           wikipedia source..
         </a>
       </section>
+     */}
     </MobileLayout>
   );
 };
 
 export default MobileHomePage;
+{
+  /*
+      <ListIcon />
+      <StoryIcon /> */
+}
