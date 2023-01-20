@@ -66,7 +66,7 @@ const NavBottom = () => {
     >
       <div className="justify-between flex items-center max-w-3xl mx-auto">
         {_Links.map((link, index) => {
-          return <span key={index}>ic</span>;
+          return <span key={index}>{IconHOC(link.icon, link.path)}</span>;
           return (
             <span key={index}>
               <Link href={link.url} passHref>
