@@ -30,9 +30,16 @@ const MobileHomePage = () => {
   //   </MobileLayout>
   // ); // failed
 
-  // test6
+  // // test6
+  // return (
+  //   <MobileLayout showBottomNav={true}>
+  //     <h2>I made it here</h2>
+  //   </MobileLayout>
+  // ); // failed
+
+  // test7
   return (
-    <MobileLayout showBottomNav={true}>
+    <MobileLayout showBottomNav={false}>
       <h2>I made it here</h2>
     </MobileLayout>
   ); // failed
