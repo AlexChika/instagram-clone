@@ -38,7 +38,8 @@ const IconHOC = (Icon, path, _class) => {
   }, [theme, _colors]);
 
   return (
-    <Icon class={_class} color={"#000000"} />
+    <div>{router.pathname ? router.pathname : "nothing"}</div>
+    // <Icon class={_class} color={"#000000"} /> passed
     // <Icon class={_class} color={isActive ? colors.active : colors.color} />
   );
 };
