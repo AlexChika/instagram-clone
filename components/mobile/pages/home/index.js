@@ -16,8 +16,29 @@ const MobileHomePage = () => {
   // test 3
   // return <div>hello from mobile page</div>; //passed
 
+  // // test4
+  // return (
+  //   <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
+  //     <h2>I made it here</h2>
+  //   </MobileLayout>
+  // ); // failed
+
+  // // test5
+  // return (
+  //   <MobileLayout showBottomNav={false} TopNav={HomeNavTop}>
+  //     <h2>I made it here</h2>
+  //   </MobileLayout>
+  // ); // failed
+
+  // test6
   return (
-    <MobileLayout showBottomNav={false} TopNav={HomeNavTop}>
+    <MobileLayout showBottomNav={true}>
+      <h2>I made it here</h2>
+    </MobileLayout>
+  ); // failed
+
+  return (
+    <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
       <h2>I made it here</h2>
       {/* <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
