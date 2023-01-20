@@ -32,7 +32,7 @@ export default function Home({ isMobile }) {
 }
 
 export const getServerSideProps = ({ req }) => {
-  const UA = req?.header?.["user-agent"] || "none";
+  const UA = req?.headers?.["user-agent"] || "none";
   // const isMobile = mobileCheck(UA);
   return {
     props: {
