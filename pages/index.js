@@ -13,6 +13,9 @@ export default function Home({ isMobile }) {
   // return <DesktopFlashScreen />;
   // return <MobileFlashScreen />;
 
+  // test....1
+  return isMobile ? <div>hello mobile</div> : <div>hello desktop</div>;
+
   // splash screen delay
   if (timer < 2) {
     return <FlashScreen />;
