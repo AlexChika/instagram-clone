@@ -17,7 +17,11 @@ export default function Home({ isMobile }) {
   return (
     <section>
       <h2>UA string</h2>
-      {isMobile}
+      {isMobile ? isMobile : "was false"}
+
+      <h1 className="text-lg font-bold">
+        {mobileCheck(isMobile) ? "mobile" : "desktop"}
+      </h1>
     </section>
   );
 
@@ -32,7 +36,7 @@ export default function Home({ isMobile }) {
 }
 
 export const getServerSideProps = ({ req }) => {
-  const UA = req?.headers?.["user-agent"] || "none";
+  const UA = req?.headers?.["user-agent"] || false;
   // const isMobile = mobileCheck(UA);
   return {
     props: {
