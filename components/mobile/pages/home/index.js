@@ -47,8 +47,7 @@ const MobileHomePage = () => {
   // Nav bars are causing errors
 
   return (
-    <MobileLayout showBottomNav={false}>
-      <h2>I made it here</h2>
+    <MobileLayout showBottomNav={true}>
       <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
         <br />
