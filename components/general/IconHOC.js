@@ -24,7 +24,7 @@ const IconHOC = (Icon, path, _class) => {
 
   useEffect(() => {
     const pathname = router.pathname.split("/");
-    // const page = pathname.split("/").at(-1); //caused error on some browsers
+    // const page = pathname.at(-1); //caused error on some old browsers
     const page = pathname[pathname.length - 1];
 
     if (page === path) {

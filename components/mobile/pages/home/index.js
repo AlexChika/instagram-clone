@@ -13,41 +13,8 @@ const MobileHomePage = () => {
     setHeight(height);
   };
 
-  // test 3
-  // return <div>hello from mobile page</div>; //passed
-
-  // // test4
-  // return (
-  //   <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
-  //     <h2>I made it here</h2>
-  //   </MobileLayout>
-  // ); // failed
-
-  // // test5
-  // return (
-  //   <MobileLayout showBottomNav={false} TopNav={HomeNavTop}>
-  //     <h2>I made it here</h2>
-  //   </MobileLayout>
-  // ); // failed
-
-  // // test6
-  // return (
-  //   <MobileLayout showBottomNav={true}>
-  //     <h2>I made it here</h2>
-  //   </MobileLayout>
-  // ); // failed
-
-  // // test7
-  // return (
-  //   <MobileLayout showBottomNav={false}>
-  //     <h2>I made it here</h2>
-  //   </MobileLayout>
-  // ); // passed
-
-  // Nav bars are causing errors
-
   return (
-    <MobileLayout showBottomNav={true}>
+    <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
       <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
         <br />
@@ -120,5 +87,3 @@ export default MobileHomePage;
       <ListIcon />
       <StoryIcon /> */
 }
-
-//  <MobileLayout showBottomNav={true} TopNav={HomeNavTop}></MobileLayout>
