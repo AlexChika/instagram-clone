@@ -14,13 +14,7 @@ export default function Home({ isMobile }) {
   // return <MobileFlashScreen />;
 
   // test....1
-  // return (
-  //   <section>
-  //     <h2>UA string</h2>
-
-  //     <h1 className="text-lg font-bold">{isMobile ? "mobil" : "desktop"}</h1>
-  //   </section>
-  // );
+  return isMobile ? <h1>Mobile</h1> : <h1>Desktop</h1>;
 
   // splash screen delay
   if (timer < 2) {
