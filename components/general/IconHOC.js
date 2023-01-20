@@ -23,12 +23,15 @@ const IconHOC = (Icon, path, _class) => {
   const [colors, setColors] = useState(theme ? _colors.dark : _colors.light);
 
   useEffect(() => {
-    const pathname = router.pathname;
-    const page = pathname.split("/").at(-1);
+    const pathname = router.pathname.split("/");
+    // const page = pathname.split("/").at(-1);
+    const page = pathname[pathname.length - 1];
+    // console.log(pathname, page);
+    // const page = pathname.split("/").at(-1);
 
-    // if (page === path) {
-    //   setIsActive(true);
-    // }
+    if (page === path) {
+      setIsActive(true);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
@@ -38,7 +41,7 @@ const IconHOC = (Icon, path, _class) => {
   }, [theme, _colors]);
 
   return (
-    <div>{router.pathname ? router.pathname : "nothing"}</div>
+    <div>{router.pathname ? router.pathname.split("/") : "nothing"}</div>
     // <Icon class={_class} color={"#000000"} /> passed
     // <Icon class={_class} color={isActive ? colors.active : colors.color} />
   );
