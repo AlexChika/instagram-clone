@@ -42,7 +42,13 @@ const _Links = [
 // test 1
 
 const NavBottom = () => {
-  return <div>helo footer</div>;
+  return (
+    <div>
+      {_Links.map((link) => {
+        return link.icon("black");
+      })}
+    </div>
+  );
   return (
     <footer
       className="fixed z-10 bg-white dark:bg-black bottom-0 w-full border-t border-t-slate-300 dark:border-t-gray-700 h-[44px] py-2 px-5 md:px-0"
