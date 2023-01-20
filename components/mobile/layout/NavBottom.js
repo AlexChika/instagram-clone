@@ -68,7 +68,9 @@ const NavBottom = () => {
         {_Links.map((link, index) => {
           return (
             <span key={index}>
-              <Link href={link.url}>{link.icon("#000000")}</Link>
+              <Link href={link.url} passHref>
+                <a aria-label={link.name + "icon"}>{link.icon("#000000")} </a>
+              </Link>
             </span>
           );
           return (
