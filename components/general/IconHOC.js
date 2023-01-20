@@ -24,7 +24,7 @@ const IconHOC = (Icon, path, _class) => {
 
   useEffect(() => {
     const pathname = router.pathname;
-    // const page = pathname.split("/").at(-1);
+    const page = pathname.split("/").at(-1);
 
     // if (page === path) {
     //   setIsActive(true);
