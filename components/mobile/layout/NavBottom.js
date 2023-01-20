@@ -44,8 +44,16 @@ const _Links = [
 const NavBottom = () => {
   return (
     <div>
-      {_Links.map((link) => {
-        return link.icon("black");
+      {_Links.map((link, index) => {
+        return (
+          <span key={index}>
+            <Link href={link.url} passHref>
+              <a aria-label={link.name + "icon"}>
+                {IconHOC(link.icon, link.path)}
+              </a>
+            </Link>
+          </span>
+        );
       })}
     </div>
   );
