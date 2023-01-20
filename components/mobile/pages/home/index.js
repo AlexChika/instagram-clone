@@ -37,17 +37,19 @@ const MobileHomePage = () => {
   //   </MobileLayout>
   // ); // failed
 
-  // test7
+  // // test7
+  // return (
+  //   <MobileLayout showBottomNav={false}>
+  //     <h2>I made it here</h2>
+  //   </MobileLayout>
+  // ); // passed
+
+  // Nav bars are causing errors
+
   return (
     <MobileLayout showBottomNav={false}>
       <h2>I made it here</h2>
-    </MobileLayout>
-  ); // failed
-
-  return (
-    <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
-      <h2>I made it here</h2>
-      {/* <section className="p-[10px] pb-[54px]">
+      <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
         <br />
         <h5 className="font-bold">steps to completion</h5>
@@ -108,7 +110,7 @@ const MobileHomePage = () => {
         >
           wikipedia source..
         </a>
-      </section> */}
+      </section>
     </MobileLayout>
   );
 };
@@ -119,3 +121,5 @@ export default MobileHomePage;
       <ListIcon />
       <StoryIcon /> */
 }
+
+//  <MobileLayout showBottomNav={true} TopNav={HomeNavTop}></MobileLayout>
