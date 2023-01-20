@@ -17,7 +17,7 @@ const MobileHomePage = () => {
   // return <div>hello from mobile page</div>; //passed
 
   return (
-    <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
+    <MobileLayout showBottomNav={false} TopNav={HomeNavTop}>
       <h2>I made it here</h2>
       {/* <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
