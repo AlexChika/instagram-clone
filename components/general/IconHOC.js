@@ -4,23 +4,23 @@ import { App } from "../../pages/_app";
 
 const IconHOC = (Icon, path, _class) => {
   const router = useRouter();
-  // const { theme } = App();
-  // const [isActive, setIsActive] = useState(false);
+  const { theme } = App();
+  const [isActive, setIsActive] = useState(false);
 
-  // const _colors = useMemo(() => {
-  //   return {
-  //     light: {
-  //       color: "#000000",
-  //       active: "#ff006f", //dark red
-  //     },
-  //     dark: {
-  //       color: "#ffffff",
-  //       active: "teal", //teal
-  //     },
-  //   };
-  // }, []);
+  const _colors = useMemo(() => {
+    return {
+      light: {
+        color: "#000000",
+        active: "#ff006f", //dark red
+      },
+      dark: {
+        color: "#ffffff",
+        active: "teal", //teal
+      },
+    };
+  }, []);
 
-  // const [colors, setColors] = useState(theme ? _colors.dark : _colors.light);
+  const [colors, setColors] = useState(theme ? _colors.dark : _colors.light);
 
   // useEffect(() => {
   //   const pathname = router.pathname;
