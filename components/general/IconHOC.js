@@ -22,20 +22,20 @@ const IconHOC = (Icon, path, _class) => {
 
   const [colors, setColors] = useState(theme ? _colors.dark : _colors.light);
 
-  // useEffect(() => {
-  //   const pathname = router.pathname;
-  //   const page = pathname.split("/").at(-1);
+  useEffect(() => {
+    const pathname = router.pathname;
+    // const page = pathname.split("/").at(-1);
 
-  //   if (page === path) {
-  //     setIsActive(true);
-  //   }
+    // if (page === path) {
+    //   setIsActive(true);
+    // }
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
 
-  // useEffect(() => {
-  //   setColors(theme ? _colors.dark : _colors.light);
-  // }, [theme, _colors]);
+  useEffect(() => {
+    setColors(theme ? _colors.dark : _colors.light);
+  }, [theme, _colors]);
 
   return (
     <Icon class={_class} color={"#000000"} />
