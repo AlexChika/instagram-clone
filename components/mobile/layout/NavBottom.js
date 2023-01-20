@@ -39,7 +39,7 @@ const _Links = [
     path: "messages",
   },
 ];
-// border - b - slate - 300;
+
 const NavBottom = () => {
   return (
     <footer

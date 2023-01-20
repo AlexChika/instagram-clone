@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import MobileHomePage from "../components/mobile/pages/home";
 import DesktopHomePage from "../components/desktop/pages/home";
 import mobileCheck from "../utils/helpers/mobileCheck";
@@ -24,8 +23,8 @@ export default function Home({ isMobile }) {
 }
 
 export const getServerSideProps = ({ req }) => {
-  const UA = req.headers["user-agent"];
-  const isMobile = mobileCheck(UA);
+  const UA = req?.headers?.["user-agent"] || false;
+  const isMobile = UA ? mobileCheck(UA) : true;
   return {
     props: {
       isMobile: isMobile,

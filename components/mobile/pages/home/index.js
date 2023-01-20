@@ -15,9 +15,7 @@ const MobileHomePage = () => {
 
   return (
     <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
-      <h1>hello</h1>
-
-      {/* <section className="p-[10px] pb-[54px]">
+      <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 23%...</h2>
         <br />
         <h5 className="font-bold">steps to completion</h5>
@@ -79,7 +77,6 @@ const MobileHomePage = () => {
           wikipedia source..
         </a>
       </section>
-     */}
     </MobileLayout>
   );
 };

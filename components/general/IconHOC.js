@@ -23,8 +23,9 @@ const IconHOC = (Icon, path, _class) => {
   const [colors, setColors] = useState(theme ? _colors.dark : _colors.light);
 
   useEffect(() => {
-    const pathname = router.pathname;
-    const page = pathname.split("/").at(-1);
+    const pathname = router.pathname.split("/");
+    // const page = pathname.at(-1); //caused error on some old browsers
+    const page = pathname[pathname.length - 1];
 
     if (page === path) {
       setIsActive(true);
