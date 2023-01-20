@@ -13,6 +13,9 @@ const MobileHomePage = () => {
     setHeight(height);
   };
 
+  // test 3
+  return <div>hello from mobile page</div>;
+
   return (
     <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
       <section className="p-[10px] pb-[54px]">
