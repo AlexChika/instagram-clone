@@ -14,7 +14,12 @@ export default function Home({ isMobile }) {
   // return <MobileFlashScreen />;
 
   // test....1
-  return isMobile ? <div>hello mobile</div> : <div>hello desktop</div>;
+  return (
+    <section>
+      <h2>UA string</h2>
+      {isMobile}
+    </section>
+  );
 
   // splash screen delay
   if (timer < 2) {
@@ -27,11 +32,11 @@ export default function Home({ isMobile }) {
 }
 
 export const getServerSideProps = ({ req }) => {
-  const UA = req.headers["user-agent"];
+  const UA = req?.headers["user-agent"];
   const isMobile = mobileCheck(UA);
   return {
     props: {
-      isMobile: isMobile,
+      isMobile: UA,
     },
   };
 };
