@@ -26,14 +26,14 @@ const Overlay = ({ params }) => {
   /* ----- using the double click hook ----- */
   const click = useSingleDoubleClick(muteFn, likeFn);
   function mute_like_fn(e) {
-    // since the onclick is placed on the parent (vidOverlay wrapper), when other buttons inside the wrapper are clicked, this fuction is also fired. To prevent the behavior, the click function only runs when the element dataset is absent to indicate that a button is not clicked.
-    if (e.target?.dataset?.role) return;
-    click(e);
+    // since the onclick is placed on the parent (vidOverlay wrapper), when other buttons inside the wrapper are clicked, this fuction is also fired. To prevent the behavior, the click function only runs when the element dataset is present.
+    if (e.target?.dataset?.role) click(e);
   }
 
   return (
     <div
       onClick={mute_like_fn}
+      data-role="vid_overlay"
       className="absolute top-0 bottom-0 right-0 left-0"
     >
       {/* ----------- Sound Indicator ----------- */}

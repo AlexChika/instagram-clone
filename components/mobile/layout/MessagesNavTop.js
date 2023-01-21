@@ -72,14 +72,17 @@ function SwitchAccounts({ showPopUp, setShowPopUp }) {
       >
         <span
           aria-hidden
-          className="block mx-auto w-10 h-1 bg-slate-200 dark:bg-gray-800"
+          className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-gray-800"
         ></span>
 
-        <h3 className="text-center mt-3 italic font-medium">Switch accounts</h3>
+        <h3 className="text-center mt-3 italic font-medium border-b-2 py-2">
+          Switch accounts
+        </h3>
 
-        <article className="py-10">
-          {/* accounts */}
-          <div className="flex justify-between items-center">
+        {/* ----------- accounts wrapper ---------- */}
+        <article className="py-5 max-h-[70vh] overflow-y-auto">
+          {/* account */}
+          <div className="flex justify-between items-center mb-3">
             {/* image container and name*/}
             <div className="flex items-center">
               <div className="w-12 h-12 rounded-full mr-2 cursor-pointer">
@@ -89,7 +92,7 @@ function SwitchAccounts({ showPopUp, setShowPopUp }) {
                   alt="user profile image"
                 />
               </div>
-              <span className="text-base font-medium">{"user's name"}</span>
+              <span className="text-base">{"user's name"}</span>
             </div>
 
             <span>{IconHOC(CheckIcon, "none")}</span>

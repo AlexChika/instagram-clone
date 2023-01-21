@@ -2,7 +2,8 @@
 /*All clickables and information on video body*/
 /* --------------------------------------- */
 
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
+import IconHOC from "../../../../general/IconHOC";
 import { useRouter } from "next/router";
 import video from "./video.module.css";
 import {
@@ -24,20 +25,24 @@ function Buttons({ params }) {
   //   ......
   return (
     <div
-      className={`absolute bottom-0 right-0 top-0 left-0 flex justify-between text-white ${video.buttons__wrapper}`}
+      className={`absolute bottom-0 top-0 right-0 left-0 flex justify-between text-white ${video.buttons__wrapper}`}
+      data-role="vid_overlay"
     >
       {/* video - details - wrap */}
-      <div className={`flex-[0.8] pl-3 self-end`}>
+      <div data-role="vid_overlay" className={`flex-[0.8] pl-3 self-end`}>
         <Name />
 
         <Captions />
       </div>
 
       {/* buttons - wrap*/}
-      <div className={`flex-[0.2] max-w-[65px] self-end flex flex-col`}>
+      <div
+        data-role="vid_overlay"
+        className={`flex-[0.2] max-w-[65px] self-end flex flex-col`}
+      >
         <Like params={{ liked, setLiked }} />
 
-        <Comment />
+        <Comments />
 
         <Message />
 
@@ -76,15 +81,13 @@ const Like = ({ params }) => {
       {liked ? (
         <button
           className={`${video.pointernone} ${video[css]}`}
-          data-role="button"
           onClick={handleLiked}
         >
-          <HeartIconRed class="w-[30px] h-[30px] " color="tomato" />
+          <HeartIconRed class="w-[30px] h-[30px] " color="red" />
         </button>
       ) : (
         <button
           className={`${video.pointernone} ${video[css]}`}
-          data-role="button"
           onClick={handleLiked}
         >
           <HeartIcon class="w-[30px] h-[30px] " color="white" />
@@ -96,9 +99,9 @@ const Like = ({ params }) => {
 };
 
 /* --------------------------------------- */
-/*              Commnet component          */
+/*              Comment component          */
 /* --------------------------------------- */
-const Comment = ({ params, comment = "1000" }) => {
+const Comments = ({ params, comment = "1000" }) => {
   //   const { liked, setLiked, likes } = params;
   const [showComment, setShowComment] = useState(false);
 
@@ -107,14 +110,19 @@ const Comment = ({ params, comment = "1000" }) => {
       <div className="mb-[30px] flex flex-col items-center">
         <button
           className={`${video.pointernone} `}
-          data-role="button"
-          //   onClick={handleLiked}
+          onClick={() => setShowComment(true)}
         >
           <CommentIcon class="w-[30px] h-[30px] " color="white" />
         </button>
 
         <p className="text-base">{comment || "10,000"}</p>
       </div>
+
+      {/* ----------- comment section ----------- */}
+      <CommentSection
+        setShowComment={setShowComment}
+        showComment={showComment}
+      />
     </>
   );
 };
@@ -132,11 +140,7 @@ const Message = () => {
   return (
     <>
       <div className="mb-[20px] flex flex-col items-center">
-        <button
-          className={`${video.pointernone} `}
-          data-role="button"
-          onClick={handleNavigate}
-        >
+        <button className={`${video.pointernone} `} onClick={handleNavigate}>
           <MessagingIcon class="w-[30px] h-[30px] " color="white" />
         </button>
       </div>
@@ -168,7 +172,6 @@ const Aspect = ({ params }) => {
       {fullScreen ? (
         <button
           className={`${video.pointernone} ${video[css]}`}
-          data-role="button"
           onClick={handleToggleAspectRatio}
         >
           <AspectHalfIcon class="w-[30px] h-[30px] " color="white" />
@@ -176,7 +179,6 @@ const Aspect = ({ params }) => {
       ) : (
         <button
           className={`${video.pointernone} ${video[css]}`}
-          data-role="button"
           onClick={handleToggleAspectRatio}
         >
           <AspectFullIcon class="w-[30px] h-[30px] " color="white" />
@@ -199,7 +201,6 @@ const Options = () => {
       <div className="mb-[20px] flex flex-col items-center">
         <button
           className={`${video.pointernone} `}
-          data-role="button"
           onClick={() => setShowModal(true)}
         >
           <ThreeDotsIcon class="w-[30px] h-[30px]" color="white" />
@@ -212,8 +213,7 @@ const Options = () => {
           if (e.target !== e.currentTarget) return;
           setShowModal(false);
         }}
-        data-role="button"
-        className={`absolute bg-gray-900 bg-opacity-50 top-0 left-0 bottom-0 right-0 z-[3] transition-opacity flex justify-center items-center  ${
+        className={`absolute bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-[3] transition-opacity flex justify-center items-center  ${
           showModal ? "visible opacity-[1]" : "invisible opacity-0"
         }`}
       >
@@ -229,7 +229,6 @@ const Options = () => {
           <button className={video.options_btns}>Share to</button>
 
           <button
-            data-role="button"
             onClick={() => {
               navigator.clipboard.writeText(postLink);
             }}
@@ -240,7 +239,6 @@ const Options = () => {
 
           <button
             onClick={() => setShowModal(false)}
-            data-role="button"
             className={video.options_btns}
           >
             Cancel
@@ -251,7 +249,7 @@ const Options = () => {
   );
 };
 
-/* ------------ Name componnt ------------ */
+/* ---- Name component/ reels act name --- */
 const Name = () => {
   let handle = "Alex chika";
   return (
@@ -274,7 +272,6 @@ const Name = () => {
       <p className="block h-[6px] w-[6px] rounded-full bg-white mr-2"></p>
 
       <button
-        data-role="button"
         onClick={() => console.log("I was clicked")}
         className={`mr-2 ${video.pointernone}`}
       >
@@ -304,11 +301,7 @@ const Captions = () => {
           <>
             <p>
               {caption.substr(0, 25)}{" "}
-              <button
-                data-role="button"
-                onClick={() => setSeeMore(true)}
-                className="opacity-50"
-              >
+              <button onClick={() => setSeeMore(true)} className="opacity-50">
                 ...more
               </button>
             </p>
@@ -332,11 +325,142 @@ const Captions = () => {
       {/* ------------- overlay wrap ------------ */}
       <div
         onClick={() => setSeeMore(false)}
-        data-role="button"
-        className={`absolute bg-gray-900 bg-opacity-50 top-0 left-0 bottom-0 right-0 z-[0] transition-opacity ${
+        className={`absolute bg-[#000000cc] bg-opacity-50 top-0 left-0 bottom-0 right-0 z-[0] transition-opacity ${
           seeMore ? "visible opacity-[1]" : "invisible opacity-0"
         }`}
       ></div>
     </div>
+  );
+};
+
+/* ------- A comments sub component ------- */
+function CommentSection({ showComment, setShowComment }) {
+  function closePopUp(e) {
+    if (e.target !== e.currentTarget) return;
+    setShowComment(false);
+  }
+
+  // ,.......
+  return (
+    <div
+      onClick={closePopUp}
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-all ${
+        showComment ? "opacity-1 visible" : "opacity-0 invisible"
+      }`}
+    >
+      {/* .....content starts...*/}
+      <section
+        className={`max-w-3xl left-[50%] translate-x-[-50%] dark:bg-[#414040] bg-white text-black dark:text-white absolute w-full bottom-0 py-4 pb-[44px] rounded-t-xl transition-transform ${
+          showComment ? "translate-y-[0%]" : "translate-y-[100%]"
+        }`}
+      >
+        {/* ----------- dashed gray line ---------- */}
+        <span
+          aria-hidden
+          className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-gray-800"
+        ></span>
+
+        {/* -------------- title here ------------- */}
+        <h3 className="text-center mt-3 border-b-2 border-b-gray-600 p-2 italic font-semibold">
+          Comments
+        </h3>
+
+        {/* ----------- comments wrapper ---------- */}
+        <section className="px-4 py-3 h-[65vh] overflow-y-auto">
+          {/* comments */}
+          <div>
+            <Comment />
+
+            {/* replies wrapper*/}
+            <div className="w-[85%] ml-auto mt-5">
+              <button className={`${video.pointernone}`}>
+                <span>__</span>
+                <span> view replies ({"6"})</span>
+              </button>
+
+              {/* replies */}
+              <div>
+                <Comment />
+                <Comment />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ------------- Comment box ------------- */}
+        <form className="dark:bg-gray-100 text-center w-full flex">
+          <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative flex-[0.15]">
+            <Image
+              className="rounded-full"
+              layout="fill"
+              src="/alex.png"
+              alt="user profile image"
+            />
+          </div>
+          <input type="text" />
+        </form>
+      </section>
+    </div>
+  );
+}
+
+/* --------- A Comment Component --------- */
+const Comment = () => {
+  const [liked, setLiked] = useState(false);
+  const [css, setCss] = useState("like__scale");
+
+  let text =
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dicta tempore, accusamus debitis dolore minima distinctio reprehenderit in, quam aperiam error inventore. Dolores, ipsa eos!";
+
+  useEffect(() => {
+    setCss("like__scale");
+
+    setTimeout(() => {
+      setCss("");
+    }, [400]);
+  }, [liked]);
+
+  return (
+    <article className="flex justify-between items-start mt-4">
+      {/* image container*/}
+      <Link href="/profile" passHref>
+        <a className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative flex-[0.15]">
+          <Image
+            className="rounded-full"
+            layout="fill"
+            src="/alex.png"
+            alt="user profile image"
+          />
+        </a>
+      </Link>
+
+      {/* comment texts */}
+      <div className="flex-[0.8] px-2">
+        <h5 className="text-sm -mt-2">
+          <span className="text-base font-medium">{"user's name"} &nbsp;</span>
+          {text}
+        </h5>
+
+        {/* comment details */}
+        <div className="flex text-sm opacity-50 mt-2">
+          <span className="mr-3">7w</span>
+          <span className="mr-3">100 likes</span>
+          <button className="font-medium" data-role="button">
+            reply
+          </button>
+        </div>
+      </div>
+
+      {/* like button  */}
+      <button
+        data-role="button"
+        onClick={() => setLiked(!liked)}
+        className={`flex-[0.07] ${video[css]} ${video.pointernone}`}
+      >
+        {liked
+          ? IconHOC(HeartIconRed, "none", "h-[15px] w-[15px] text-[red]")
+          : IconHOC(HeartIcon, "none", "h-[15px] w-[15px] ")}
+      </button>
+    </article>
   );
 };
