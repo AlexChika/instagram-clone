@@ -119,24 +119,23 @@
   pointer-events: none;
 }
 
-/* ------ Wrapper 1 detailsz-wrapper ----- */
-
-/* ------ Wrapper 2  buttons_wrapper ----- */
-.buttons__wrapper span {
-  font-weight: 500;
-  font-size: 12px;
+.buttons__wrapper p {
+  font-weight: 400;
   -webkit-user-select: none;
   user-select: none;
 }
 
+.buttons__wrapper .bold {
+  font-weight: 700;
+}
+
 .buttons__wrapper svg,
-.buttons__wrapper span {
-  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.7));
+.buttons__wrapper p {
+  -webkit-filter: drop-shadow(2px 1px 1px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.4));
 }
 
 /* ----------- likes component ----------- */
-
 .like__scale {
   -webkit-animation: scale-up-hor-center 0.2s
     cubic-bezier(0.39, 0.575, 0.565, 1) both;
@@ -162,4 +161,14 @@
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
+}
+
+/* ---------- options component ---------- */
+.options_btns {
+  @apply w-full block py-3 border-0 border-b border-b-gray-300 text-center;
+  border-bottom: 2px solid whitesmoke;
+}
+
+.options_btns:hover {
+  @apply bg-gray-50;
 }

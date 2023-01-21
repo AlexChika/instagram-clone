@@ -25,3 +25,4 @@ export { default as SpeakerOffIcon } from "./SpeakerOffIcon";
 export { default as AspectHalfIcon } from "./AspectHalfIcon";
 export { default as AspectFullIcon } from "./AspectFullIcon";
 export { default as ThreeDotsIcon } from "./ThreeDotsIcon";
+export { default as MusicIcon } from "./MusicIcon";
