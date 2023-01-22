@@ -27,6 +27,13 @@ import {
 } from "../../../../../utils/icons";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  EmailShareButton,
+  FacebookMessengerShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "next-share";
 
 function Buttons({ params }) {
   const { fs: fullScreen, sfs: setFullScreen, liked, setLiked } = params;
@@ -485,6 +492,10 @@ function ShareModal({ params }) {
   const { notify } = App();
   const { shareModal, setShareModal, setShowModal } = params;
 
+  let url = "https://insta-cloned.vercel.app/reels";
+  let title = " post tiltle here";
+  let quote = "post details here";
+
   // close modal function
   function closePopUp(e) {
     if (e.target !== e.currentTarget) return;
@@ -550,39 +561,79 @@ function ShareModal({ params }) {
             <h5>Share to Direct</h5>
           </button>
 
-          <button
-            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          <FacebookShareButton
+            style={{ width: "100%" }}
+            hashtag="instagram"
+            quote="post details here"
+            url={url}
+            blankTarget={true}
           >
-            <span className="mr-5">{IconHOC(FacebookIcon, "none")}</span>
-            <h5>Share to Facebook</h5>
-          </button>
+            <button
+              className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            >
+              <span className="mr-5">{IconHOC(FacebookIcon, "none")}</span>
+              <h5>Share to Facebook</h5>
+            </button>
+          </FacebookShareButton>
 
-          <button
-            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          <FacebookMessengerShareButton
+            url={url}
+            appId={"851802459409408"}
+            blankTarget={true}
+            style={{ width: "100%" }}
           >
-            <span className="mr-5">{IconHOC(MessengerIcon, "none")}</span>
-            <h5>Share to Messenger</h5>
-          </button>
-          <button
-            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
-          >
-            <span className="mr-5">{IconHOC(WhatsappIcon, "none")}</span>
-            <h5>Share to WhatsApp</h5>
-          </button>
+            <button
+              className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            >
+              <span className="mr-5">{IconHOC(MessengerIcon, "none")}</span>
+              <h5>Share to Messenger</h5>
+            </button>
+          </FacebookMessengerShareButton>
 
-          <button
-            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          <WhatsappShareButton
+            style={{ width: "100%" }}
+            url={url}
+            title={title}
+            blankTarget={true}
+            separator=":: "
           >
-            <span className="mr-5">{IconHOC(TwitterIcon, "none")}</span>
-            <h5>Share to Twitter</h5>
-          </button>
+            <button
+              className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            >
+              <span className="mr-5">{IconHOC(WhatsappIcon, "none")}</span>
+              <h5>Share to WhatsApp</h5>
+            </button>
+          </WhatsappShareButton>
 
-          <button
-            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          <TwitterShareButton
+            style={{ width: "100%" }}
+            url="https://insta-cloned.vercel.app/reels"
+            hashtags={["#InstaCloned", "#Instagram", "#Tech"]}
+            title="post tilte here"
+            blankTarget={true}
           >
-            <span className="mr-5">{IconHOC(EmailIcon, "none")}</span>
-            <h5>Share via Email</h5>
-          </button>
+            <button
+              className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            >
+              <span className="mr-5">{IconHOC(TwitterIcon, "none")}</span>
+              <h5>Share to Twitter</h5>
+            </button>
+          </TwitterShareButton>
+
+          <EmailShareButton
+            url={url}
+            subject={title}
+            body={quote}
+            blankTarget={true}
+            style={{ width: "100%" }}
+          >
+            <button
+              className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            >
+              <span className="mr-5">{IconHOC(EmailIcon, "none")}</span>
+              <h5>Share via Email</h5>
+            </button>
+          </EmailShareButton>
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
@@ -604,6 +655,7 @@ function ShareModal({ params }) {
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            onClick={() => setShareModal(false)}
           >
             <span className="mr-10"></span>
             <h5 className="text-blue-400">Cancel</h5>

@@ -46,9 +46,14 @@ const Header = ({
 
       <meta content="Insta cloned" property="og:site_name" key="og:site_name" />
 
-      <meta content="media" property="og:type" key="og:type" />
+      <meta content="website" property="og:type" key="og:type" />
 
       <meta property="og:locale" content="en_NG" key="og:locale" />
+      <meta
+        property="og:image"
+        content="/insta-icon-svg.svg"
+        key={"og:image"}
+      />
 
       <meta
         name="description"
