@@ -197,3 +197,8 @@
     transform: scale(1);
   }
 }
+
+/* - share to...an options sub component - */
+.share_btns {
+  @apply w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50;
+}

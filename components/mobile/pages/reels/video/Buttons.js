@@ -16,6 +16,12 @@ import {
   AspectHalfIcon,
   ThreeDotsIcon,
   MusicIcon,
+  FacebookIcon,
+  MessengerIcon,
+  WhatsappIcon,
+  TwitterIcon,
+  EmailIcon,
+  LinkIcon,
 } from "../../../../../utils/icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -211,7 +217,7 @@ const Options = () => {
       </div>
 
       {/* ----------- options overlay----------- */}
-      {/* this is the first overlay of buttons like share,copylink,cancel etc */}
+      {/* this is the first overlay of buttons like share to,copylink,cancel etc */}
       <div
         onClick={(e) => {
           if (e.target !== e.currentTarget) return;
@@ -242,7 +248,7 @@ const Options = () => {
             }}
             className={video.options_btns}
           >
-            Share to
+            Share to...
           </button>
 
           <button
@@ -466,29 +472,65 @@ function ShareModal({ params }) {
 
         {/* -------------- title here ------------- */}
         <h3 className="text-center mt-3 border-b-2 dark:border-b-gray-600 border-b-gray-100 p-2 italic font-semibold">
-          Share Post
+          Share to...
         </h3>
 
         {/* ----------- buttons wrapper ---------- */}
-        <section className="px-4 py-3 h-[65vh] overflow-y-auto">
-          {/* comments */}
-          <div>
-            <Comment />
+        <section className="pb-3 max-h-[67vh] overflow-y-auto">
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-5">{IconHOC(MessagingIcon, "none")}</span>
+            <p>Share to Direct</p>
+          </button>
 
-            {/* replies wrapper*/}
-            <div className="w-[85%] ml-auto mt-5">
-              <button className={`${video.pointernone}`}>
-                <span>__</span>
-                <span> view replies ({"6"})</span>
-              </button>
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-5">{IconHOC(FacebookIcon, "none")}</span>
+            <p>Share to Facebook</p>
+          </button>
 
-              {/* replies */}
-              <div>
-                <Comment />
-                <Comment />
-              </div>
-            </div>
-          </div>
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-5">{IconHOC(MessengerIcon, "none")}</span>
+            <p>Share to Messenger</p>
+          </button>
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-5">{IconHOC(WhatsappIcon, "none")}</span>
+            <p>Share to WhatsApp</p>
+          </button>
+
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-5">{IconHOC(TwitterIcon, "none")}</span>
+            <p>Share to Twitter</p>
+          </button>
+
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-5">{IconHOC(EmailIcon, "none")}</span>
+            <p>Share via Email</p>
+          </button>
+
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-5">{IconHOC(LinkIcon, "none")}</span>
+            <p>Copy link</p>
+          </button>
+
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+          >
+            <span className="mr-10"></span>
+            <p className="text-blue-400">Cancel</p>
+          </button>
         </section>
       </section>
     </div>
