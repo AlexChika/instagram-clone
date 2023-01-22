@@ -487,7 +487,7 @@ function CommentSection({ showComment, setShowComment }) {
   );
 }
 
-/* ------- An Options sub component ------- */
+/* ------- An Options (...) sub component ------- */
 function ShareModal({ params }) {
   const { notify } = App();
   const { shareModal, setShareModal, setShowModal } = params;
@@ -517,17 +517,20 @@ function ShareModal({ params }) {
 
   function copyLink() {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText("post url").then(() => {
-        setShareModal(false);
-        notify("Copied to clipboard");
-      });
+      // navigator.clipboard.writeText("post url").then(() => {
+      //   setShareModal(false);
+      //   notify("Copied to clipboard");
+      // });
+      navigator.clipboard.writeText("post url here");
+      setShareModal(false);
+      notify("Copied to clipboard");
     } else {
       setShareModal(false);
       notify("Sorry ...copy not supported on your browser");
     }
   }
 
-  // ,.......
+  // ,.......wrapper (gray bg)
   return (
     <div
       onClick={closePopUp}
