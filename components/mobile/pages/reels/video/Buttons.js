@@ -494,7 +494,7 @@ function ShareModal({ params }) {
 
   let url = "https://insta-cloned.vercel.app/reels";
   let title = " post tiltle here";
-  let quote = "post details here";
+  let body = "post details here";
 
   // close modal function
   function closePopUp(e) {
@@ -554,17 +554,19 @@ function ShareModal({ params }) {
 
         {/* ----------- buttons wrapper ---------- */}
         <section className="pb-3 max-h-[67vh] overflow-y-auto">
-          <button
-            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
-          >
-            <span className="mr-5">{IconHOC(MessagingIcon, "none")}</span>
-            <h5>Share to Direct</h5>
-          </button>
+          <Link href="/messages" passHref>
+            <a
+              className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            >
+              <span className="mr-5">{IconHOC(MessagingIcon, "none")}</span>
+              <h5>Share to Direct</h5>
+            </a>
+          </Link>
 
           <FacebookShareButton
             style={{ width: "100%" }}
             hashtag="instagram"
-            quote="post details here"
+            quote={body}
             url={url}
             blankTarget={true}
           >
@@ -608,7 +610,7 @@ function ShareModal({ params }) {
           <TwitterShareButton
             style={{ width: "100%" }}
             url="https://insta-cloned.vercel.app/reels"
-            hashtags={["#InstaCloned", "#Instagram", "#Tech"]}
+            hashtags={["InstaCloned", "Instagram", "Tech"]}
             title="post tilte here"
             blankTarget={true}
           >
@@ -623,7 +625,7 @@ function ShareModal({ params }) {
           <EmailShareButton
             url={url}
             subject={title}
-            body={quote}
+            body={body}
             blankTarget={true}
             style={{ width: "100%" }}
           >
