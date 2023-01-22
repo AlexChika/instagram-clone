@@ -14,7 +14,7 @@ const SearchNavTop = () => {
     <nav className="sticky flex items-center justify-center top-0 z-10 bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 px-4 h-11">
       <div className="max-w-3xl mx-auto flex items-center justify-center w-full">
         {/* search wrapper */}
-        <div className="rounded flex w-full py-1 border border-slate-200 dark:border-gray-300 dark:bg-white ">
+        <div className="rounded flex w-full py-1 border border-slate-200 dark:border-gray-300 dark:bg-white dark:text-black">
           <span className="scale-50 pl-2">
             <SearchIcon className="text-slate-500" />
           </span>

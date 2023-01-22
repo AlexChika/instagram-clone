@@ -34,6 +34,7 @@ html.dark {
 
 a,
 button,
+textarea,
 input {
   border: none;
   outline: none;

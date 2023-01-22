@@ -119,31 +119,29 @@
   pointer-events: none;
 }
 
-/* ------ Wrapper 1 detailsz-wrapper ----- */
-
-/* ------ Wrapper 2  buttons_wrapper ----- */
-.buttons__wrapper span {
-  font-weight: 500;
-  font-size: 12px;
+.buttons__wrapper p {
+  font-weight: 400;
   -webkit-user-select: none;
   user-select: none;
 }
 
+.buttons__wrapper .bold {
+  font-weight: 700;
+}
+
 .buttons__wrapper svg,
-.buttons__wrapper span {
-  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.7));
+.buttons__wrapper p {
+  -webkit-filter: drop-shadow(2px 1px 1px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.4));
 }
 
 /* ----------- likes component ----------- */
-
 .like__scale {
-  -webkit-animation: scale-up-hor-center 0.2s
-    cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  animation: scale-up-hor-center 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  -webkit-animation: scale-up 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
-@-webkit-keyframes scale-up-hor-center {
+@-webkit-keyframes scale-up {
   0% {
     -webkit-transform: scaleX(0.6);
     transform: scaleX(0.6);
@@ -153,7 +151,7 @@
     transform: scaleX(1);
   }
 }
-@keyframes scale-up-hor-center {
+@keyframes scale-up {
   0% {
     -webkit-transform: scaleX(0.6);
     transform: scaleX(0.6);
@@ -162,4 +160,45 @@
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
+}
+
+/* ---------- options component ---------- */
+.options_btns {
+  @apply w-full block py-3 border-0 border-b border-b-gray-300 text-center;
+  border-bottom: 2px solid whitesmoke;
+}
+
+.options_btns:hover {
+  @apply bg-gray-50;
+}
+
+.options_scale_down {
+  -webkit-animation: scale-down 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: scale-down 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes scale-down {
+  0% {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes scale-down {
+  0% {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+/* - share to...an options sub component - */
+.share_btns {
+  @apply w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50;
 }
