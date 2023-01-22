@@ -20,7 +20,7 @@ const RightCurvedArrowIcon = ({ color, class: cs }) => {
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       ></path>
       <polyline
         fill="none"

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import "../styles/globals.css";
+import Notify from "../components/general/Notify";
 import Header from "../components/general/Header";
 const AppContext = createContext();
 
@@ -8,7 +9,10 @@ function MyApp({ Component, pageProps }) {
   // if theme is false ==> light mode
   const [theme, setTheme] = useState(false);
 
-  // temp implementation
+  // the notify utility state
+  const [_notify, setNotify] = useState({ state: false, text: "" });
+
+  // temp implementation for flashscreen timer
   const [timer, setTimer] = useState(0);
 
   function setDarkMode(condition) {
@@ -24,6 +28,18 @@ function MyApp({ Component, pageProps }) {
     localStorage.theme = localStorage.theme === "dark" ? "light" : "dark";
 
     setTheme(localStorage.theme === "dark");
+  }
+
+  function notify(text, time = 2500) {
+    setNotify({
+      ..._notify,
+      text,
+      state: true,
+    });
+
+    setTimeout(() => {
+      setNotify({ ..._notify, state: false });
+    }, time);
   }
 
   useEffect(() => {
@@ -58,9 +74,10 @@ function MyApp({ Component, pageProps }) {
 
   // app
   return (
-    <AppContext.Provider value={{ changeTheme, theme, timer }}>
+    <AppContext.Provider value={{ changeTheme, theme, timer, notify }}>
       <Header />
       <Component {...pageProps} />
+      <Notify notify={_notify} />
     </AppContext.Provider>
   );
 }

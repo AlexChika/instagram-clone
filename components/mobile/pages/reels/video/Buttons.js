@@ -3,6 +3,7 @@
 /* --------------------------------------- */
 
 import React, { Component, useEffect, useState } from "react";
+import { App } from "../../../../../pages/_app";
 import IconHOC from "../../../../general/IconHOC";
 import Spinner from "../../../../general/Spinner";
 import { useRouter } from "next/router";
@@ -22,6 +23,7 @@ import {
   TwitterIcon,
   EmailIcon,
   LinkIcon,
+  RightCurvedArrowIcon,
 } from "../../../../../utils/icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -199,9 +201,21 @@ const Aspect = ({ params }) => {
 /*              Options component          */
 /* --------------------------------------- */
 const Options = () => {
+  const { notify } = App();
   const [showModal, setShowModal] = useState(false);
   const [shareModal, setShareModal] = useState(false);
-  let postLink = "post link here >>>";
+
+  function copyLink() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText("post url").then(() => {
+        setShowModal(false);
+        notify("Copied to clipboard");
+      });
+    } else {
+      setShowModal(false);
+      notify("Sorry ...copy not supported on your browser");
+    }
+  }
 
   //   ......
   return (
@@ -251,12 +265,7 @@ const Options = () => {
             Share to...
           </button>
 
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(postLink);
-            }}
-            className={video.options_btns}
-          >
+          <button onClick={copyLink} className={video.options_btns}>
             Copy link
           </button>
 
@@ -322,7 +331,7 @@ const Captions = () => {
       <div className="max-h-[250px] overflow-y-auto  sticky z-[3]">
         {seeMore ? (
           <>
-            <p>{caption}</p>
+            <h5>{caption}</h5>
           </>
         ) : (
           <>
@@ -362,10 +371,17 @@ const Captions = () => {
 
 /* ------- A comments sub component ------- */
 function CommentSection({ showComment, setShowComment }) {
+  const [comment, setComment] = useState("");
   function closePopUp(e) {
     if (e.target !== e.currentTarget) return;
     setShowComment(false);
   }
+
+  const handleComment = () => {};
+
+  const handleInput = (e) => {
+    setComment(e.currentTarget.textContent.trim());
+  };
 
   // ,.......
   return (
@@ -393,9 +409,9 @@ function CommentSection({ showComment, setShowComment }) {
         </h3>
 
         {/* ----------- comments wrapper ---------- */}
-        {false ? (
+        {true ? (
           <>
-            <section className="px-4 py-3 h-[65vh] overflow-y-auto">
+            <section className="px-4 pb-[60px] h-[65vh] overflow-y-auto">
               {/* comments */}
               <div>
                 <Comment />
@@ -425,8 +441,9 @@ function CommentSection({ showComment, setShowComment }) {
         )}
 
         {/* ------------- Comment box ------------- */}
-        <form className="dark:bg-gray-100 text-center w-full flex">
-          <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative flex-[0.15]">
+        <form className="dark:bg-neutral-500 fixed bottom-[44px] z-[11] bg-neutral-200 text-center w-full flex justify-around items-center p-2">
+          {/* image icon */}
+          <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative">
             <Image
               className="rounded-full"
               layout="fill"
@@ -434,7 +451,24 @@ function CommentSection({ showComment, setShowComment }) {
               alt="user profile image"
             />
           </div>
-          <input type="text" />
+
+          {/* input container */}
+          <div className="bg-white py-1 px-3 rounded-3xl w-[calc(100%-50px)] flex justify-around">
+            <h5
+              onInput={handleInput}
+              contentEditable
+              className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] text-black min-h-[30px] max-h-[100px] outline-none font-normal"
+            ></h5>
+            <button
+              disabled={comment}
+              className={` w-[50px] ${
+                comment ? "text-blue-600" : "text-blue-200"
+              }`}
+              type="submit"
+            >
+              Post
+            </button>
+          </div>
         </form>
       </section>
     </div>
@@ -443,11 +477,38 @@ function CommentSection({ showComment, setShowComment }) {
 
 /* ------- An Options sub component ------- */
 function ShareModal({ params }) {
+  const { notify } = App();
   const { shareModal, setShareModal, setShowModal } = params;
 
+  // close modal function
   function closePopUp(e) {
     if (e.target !== e.currentTarget) return;
     setShareModal(false);
+  }
+
+  // Buttons functions....
+  function seeAll() {
+    if (navigator.share) {
+      navigator.share({
+        title: "Post Title here",
+        url: "https://insta-cloned.vercel.app",
+        text: "post description",
+      });
+    } else {
+      notify("Sorry... share options exhausted");
+    }
+  }
+
+  function copyLink() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText("post url").then(() => {
+        setShareModal(false);
+        notify("Copied to clipboard");
+      });
+    } else {
+      setShareModal(false);
+      notify("Sorry ...copy not supported on your browser");
+    }
   }
 
   // ,.......
@@ -481,55 +542,66 @@ function ShareModal({ params }) {
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
           >
             <span className="mr-5">{IconHOC(MessagingIcon, "none")}</span>
-            <p>Share to Direct</p>
+            <h5>Share to Direct</h5>
           </button>
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
           >
             <span className="mr-5">{IconHOC(FacebookIcon, "none")}</span>
-            <p>Share to Facebook</p>
+            <h5>Share to Facebook</h5>
           </button>
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
           >
             <span className="mr-5">{IconHOC(MessengerIcon, "none")}</span>
-            <p>Share to Messenger</p>
+            <h5>Share to Messenger</h5>
           </button>
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
           >
             <span className="mr-5">{IconHOC(WhatsappIcon, "none")}</span>
-            <p>Share to WhatsApp</p>
+            <h5>Share to WhatsApp</h5>
           </button>
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
           >
             <span className="mr-5">{IconHOC(TwitterIcon, "none")}</span>
-            <p>Share to Twitter</p>
+            <h5>Share to Twitter</h5>
           </button>
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
           >
             <span className="mr-5">{IconHOC(EmailIcon, "none")}</span>
-            <p>Share via Email</p>
+            <h5>Share via Email</h5>
           </button>
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            onClick={copyLink}
           >
             <span className="mr-5">{IconHOC(LinkIcon, "none")}</span>
-            <p>Copy link</p>
+            <h5>Copy link</h5>
+          </button>
+
+          <button
+            className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
+            onClick={seeAll}
+          >
+            <span className="mr-5">
+              {IconHOC(RightCurvedArrowIcon, "none")}
+            </span>
+            <h5>See all</h5>
           </button>
 
           <button
             className={`dark:hover:bg-gray-600 ${video.share_btns} ${video.pointernone}`}
           >
             <span className="mr-10"></span>
-            <p className="text-blue-400">Cancel</p>
+            <h5 className="text-blue-400">Cancel</h5>
           </button>
         </section>
       </section>
