@@ -214,10 +214,9 @@ const Options = () => {
 
   function copyLink() {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText("post url").then(() => {
-        setShowModal(false);
-        notify("Copied to clipboard");
-      });
+      navigator.clipboard.writeText("post url here");
+      setShareModal(false);
+      notify("Copied to clipboard");
     } else {
       setShowModal(false);
       notify("Sorry ...copy not supported on your browser");
@@ -517,10 +516,6 @@ function ShareModal({ params }) {
 
   function copyLink() {
     if (navigator.clipboard) {
-      // navigator.clipboard.writeText("post url").then(() => {
-      //   setShareModal(false);
-      //   notify("Copied to clipboard");
-      // });
       navigator.clipboard.writeText("post url here");
       setShareModal(false);
       notify("Copied to clipboard");
