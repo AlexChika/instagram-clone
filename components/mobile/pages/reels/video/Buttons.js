@@ -377,7 +377,9 @@ function CommentSection({ showComment, setShowComment }) {
     setShowComment(false);
   }
 
-  const handleComment = () => {};
+  const handleComment = (e) => {
+    e.preventDefault();
+  };
 
   const handleInput = (e) => {
     setComment(e.currentTarget.textContent.trim());
@@ -441,7 +443,10 @@ function CommentSection({ showComment, setShowComment }) {
         )}
 
         {/* ------------- Comment box ------------- */}
-        <form className="dark:bg-neutral-500 fixed bottom-[44px] z-[11] bg-neutral-200 text-center w-full flex justify-around items-center p-2">
+        <form
+          onSubmit={handleComment}
+          className="dark:bg-neutral-500 fixed bottom-[44px] z-[11] bg-neutral-200 text-center w-full flex justify-around items-center p-2"
+        >
           {/* image icon */}
           <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative">
             <Image
