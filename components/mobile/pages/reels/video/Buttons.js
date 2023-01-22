@@ -4,6 +4,7 @@
 
 import React, { Component, useEffect, useState } from "react";
 import IconHOC from "../../../../general/IconHOC";
+import Spinner from "../../../../general/Spinner";
 import { useRouter } from "next/router";
 import video from "./video.module.css";
 import {
@@ -193,11 +194,13 @@ const Aspect = ({ params }) => {
 /* --------------------------------------- */
 const Options = () => {
   const [showModal, setShowModal] = useState(false);
+  const [shareModal, setShareModal] = useState(false);
   let postLink = "post link here >>>";
 
   //   ......
   return (
     <>
+      {/* .......  three dots icon */}
       <div className="mb-[20px] flex flex-col items-center">
         <button
           className={`${video.pointernone} `}
@@ -207,7 +210,8 @@ const Options = () => {
         </button>
       </div>
 
-      {/* ----------- options overlay ----------- */}
+      {/* ----------- options overlay----------- */}
+      {/* this is the first overlay of buttons like share,copylink,cancel etc */}
       <div
         onClick={(e) => {
           if (e.target !== e.currentTarget) return;
@@ -217,7 +221,12 @@ const Options = () => {
           showModal ? "visible opacity-[1]" : "invisible opacity-0"
         }`}
       >
-        <div className="flex flex-col items-center bg-white w-[250px] text-black rounded-xl overflow-hidden">
+        {/* modal starts here.... */}
+        <div
+          className={`flex flex-col items-center bg-white w-[250px] text-black rounded-xl overflow-hidden ${
+            showModal ? video.options_scale_down : ""
+          }`}
+        >
           <h4 className={`text-red-600 select-none ${video.options_btns}`}>
             Take Action
           </h4>
@@ -226,7 +235,15 @@ const Options = () => {
             <a className={video.options_btns}>Go to post</a>
           </Link>
 
-          <button className={video.options_btns}>Share to</button>
+          <button
+            onClick={() => {
+              setShowModal(false);
+              setShareModal(true);
+            }}
+            className={video.options_btns}
+          >
+            Share to
+          </button>
 
           <button
             onClick={() => {
@@ -245,6 +262,10 @@ const Options = () => {
           </button>
         </div>
       </div>
+
+      {/* ---------- shareModal 0verlay --------- */}
+      {/* this is the second overlay when "share to" button is clicked */}
+      <ShareModal params={{ shareModal, setShareModal, setShowModal }} />
     </>
   );
 };
@@ -361,11 +382,94 @@ function CommentSection({ showComment, setShowComment }) {
         ></span>
 
         {/* -------------- title here ------------- */}
-        <h3 className="text-center mt-3 border-b-2 border-b-gray-600 p-2 italic font-semibold">
+        <h3 className="text-center mt-3 border-b-2 dark:border-b-gray-600 border-b-gray-100 p-2 italic font-semibold">
           Comments
         </h3>
 
         {/* ----------- comments wrapper ---------- */}
+        {false ? (
+          <>
+            <section className="px-4 py-3 h-[65vh] overflow-y-auto">
+              {/* comments */}
+              <div>
+                <Comment />
+
+                {/* replies wrapper*/}
+                <div className="w-[85%] ml-auto mt-5">
+                  <button className={`${video.pointernone}`}>
+                    <span>__</span>
+                    <span> view replies ({"6"})</span>
+                  </button>
+
+                  {/* replies */}
+                  <div>
+                    <Comment />
+                    <Comment />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </>
+        ) : (
+          <>
+            <div className="h-[65vh] flex justify-center items-center">
+              <Spinner />
+            </div>
+          </>
+        )}
+
+        {/* ------------- Comment box ------------- */}
+        <form className="dark:bg-gray-100 text-center w-full flex">
+          <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative flex-[0.15]">
+            <Image
+              className="rounded-full"
+              layout="fill"
+              src="/alex.png"
+              alt="user profile image"
+            />
+          </div>
+          <input type="text" />
+        </form>
+      </section>
+    </div>
+  );
+}
+
+/* ------- An Options sub component ------- */
+function ShareModal({ params }) {
+  const { shareModal, setShareModal, setShowModal } = params;
+
+  function closePopUp(e) {
+    if (e.target !== e.currentTarget) return;
+    setShareModal(false);
+  }
+
+  // ,.......
+  return (
+    <div
+      onClick={closePopUp}
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-opacity ${
+        shareModal ? "opacity-1 visible" : "opacity-0 invisible"
+      }`}
+    >
+      {/* .....content starts...*/}
+      <section
+        className={`max-w-3xl left-[50%] translate-x-[-50%] dark:bg-[#414040] bg-white text-black dark:text-white absolute w-full bottom-0 py-4 pb-[44px] rounded-t-xl transition-transform ${
+          shareModal ? "translate-y-[0%]" : "translate-y-[100%]"
+        }`}
+      >
+        {/* ----------- dashed gray line ---------- */}
+        <span
+          aria-hidden
+          className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-gray-800"
+        ></span>
+
+        {/* -------------- title here ------------- */}
+        <h3 className="text-center mt-3 border-b-2 dark:border-b-gray-600 border-b-gray-100 p-2 italic font-semibold">
+          Share Post
+        </h3>
+
+        {/* ----------- buttons wrapper ---------- */}
         <section className="px-4 py-3 h-[65vh] overflow-y-auto">
           {/* comments */}
           <div>
@@ -386,19 +490,6 @@ function CommentSection({ showComment, setShowComment }) {
             </div>
           </div>
         </section>
-
-        {/* ------------- Comment box ------------- */}
-        <form className="dark:bg-gray-100 text-center w-full flex">
-          <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative flex-[0.15]">
-            <Image
-              className="rounded-full"
-              layout="fill"
-              src="/alex.png"
-              alt="user profile image"
-            />
-          </div>
-          <input type="text" />
-        </form>
       </section>
     </div>
   );
@@ -453,7 +544,6 @@ const Comment = () => {
 
       {/* like button  */}
       <button
-        data-role="button"
         onClick={() => setLiked(!liked)}
         className={`flex-[0.07] ${video[css]} ${video.pointernone}`}
       >

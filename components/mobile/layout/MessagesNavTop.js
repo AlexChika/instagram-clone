@@ -56,6 +56,8 @@ function SwitchAccounts({ showPopUp, setShowPopUp }) {
     }
   }
 
+  // TODO : change transition-all to opacity
+
   return (
     <div
       ref={switchRef}
@@ -64,18 +66,20 @@ function SwitchAccounts({ showPopUp, setShowPopUp }) {
         showPopUp ? "opacity-1 visible" : "opacity-0 invisible"
       }`}
     >
-      {/* content */}
+      {/* ------- content starts ........* ------ */}
       <section
         className={`max-w-3xl left-[50%] translate-x-[-50%] dark:bg-[#414040] bg-white d absolute w-full bottom-0 p-4 rounded-t-xl transition-transform ${
           showPopUp ? "translate-y-[0%]" : "translate-y-[100%]"
         }`}
       >
+        {/* ------------- dashed line ------------- */}
         <span
           aria-hidden
           className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-gray-800"
         ></span>
 
-        <h3 className="text-center mt-3 italic font-medium border-b-2 py-2">
+        {/* -------------- Title here ------------- */}
+        <h3 className="text-center mt-3 italic font-medium border-b-2 dark:border-b-gray-600 border-b-gray-100 py-2">
           Switch accounts
         </h3>
 
