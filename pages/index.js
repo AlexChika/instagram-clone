@@ -1,16 +1,11 @@
-import MobileHomePage from "../components/mobile/pages/home";
-import DesktopHomePage from "../components/desktop/pages/home";
-import mobileCheck from "../utils/helpers/mobileCheck";
-// import MobileFlashScreen from "../components/mobile/flashScreen";
-// import DesktopFlashScreen from "../components/desktop/flashScreen";
-import FlashScreen from "../components/general/FlashScreen";
-import { App } from "./_app";
+import MobileHomePage from "components/mobile/pages/home";
+import DesktopHomePage from "components/desktop/pages/home";
+import FlashScreen from "components/general/FlashScreen";
+import { App } from "pages/_app";
+import _getServerSideProps from "utils/helpers/getServerSideProps";
 
 export default function Home({ isMobile }) {
   const { timer } = App();
-
-  // return <DesktopFlashScreen />;
-  // return <MobileFlashScreen />;
 
   // splash screen delay
   if (timer < 2) {
@@ -22,12 +17,4 @@ export default function Home({ isMobile }) {
   if (timer >= 2 && !isMobile) return <DesktopHomePage />;
 }
 
-export const getServerSideProps = ({ req }) => {
-  const UA = req?.headers?.["user-agent"] || false;
-  const isMobile = UA ? mobileCheck(UA) : true;
-  return {
-    props: {
-      isMobile: isMobile,
-    },
-  };
-};
+export const getServerSideProps = _getServerSideProps;

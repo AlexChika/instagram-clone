@@ -1,4 +1,5 @@
-/*Hooks is used to dynamically set the height of an element to the visible browser height excluding browser nav bars using the window.innerHeight aproach */
+// Mobile....
+/*Hooks is used to dynamically set the height of an element to the visible browser height excluding browse-nav-bars using the window.innerHeight aproach */
 
 import React, { useEffect } from "react";
 
@@ -19,7 +20,6 @@ const SetHeight = (elementREf, sub = 44) => {
       if (_height === window.innerHeight) return;
       _height = window.innerHeight;
       refElement.style.height = `${_height - sub}px`;
-      console.log(_height);
     }
 
     refElement.addEventListener("scroll", handleScrollEvent);

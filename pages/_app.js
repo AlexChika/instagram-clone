@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState(false);
 
   // the notify utility state
+  const [timeout, setTimeOut] = useState("");
   const [_notify, setNotify] = useState({ state: false, text: "" });
 
   // temp implementation for flashscreen timer
@@ -37,9 +38,13 @@ function MyApp({ Component, pageProps }) {
       state: true,
     });
 
-    setTimeout(() => {
+    clearTimeout(timeout);
+
+    let _timeout = setTimeout(() => {
       setNotify({ ..._notify, state: false });
     }, time);
+
+    setTimeOut(_timeout);
   }
 
   useEffect(() => {

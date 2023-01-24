@@ -1,0 +1,37 @@
+/* --------------------------------------- */
+/*         Reels Wrapper (Reels.js)        */
+/* --------------------------------------- */
+.reels__wrapper {
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: scroll;
+  -ms-scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: mandatory;
+  scroll-snap-type: mandatory;
+  -webkit-scroll-snap-type: mandatory;
+}
+
+.reels__wrapper::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+/* ----------- video (index.js) ---------- */
+.video__wrapper {
+  scroll-snap-stop: always;
+  scroll-snap-align: center;
+  max-width: calc(386px + 60px);
+  max-height: calc(100% - 60px);
+  aspect-ratio: 0.65;
+}
+
+.video__wrapper video {
+  margin: 0 auto;
+  -o-object-fit: var(--object-fit);
+  object-fit: var(--object-fit);
+  background: linear-gradient(253deg, #ff55001a, #0797eb1a);
+}
+/* max-width: 540px; */

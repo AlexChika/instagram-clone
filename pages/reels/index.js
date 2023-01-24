@@ -1,11 +1,10 @@
 import React from "react";
 import Error from "next/error";
-import { App } from "../_app";
-// import DesktopFlashScreen from "../../components/desktop/flashScreen";
-// import MobileFlashScreen from "../../components/mobile/flashScreen";
-import FlashScreen from "../../components/general/FlashScreen";
-import mobileCheck from "../../utils/helpers/mobileCheck";
-import MobileReelsPage from "../../components/mobile/pages/reels";
+import { App } from "pages/_app";
+import FlashScreen from "components/general/FlashScreen";
+import MobileReelsPage from "components/mobile/pages/reels";
+import DesktopReelsPage from "components/desktop/pages/reels";
+import _getServerSideProps from "utils/helpers/getServerSideProps";
 
 const Reels = ({ isMobile }) => {
   const { timer } = App();
@@ -17,17 +16,9 @@ const Reels = ({ isMobile }) => {
 
   if (isMobile) return <MobileReelsPage />;
 
-  if (!isMobile) return <Error title="This page does not exist" />;
+  if (!isMobile) return <DesktopReelsPage />;
 };
 
 export default Reels;
 
-export const getServerSideProps = ({ req }) => {
-  const UA = req.headers["user-agent"];
-  const isMobile = mobileCheck(UA);
-  return {
-    props: {
-      isMobile: isMobile,
-    },
-  };
-};
+export const getServerSideProps = _getServerSideProps;
