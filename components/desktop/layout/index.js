@@ -1,9 +1,8 @@
 import layout from "./layout.module.css";
 import NavBottom from "./NavBottom";
-import HomeNavTop from "./HomeNavTop";
 import SideBar from "./SideBar";
 
-const DesktopLayout = ({ children }) => {
+const DesktopLayout = ({ children, NavTop }) => {
   return (
     <main className={`${layout.main}`}>
       {/* side bar */}
@@ -12,12 +11,14 @@ const DesktopLayout = ({ children }) => {
       </div>
 
       {/* top nav bar */}
-      <div className={`${layout.navTop} md:hidden sticky top-0 z-10`}>
-        <HomeNavTop />
-      </div>
+      {NavTop && (
+        <div className={`${layout.navTop} md:hidden sticky top-0 z-10`}>
+          <NavTop />
+        </div>
+      )}
 
       {/* body */}
-      <div className={`${layout.body} mb-[56px] md:mb-[0px] `}>{children}</div>
+      <div className={`${layout.body}`}>{children}</div>
 
       {/* nav bottom */}
       <div className={`${layout.navBottom} md:hidden`}>

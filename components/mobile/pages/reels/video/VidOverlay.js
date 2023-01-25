@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import SoundIndicator from "./SoundIndicator";
-import Loading from "./Loading";
+import Loading from "components/general/reels/Loading";
 import Buttons from "./Buttons";
-import useSingleDoubleClick from "../../../../../utils/hooks/useClick";
+import useSingleDoubleClick from "utils/hooks/useClick";
 
 const Overlay = ({ params }) => {
   const [liked, setLiked] = useState(false);

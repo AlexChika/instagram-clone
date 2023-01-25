@@ -4,7 +4,7 @@
 import React, { useState, useMemo } from "react";
 import video from "./video.module.css";
 import Overlay from "./VidOverlay";
-import VideoEl from "./VideoEl";
+import VideoEl from "components/general/reels/VideoEl";
 
 const Video = (props) => {
   const { muted, muteFn, loading, url } = props;

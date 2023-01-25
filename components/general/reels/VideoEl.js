@@ -3,7 +3,7 @@
 /* --------------------------------------- */
 
 import React, { useEffect, useRef } from "react";
-import getGradient from "../../../../../utils/gradient";
+import getGradient from "utils/gradient";
 
 const VideoEl = ({ src = "/insta-vid.mp4", fullScreen }) => {
   const videoRef = useRef(null);

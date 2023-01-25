@@ -32,6 +32,13 @@ html.dark {
   color: white;
 }
 
+video {
+  margin: 0 auto;
+  -o-object-fit: var(--object-fit);
+  object-fit: var(--object-fit);
+  background: linear-gradient(253deg, #ff55001a, #0797eb1a);
+}
+
 a,
 button,
 textarea,
@@ -67,4 +74,136 @@ img {
 
 html.dark .arrow::after {
   border-color: transparent rgba(255, 255, 255, 0.2) transparent transparent;
+}
+
+/* --------------------------------------- */
+/*                  UTILS                  */
+/* --------------------------------------- */
+/* ---------------- utils ---------------- */
+.pointernone * {
+  pointer-events: none;
+}
+
+/* --------------------------------------- */
+/*                ANIMATIONS               */
+/* --------------------------------------- */
+
+/* classes */
+.scale_up_center {
+  -webkit-animation: scale-up-center 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-center 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.scale_down_center {
+  -webkit-animation: scale-down-center 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-down-center 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.scale_sideways {
+  -webkit-animation: scale-sideways 0.2s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-sideways 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.scale_down {
+  -webkit-animation: scale-down 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: scale-down 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ---------- Scale up animation --------- */
+@-webkit-keyframes scale-up-center {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+}
+
+/* --------- scale down animation -------- */
+@-webkit-keyframes scale-down-center {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+@keyframes scale-down-center {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+/* ------------ scale sideways ----------- */
+@-webkit-keyframes scale-sideways {
+  0% {
+    -webkit-transform: scaleX(0.6);
+    transform: scaleX(0.6);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+@keyframes scale-sideways {
+  0% {
+    -webkit-transform: scaleX(0.6);
+    transform: scaleX(0.6);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+/* -------------- Scale down ------------- */
+@-webkit-keyframes scale-down {
+  0% {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes scale-down {
+  0% {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
-const CheckIcon = ({ color }) => {
+const CheckIcon = ({ color, class: cs }) => {
   return (
     <svg
       aria-label="Checkmark filled icon"
-      //   class="_ab6-"
+      className={cs}
       color={color}
       fill="currentColor"
       //   color="#0095f6"

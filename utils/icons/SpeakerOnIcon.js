@@ -1,9 +1,10 @@
 import React from "react";
 
-const SpeakerOnIcon = ({ color }) => {
+const SpeakerOnIcon = ({ color, class: cs }) => {
   return (
     <svg
       aria-label="speaker icon"
+      className={cs}
       color={color}
       fill="currentColor"
       //   color="#ffffff"

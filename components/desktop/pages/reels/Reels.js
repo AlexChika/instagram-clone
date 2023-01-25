@@ -1,28 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
-import Video from "./video";
+import { useEffect, useState, useRef } from "react";
 import video from "./video/video.module.css";
-import SetHeight from "utils/hooks/mobileSetHeight";
+import SetHeight from "utils/hooks/desktopSetHight";
+import Video from "./video";
 
-// app
+// ......
 const Reels = () => {
   const ReelsREf = useRef(null);
+
+  //   local state
+  const [currentVideo, setCurrentVideo] = useState(null);
   const [muted, setMuted] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  //   func ...
+  //   functions
   function muteFn() {
     setMuted(!muted);
   }
 
   function handleWaiting() {
-    console.log("fired");
     setLoading(true);
   }
 
   function handlePlaying() {
-    console.log("firing");
     setLoading(false);
   }
+
+  // effects and hooks
+  SetHeight(ReelsREf);
 
   /* ------- autoplay observer logic ------- */
   useEffect(() => {
@@ -38,7 +42,8 @@ const Reels = () => {
         if (entry.isIntersecting) {
           entry.target.addEventListener("waiting", handleWaiting);
           entry.target.addEventListener("playing", handlePlaying);
-          entry.target.play();
+          setCurrentVideo(entry.target);
+          if (!entry.target?.dataset?.stop) entry.target.play();
         } else {
           entry.target.removeEventListener("waiting", handleWaiting);
           entry.target.removeEventListener("playing", handlePlaying);
@@ -64,9 +69,6 @@ const Reels = () => {
     });
   }, [muted]);
 
-  /* -- dynamic Reels Wrapper Height hook - */
-  SetHeight(ReelsREf);
-
   const urls = [
     "/insta-vid.mp4",
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
@@ -87,6 +89,7 @@ const Reels = () => {
             muted={muted}
             loading={loading}
             muteFn={muteFn}
+            video={currentVideo}
             key={index}
             url={url}
           />

@@ -51,7 +51,6 @@
 .main {
   display: grid;
   grid-template-columns: 1fr;
-  height: 100vh;
   overflow-y: auto;
   grid-template-rows: auto;
   grid-template-areas:

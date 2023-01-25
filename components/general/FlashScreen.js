@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import getImage from "../../utils/hooks/getImage";
-import SetHeight from "../../utils/hooks/setHeight";
+import SetHeight from "../../utils/hooks/mobileSetHeight";
 
 const { instaIconSvg, metaLogoPng } = getImage();
 

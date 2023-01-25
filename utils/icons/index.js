@@ -32,4 +32,6 @@ export { default as WhatsappIcon } from "./WhatsappIcon";
 export { default as TwitterIcon } from "./TwitterIcon";
 export { default as EmailIcon } from "./EmailIcon";
 export { default as LinkIcon } from "./LinkIcon";
+export { default as PlayIcon } from "./PlayIcon";
+export { default as EmojiIcon } from "./EmojiIcon";
 export { default as RightCurvedArrowIcon } from "./RightCurvedArrowIcon";

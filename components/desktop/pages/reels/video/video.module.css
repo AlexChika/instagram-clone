@@ -2,9 +2,8 @@
 /*         Reels Wrapper (Reels.js)        */
 /* --------------------------------------- */
 .reels__wrapper {
-  height: calc(100vh - 44px);
+  height: 100vh;
   width: 100%;
-  max-width: 768px;
   margin: 0 auto;
   overflow-y: scroll;
   -ms-scroll-snap-type: y mandatory;
@@ -23,36 +22,23 @@
 /* ----------- video (index.js) ---------- */
 .video__wrapper {
   scroll-snap-stop: always;
-  scroll-snap-align: start;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  max-width: 426px;
-  margin: 0 auto;
+  scroll-snap-align: center;
+  max-width: calc(386px + 60px);
+  max-height: calc(100% - 60px);
+  aspect-ratio: 0.65;
 }
 
-/* ---------- Scale up animation --------- */
-
 /* --------------------------------------- */
-/*                 BUTTONS.js                */
+/*        Buttons @ video/Buttons.js       */
 /* --------------------------------------- */
-
-.buttons__wrapper svg {
-  -webkit-filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.4));
-  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.4));
-}
 
 /* ---------- options component ---------- */
 .options_btns {
-  @apply w-full block py-3 border-0 border-b border-b-gray-300 text-center;
+  @apply w-full block py-4 border-0 border-b border-b-gray-300 text-center;
   border-bottom: 2px solid whitesmoke;
 }
 
-.options_btns:hover {
-  @apply bg-gray-50;
-}
-
-/* - share to...an options sub component - */
+/* - share modal an options subcomponent - */
 .share_btns {
   @apply w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50;
 }

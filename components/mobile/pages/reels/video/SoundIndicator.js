@@ -7,13 +7,13 @@ import video from "./video.module.css";
 import { SpeakerOffIcon, SpeakerOnIcon } from "../../../../../utils/icons";
 
 const Sound = ({ muted }) => {
-  const [indicator, setIndicator] = useState("sound__off");
+  const [indicator, setIndicator] = useState("scale_down_center");
 
   useEffect(() => {
-    setIndicator("sound__on");
+    setIndicator("scale_up_center");
 
     setTimeout(() => {
-      setIndicator("sound__off");
+      setIndicator("scale_down_center");
     }, [800]);
   }, [muted]);
 
@@ -23,11 +23,15 @@ const Sound = ({ muted }) => {
       role="volume indicator"
     >
       {muted ? (
-        <div className={`${video.sound__indicator} ${video[indicator]}`}>
+        <div
+          className={`p-[15px] rounded-full opacity-0 bg-[rgba(0,0,0,0.3)] ${indicator}`}
+        >
           <SpeakerOffIcon color={"white"} />
         </div>
       ) : (
-        <div className={`${video.sound__indicator} ${video[indicator]} `}>
+        <div
+          className={`p-[15px] rounded-full opacity-0 bg-[rgba(0,0,0,0.3)] ${indicator} `}
+        >
           <SpeakerOnIcon color="white" />
         </div>
       )}
