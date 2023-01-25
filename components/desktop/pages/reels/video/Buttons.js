@@ -458,7 +458,7 @@ function CommentSection({ showComment, setShowComment }) {
     >
       {/* .....content starts...*/}
       <section
-        className={`w-[90%] max-w-[600px] dark:bg-[#414040] bg-white text-black dark:text-white rounded-xl relative ${
+        className={`w-[90%] max-w-[600px] dark:bg-[#414040] bg-white text-black dark:text-white rounded-xl overflow-hidden relative ${
           showComment ? "scale_down" : ""
         }`}
       >
@@ -472,11 +472,28 @@ function CommentSection({ showComment, setShowComment }) {
             X
           </button>
         </h3>
+
         {/* ----------- comments wrapper ---------- */}
-        {false ? (
+        {true ? (
           <>
-            <section className="px-4 pb-[60px] h-[60vh] overflow-y-auto ">
-              helloooo
+            <section className="px-4 pb-[70px] h-[60vh] overflow-y-auto ">
+              <div>
+                <Comment />
+
+                {/* replies wrapper*/}
+                <div className="w-[85%] ml-auto mt-5">
+                  <button className="font-bold text-sm opacity-50">
+                    <span>__</span>
+                    <span> view replies ({"6"})</span>
+                  </button>
+
+                  {/* replies */}
+                  <div className="mt-2">
+                    <Comment />
+                    <Comment />
+                  </div>
+                </div>
+              </div>
             </section>
           </>
         ) : (
@@ -486,11 +503,11 @@ function CommentSection({ showComment, setShowComment }) {
             </div>
           </>
         )}
+
         {/* ------------- Comment box ------------- */}
-        {/* bg-neutral-200 dark:bg-neutral-500 */}
         <form
           onSubmit={handleComment}
-          className="absolute bottom-0 z-[11] text-center w-full flex justify-around items-center p-3"
+          className="absolute bg-inherit bottom-0 z-[11] text-center w-full flex justify-around items-center p-3"
         >
           {/* image icon */}
           <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative">
@@ -530,23 +547,65 @@ function CommentSection({ showComment, setShowComment }) {
   );
 }
 
-// {/* <section className="px-4 pb-[60px] h-[65vh] overflow-y-auto">
-//   {/* comments */}
-//   <div>
-//     <Comment />
+/* --------- A Comment Component --------- */
+const Comment = () => {
+  const [liked, setLiked] = useState(false);
+  const [css, setCss] = useState("scale_sideways");
 
-//     {/* replies wrapper*/}
-//     <div className="w-[85%] ml-auto mt-5">
-//       <button>
-//         <span>__</span>
-//         <span> view replies ({"6"})</span>
-//       </button>
+  let name = "alex_chika";
 
-//       {/* replies */}
-//       <div>
-//         <Comment />
-//         <Comment />
-//       </div>
-//     </div>
-//   </div>
-// </section>; */}
+  let text =
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dicta tempore, accusamus debitis dolore minima distinctio reprehenderit in, quam aperiam error inventore. Dolores, ipsa eos!";
+
+  useEffect(() => {
+    setCss("scale_sideways");
+
+    setTimeout(() => {
+      setCss("");
+    }, [400]);
+  }, [liked]);
+
+  return (
+    <article className="flex mt-3">
+      {/* image container*/}
+      <Link href="/profile" passHref>
+        <a className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative mr-2">
+          <Image
+            className="rounded-full"
+            layout="fill"
+            src="/alex.png"
+            alt="user profile image"
+          />
+        </a>
+      </Link>
+
+      <div className="-mt-2 flex-1 px-2">
+        {/* --------- Name and date -------- */}
+        <div className="flex">
+          <h5 className="mr-2 font-bold text-neutral-500 dark:text-white">
+            {name}
+          </h5>
+          <span className="opacity-50 mr-2">{"3w"}</span>
+        </div>
+
+        {/* comment text */}
+        <h5 className="text-sm">{text}</h5>
+      </div>
+
+      {/* like button  */}
+      <button
+        onClick={() => setLiked(!liked)}
+        className={`w-8 flex flex-col items-center ${css} `}
+      >
+        {liked
+          ? IconHOC(HeartIconRed, "none", "h-[20px] w-[20px] text-[red]")
+          : IconHOC(HeartIcon, "none", "h-[20px] w-[20px] text-neutral-500 ")}
+
+        <span className="text-[12px]">365</span>
+      </button>
+
+      {/* user modal */}
+      {/* <section></section> */}
+    </article>
+  );
+};
