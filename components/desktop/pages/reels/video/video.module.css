@@ -28,10 +28,17 @@
   aspect-ratio: 0.65;
 }
 
-.video__wrapper video {
-  margin: 0 auto;
-  -o-object-fit: var(--object-fit);
-  object-fit: var(--object-fit);
-  background: linear-gradient(253deg, #ff55001a, #0797eb1a);
+/* --------------------------------------- */
+/*        Buttons @ video/Buttons.js       */
+/* --------------------------------------- */
+
+/* ---------- options component ---------- */
+.options_btns {
+  @apply w-full block py-4 border-0 border-b border-b-gray-300 text-center;
+  border-bottom: 2px solid whitesmoke;
 }
-/* max-width: 540px; */
+
+/* - share modal an options subcomponent - */
+.share_btns {
+  @apply w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50;
+}

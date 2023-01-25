@@ -42,8 +42,8 @@ const Reels = () => {
         if (entry.isIntersecting) {
           entry.target.addEventListener("waiting", handleWaiting);
           entry.target.addEventListener("playing", handlePlaying);
-          entry.target.play();
           setCurrentVideo(entry.target);
+          if (!entry.target?.dataset?.stop) entry.target.play();
         } else {
           entry.target.removeEventListener("waiting", handleWaiting);
           entry.target.removeEventListener("playing", handlePlaying);
