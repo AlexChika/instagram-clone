@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import IconHOC from "components/general/IconHOC";
 import video from "./video.module.css";
 import { useRouter } from "next/router";
@@ -301,7 +301,7 @@ function ShareModal({ params }) {
   return (
     <div
       onClick={closePopUp}
-      className={`fixed blue top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-opacity flex justify-center items-center ${
+      className={`absolute blue top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-opacity flex justify-center items-center ${
         shareModal ? "opacity-1 visible" : "opacity-0 invisible"
       }`}
     >
@@ -435,6 +435,7 @@ function ShareModal({ params }) {
 /* ------- A comments sub component ------- */
 function CommentSection({ showComment, setShowComment }) {
   const [comment, setComment] = useState("");
+  const modalRef = useRef(null);
   function closePopUp(e) {
     if (e.target !== e.currentTarget) return;
     setShowComment(false);
@@ -452,12 +453,13 @@ function CommentSection({ showComment, setShowComment }) {
   return (
     <div
       onClick={closePopUp}
-      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-all flex justify-center items-center ${
+      className={`absolute top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-all flex justify-center items-center ${
         showComment ? "opacity-1 visible" : "opacity-0 invisible"
       }`}
     >
       {/* .....content starts...*/}
       <section
+        ref={modalRef}
         className={`w-[90%] max-w-[600px] dark:bg-[#414040] bg-white text-black dark:text-white rounded-xl overflow-hidden relative ${
           showComment ? "scale_down" : ""
         }`}
@@ -478,7 +480,7 @@ function CommentSection({ showComment, setShowComment }) {
           <>
             <section className="px-4 pb-[70px] h-[60vh] overflow-y-auto ">
               <div>
-                <Comment />
+                <Comment wrapper={modalRef} />
 
                 {/* replies wrapper*/}
                 <div className="w-[85%] ml-auto mt-5">
@@ -489,8 +491,11 @@ function CommentSection({ showComment, setShowComment }) {
 
                   {/* replies */}
                   <div className="mt-2">
-                    <Comment />
-                    <Comment />
+                    <Comment wrapper={modalRef} />
+                    <Comment wrapper={modalRef} />
+                    <Comment wrapper={modalRef} />
+                    <Comment wrapper={modalRef} />
+                    <Comment wrapper={modalRef} />
                   </div>
                 </div>
               </div>
@@ -548,7 +553,9 @@ function CommentSection({ showComment, setShowComment }) {
 }
 
 /* --------- A Comment Component --------- */
-const Comment = () => {
+const Comment = ({ wrapper }) => {
+  const userModalRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
   const [liked, setLiked] = useState(false);
   const [css, setCss] = useState("scale_sideways");
 
@@ -556,6 +563,41 @@ const Comment = () => {
 
   let text =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dicta tempore, accusamus debitis dolore minima distinctio reprehenderit in, quam aperiam error inventore. Dolores, ipsa eos!";
+
+  function handleMouseLeave() {
+    setShowModal(false);
+  }
+
+  function handleMouseOver(e) {
+    // this aproach was taking because user pop up modal refused to be positioned relative to the browser window rather was positioned relative to the comment modal.
+
+    // To achieve positioning , we get the rect of the comment modal relative to browser window and rect of the hovered element inside the comment modal and subtract the difference
+
+    // Wrapper container
+    let wrap = wrapper.current;
+    let wrapRect = wrap.getBoundingClientRect();
+
+    let el = e.target; //element beign hovered....
+    let elRect = el.getBoundingClientRect();
+    // all positioning are relative to the comment modal
+    let elTop = elRect.y - wrapRect.y; //elements top position from comment modal
+    let left = elRect.left - wrapRect.left;
+    let sh = window.innerHeight; // screen height
+    let spaceLeft = sh - (elRect.y + elRect.height); //downward space or height from the bottom of hovered element to screen bottom
+
+    // pop up modal position
+    const popup = userModalRef.current;
+    let h = 300; // modals total height
+    let top; //modals css top position
+
+    let aboveEl = elTop - h; //positioned above hovered el
+    let belowEl = elTop + elRect.height; //positioned below
+
+    top = spaceLeft > h ? belowEl : aboveEl;
+    setShowModal(true);
+    popup.style.top = `${top}px`;
+    popup.style.left = `${left}px`;
+  }
 
   useEffect(() => {
     setCss("scale_sideways");
@@ -565,11 +607,16 @@ const Comment = () => {
     }, [400]);
   }, [liked]);
 
+  /* ----------- Comment wrapper ----------- */
   return (
     <article className="flex mt-3">
       {/* image container*/}
       <Link href="/profile" passHref>
-        <a className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative mr-2">
+        <a
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+          className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative mr-2"
+        >
           <Image
             className="rounded-full"
             layout="fill"
@@ -579,10 +626,15 @@ const Comment = () => {
         </a>
       </Link>
 
+      {/* name date and comment */}
       <div className="-mt-2 flex-1 px-2">
         {/* --------- Name and date -------- */}
         <div className="flex">
-          <h5 className="mr-2 font-bold text-neutral-500 dark:text-white">
+          <h5
+            onMouseOver={handleMouseOver}
+            onMouseLeave={handleMouseLeave}
+            className="mr-2 font-bold text-neutral-500 dark:text-white"
+          >
             {name}
           </h5>
           <span className="opacity-50 mr-2">{"3w"}</span>
@@ -604,8 +656,15 @@ const Comment = () => {
         <span className="text-[12px]">365</span>
       </button>
 
-      {/* user modal */}
-      {/* <section></section> */}
+      {/* -------- user detail card modal ------- */}
+      <div
+        ref={userModalRef}
+        className={`absolute w-[300px] h-[300px] ${
+          showModal ? "block" : "hidden"
+        }`}
+      >
+        hello
+      </div>
     </article>
   );
 };

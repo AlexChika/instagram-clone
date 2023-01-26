@@ -18,7 +18,7 @@
 html,
 body {
   height: 100%;
-  max-width: 1600px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -55,6 +55,11 @@ img {
 }
 
 /* debuggers */
+
+.position_none {
+  position: unset !important;
+}
+
 .red {
   border: 2px solid red;
 }
