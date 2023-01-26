@@ -74,7 +74,7 @@ const Like = ({ params }) => {
   }, [liked]);
 
   return (
-    <div className="mt-[25px] flex flex-col items-center">
+    <div className="mt-[25px] hover:opacity-50 flex flex-col items-center">
       {liked ? (
         <button className={` ${animation}`} onClick={handleLiked}>
           {IconHOC(HeartIconRed, "none", "w-[25px] h-[25px] text-red-600")}
@@ -98,7 +98,7 @@ const Comments = ({ params, comment = "1000" }) => {
 
   return (
     <>
-      <div className="mt-[25px] flex flex-col items-center">
+      <div className="mt-[25px] hover:opacity-50 flex flex-col items-center">
         <button onClick={() => setShowComment(true)}>
           {IconHOC(CommentIcon, "none", "w-[25px] h-[25px]")}
         </button>
@@ -129,7 +129,7 @@ const Message = () => {
   //   ......
   return (
     <>
-      <div className="mt-[20px] flex flex-col items-center">
+      <div className="mt-[20px] hover:opacity-50 flex flex-col items-center">
         <button className={`pointernone`} onClick={handleNavigate}>
           {IconHOC(MessagingIcon, "none", "w-[25px] h-[25px]")}
         </button>
@@ -161,7 +161,7 @@ const Options = () => {
   return (
     <>
       {/* .......  three dots icon */}
-      <div className="mt-[20px] flex flex-col items-center">
+      <div className="mt-[20px] hover:opacity-50 flex flex-col items-center">
         <button className={`pointernone`} onClick={() => setShowModal(true)}>
           {IconHOC(ThreeDotsIcon, "none", "w-[30px] h-[30px]")}
         </button>
@@ -241,7 +241,7 @@ const Aspect = ({ params }) => {
   }, [fullScreen]);
 
   return (
-    <div className="mt-[20px] flex flex-col items-center">
+    <div className="mt-[20px] hover:opacity-50 flex flex-col items-center">
       {fullScreen ? (
         <button className={`${animation}`} onClick={handleToggleAspectRatio}>
           {IconHOC(AspectHalfIcon, "none", "w-[25px] h-[25px]")}
@@ -301,7 +301,7 @@ function ShareModal({ params }) {
   return (
     <div
       onClick={closePopUp}
-      className={`absolute blue top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-opacity flex justify-center items-center ${
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-opacity flex justify-center items-center ${
         shareModal ? "opacity-1 visible" : "opacity-0 invisible"
       }`}
     >
@@ -453,14 +453,14 @@ function CommentSection({ showComment, setShowComment }) {
   return (
     <div
       onClick={closePopUp}
-      className={`absolute top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-all flex justify-center items-center ${
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-all flex justify-center items-center ${
         showComment ? "opacity-1 visible" : "opacity-0 invisible"
       }`}
     >
       {/* .....content starts...*/}
       <section
         ref={modalRef}
-        className={`w-[90%] max-w-[600px] dark:bg-[#414040] bg-white text-black dark:text-white rounded-xl overflow-hidden relative ${
+        className={`w-[90%] max-w-[600px] dark:bg-[#414040] bg-white text-black dark:text-white rounded-xl relative ${
           showComment ? "scale_down" : ""
         }`}
       >
@@ -564,10 +564,6 @@ const Comment = ({ wrapper }) => {
   let text =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dicta tempore, accusamus debitis dolore minima distinctio reprehenderit in, quam aperiam error inventore. Dolores, ipsa eos!";
 
-  function handleMouseLeave() {
-    setShowModal(false);
-  }
-
   function handleMouseOver(e) {
     // this aproach was taking because user pop up modal refused to be positioned relative to the browser window rather was positioned relative to the comment modal.
 
@@ -577,9 +573,10 @@ const Comment = ({ wrapper }) => {
     let wrap = wrapper.current;
     let wrapRect = wrap.getBoundingClientRect();
 
+    // hovered element
+    // all positioning are relative to the comment modal
     let el = e.target; //element beign hovered....
     let elRect = el.getBoundingClientRect();
-    // all positioning are relative to the comment modal
     let elTop = elRect.y - wrapRect.y; //elements top position from comment modal
     let left = elRect.left - wrapRect.left;
     let sh = window.innerHeight; // screen height
@@ -594,7 +591,7 @@ const Comment = ({ wrapper }) => {
     let belowEl = elTop + elRect.height; //positioned below
 
     top = spaceLeft > h ? belowEl : aboveEl;
-    setShowModal(true);
+    // setShowModal(true);
     popup.style.top = `${top}px`;
     popup.style.left = `${left}px`;
   }
@@ -609,13 +606,12 @@ const Comment = ({ wrapper }) => {
 
   /* ----------- Comment wrapper ----------- */
   return (
-    <article className="flex mt-3">
+    <article className={`flex mt-3 ${video.comment_wrapper}`}>
       {/* image container*/}
       <Link href="/profile" passHref>
         <a
           onMouseOver={handleMouseOver}
-          onMouseLeave={handleMouseLeave}
-          className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative mr-2"
+          className={`w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative mr-2 ${video.user_image_name}`}
         >
           <Image
             className="rounded-full"
@@ -632,8 +628,7 @@ const Comment = ({ wrapper }) => {
         <div className="flex">
           <h5
             onMouseOver={handleMouseOver}
-            onMouseLeave={handleMouseLeave}
-            className="mr-2 font-bold text-neutral-500 dark:text-white"
+            className={`mr-2 font-bold text-neutral-500 dark:text-white ${video.user_image_name}`}
           >
             {name}
           </h5>
@@ -659,11 +654,12 @@ const Comment = ({ wrapper }) => {
       {/* -------- user detail card modal ------- */}
       <div
         ref={userModalRef}
-        className={`absolute w-[300px] h-[300px] ${
-          showModal ? "block" : "hidden"
-        }`}
+        className={`absolute flex justify-center items-center z-[12] max-w-[360px] w-[90%] h-[300px] p-2 ${video.user_detail_modal}`}
       >
-        hello
+        {/* ------------ contente here ------------ */}
+        <div className="w-full h-full drop-shadow-2xl rounded-xl bg-white dark:bg-black p-2">
+          hello here
+        </div>
       </div>
     </article>
   );

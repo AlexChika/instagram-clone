@@ -42,3 +42,31 @@
 .share_btns {
   @apply w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50;
 }
+
+/* ---------- Comment component ---------- */
+.user_image_name {
+  cursor: pointer;
+}
+
+.user_detail_modal {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s linear;
+  transform-origin: center;
+}
+
+/* fall back */
+.user_image_name:hover ~ .user_detail_modal {
+  visibility: visible;
+  opacity: 1;
+}
+
+.comment_wrapper:has(.user_image_name:hover) .user_detail_modal {
+  visibility: visible;
+  opacity: 1;
+}
+
+.user_detail_modal:hover {
+  visibility: visible;
+  opacity: 1;
+}
