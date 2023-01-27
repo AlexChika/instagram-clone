@@ -34,4 +34,6 @@ export { default as EmailIcon } from "./EmailIcon";
 export { default as LinkIcon } from "./LinkIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as EmojiIcon } from "./EmojiIcon";
+export { default as FollowIcon } from "./FollowIcon";
+export { default as VerifiedIcon } from "./VerifiedIcon";
 export { default as RightCurvedArrowIcon } from "./RightCurvedArrowIcon";

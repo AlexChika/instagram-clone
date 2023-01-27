@@ -1,3 +1,8 @@
+/* --------------------------------------- */
+/*        All buttons and clickables       */
+/* --------------------------------------- */
+// File contains all buttons component on the reels page and modals accompanying those buttons
+
 import React, { useState, useEffect, useRef } from "react";
 import IconHOC from "components/general/IconHOC";
 import video from "./video.module.css";
@@ -11,6 +16,8 @@ import {
   EmailIcon,
   EmojiIcon,
   FacebookIcon,
+  FollowIcon,
+  FollowingIcon,
   HeartIcon,
   HeartIconRed,
   LinkIcon,
@@ -19,6 +26,7 @@ import {
   RightCurvedArrowIcon,
   ThreeDotsIcon,
   TwitterIcon,
+  VerifiedIcon,
   WhatsappIcon,
 } from "utils/icons";
 import {
@@ -584,7 +592,7 @@ const Comment = ({ wrapper }) => {
 
     // pop up modal position
     const popup = userModalRef.current;
-    let h = 300; // modals total height
+    let h = 360; // modals total height
     let top; //modals css top position
 
     let aboveEl = elTop - h; //positioned above hovered el
@@ -628,9 +636,14 @@ const Comment = ({ wrapper }) => {
         <div className="flex">
           <h5
             onMouseOver={handleMouseOver}
-            className={`mr-2 font-bold text-neutral-500 dark:text-white ${video.user_image_name}`}
+            className={`mr-2 font-bold text-neutral-500 dark:text-white flex items-center ${video.user_image_name}`}
           >
-            {name}
+            <span> {name} &nbsp;</span>
+            {true && (
+              <span>
+                <VerifiedIcon class="w-[15px] h-[15px]" />
+              </span>
+            )}
           </h5>
           <span className="opacity-50 mr-2">{"3w"}</span>
         </div>
@@ -654,11 +667,84 @@ const Comment = ({ wrapper }) => {
       {/* -------- user detail card modal ------- */}
       <div
         ref={userModalRef}
-        className={`absolute flex justify-center items-center z-[12] max-w-[360px] w-[90%] h-[300px] p-2 ${video.user_detail_modal}`}
+        className={`absolute flex justify-center items-center z-[12] max-w-[360px] w-[90%] h-[360px] p-2 ${video.user_detail_modal}`}
       >
         {/* ------------ contente here ------------ */}
-        <div className="w-full h-full drop-shadow-2xl rounded-xl bg-white dark:bg-black p-2">
-          hello here
+        <div className="w-full h-full drop-shadow-2xl rounded-xl bg-white dark:bg-black py-3">
+          {/* users dp and name */}
+          <div className="flex items-center px-3 py-2">
+            {/* image container*/}
+            <Link href="/profile" passHref>
+              <a
+                onMouseOver={handleMouseOver}
+                className={`w-14 h-14 max-w-[56px] rounded-full cursor-pointer relative mr-2 ${video.user_image_name}`}
+              >
+                <Image
+                  className="rounded-full"
+                  layout="fill"
+                  src="/alex.png"
+                  alt="user profile image"
+                />
+              </a>
+            </Link>
+
+            {/* users name and username */}
+            <div>
+              <p className="font-extrabold flex items-center">
+                <span>Alex_stars &nbsp;</span>
+
+                {true && (
+                  <span>
+                    <VerifiedIcon class="w-[20px] h-[20px]" />
+                  </span>
+                )}
+              </p>
+              <p className="text-neutral-500 text -mt-1 dark:text-white font-semibold">
+                Alex Chika
+              </p>
+            </div>
+          </div>
+
+          {/* counters */}
+          <div className="flex justify-between mt-2 py-2 px-8">
+            <div className="flex flex-col items-center">
+              <span className="font-bold">{"445"}</span>
+              <span className="text-sm">Post</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-bold">{"1600"}</span>
+              <span className="text-sm">Followers</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-bold">{"500"}</span>
+              <span className="text-sm">Following</span>
+            </div>
+          </div>
+
+          {/* Recent Posts Images */}
+          <div className="flex justify-between mt-2">
+            <Link href={"/reels"} passHref>
+              <a className="w-[120px] h-[120px] relative">
+                <Image layout="fill" alt="post name" src="/alex.png" />
+              </a>
+            </Link>
+            <Link href={"/reels"} passHref>
+              <a className="w-[120px] h-[120px] relative">
+                <Image layout="fill" alt="post name" src="/alex.png" />
+              </a>
+            </Link>
+            <Link href={"/reels"} passHref>
+              <a className="w-[120px] h-[120px] relative">
+                <Image layout="fill" alt="post name" src="/alex.png" />
+              </a>
+            </Link>
+          </div>
+
+          {/* follow button */}
+          <button className="pointernone flex justify-center items-center w-[90%] mt-3 mx-auto text-white p-[4px] bg-blue-500 rounded-xl">
+            <FollowIcon /> &nbsp;
+            <span className="font-bold">Follow</span>
+          </button>
         </div>
       </div>
     </article>
