@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "country-flag-emoji-polyfill": "^0.1.4",
     "emoji-picker-element": "^1.15.1",
     "next": "12.3.1",
     "next-share": "^0.19.0",

@@ -2,6 +2,7 @@ import React from "react";
 import DesktopLayout from "components/desktop/layout";
 import HomeNavTop from "components/desktop/layout/HomeNavTop";
 
+// ..........
 const DesktopHomePage = () => {
   return (
     <DesktopLayout NavTop={HomeNavTop}>

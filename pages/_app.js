@@ -2,9 +2,12 @@ import { useState, useEffect, useContext, createContext } from "react";
 import "../styles/globals.css";
 import Notify from "../components/general/Notify";
 import Header from "../components/general/Header";
+import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
 const AppContext = createContext();
 
 function MyApp({ Component, pageProps }) {
+  polyfillCountryFlagEmojis("Twemoji Mozilla"); //this is a flag polyfill for windows device used by the emoji picker
+
   // if theme is true ==> dark mode
   // if theme is false ==> light mode
   const [theme, setTheme] = useState(false);
