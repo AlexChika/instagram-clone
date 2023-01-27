@@ -1,14 +1,12 @@
 import React, { useRef, useEffect } from "react";
-import "emoji-picker-element";
-// import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
-
-// emoji-picker-element will use "Twemoji Mozilla" and fall back to other fonts for non-flag emoji
+// emoji picker is imported in a useEffect because it runs browser apis javascript on next js server and leads to error . with the dynamic import, it runs only on the client
 
 const Emoji = ({ setEmoji }) => {
   const ref = useRef(null);
-  // polyfillCountryFlagEmojis("Twemoji Mozilla");
 
   useEffect(() => {
+    import("emoji-picker-element");
+
     const el = ref.current;
 
     function emojiClick(e) {
