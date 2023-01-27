@@ -38,6 +38,7 @@ import {
 } from "next-share";
 import Image from "next/image";
 import Spinner from "components/general/Spinner";
+import Emoji from "components/general/Emoji";
 
 const Buttons = ({ params }) => {
   const { fullScreen, setFullScreen } = params;
@@ -442,20 +443,64 @@ function ShareModal({ params }) {
 
 /* ------- A comments sub component ------- */
 function CommentSection({ showComment, setShowComment }) {
-  const [comment, setComment] = useState("");
-  const modalRef = useRef(null);
+  const [comment, setComment] = useState(""); //comment text
+  const [emoji, setEmoji] = useState(""); //conmment emojis
+
+  const [showEmoji, setShowEmoji] = useState(false); //emoji modal
+  const modalRef = useRef(null); ///comment section modal
+  const emojiModalRef = useRef(null); // emoji container ref
+  const textBoxRef = useRef(null); //comment text box ref
+
+  // funcs .......
   function closePopUp(e) {
     if (e.target !== e.currentTarget) return;
     setShowComment(false);
+    setShowEmoji(false);
   }
 
   const handleComment = (e) => {
     e.preventDefault();
   };
 
-  const handleInput = (e) => {
-    setComment(e.currentTarget.textContent.trim());
+  const handleInput = (e, text) => {
+    if (e) return setComment(e.currentTarget.textContent.trim());
+    if (text) return (textBoxRef.current.textContent = text);
   };
+
+  function handleEmoji(e) {
+    setShowEmoji(!showEmoji);
+
+    const el = e.target; //clicked button (emoji icon btn)
+    const rect = el.getBoundingClientRect(); //button rect respect to window
+    const elleft = rect.left; //buttons left positioning
+    const eltop = rect.y; //buttons top positioning
+    const elright = elleft + rect.width; //buttons right positioning
+    const sh = window.innerHeight;
+    const sw = window.innerWidth;
+    const h = 420; //modal height
+    const w = 348; //modal width
+    const freeRightWidth = sw - elright; //right screen space from emoji btn
+
+    const modal = emojiModalRef.current;
+    let left;
+    let top;
+
+    left = freeRightWidth > w ? elright : elright - w;
+    top = eltop > h ? eltop - h : eltop - h / 2;
+
+    modal.style.top = `${top}px`;
+    modal.style.left = `${left}px`;
+  }
+
+  useEffect(() => {
+    if (!emoji) return;
+    let text = comment + emoji;
+    handleInput(undefined, text);
+    setComment(text);
+    setEmoji("");
+    console.log("i run just once", emoji);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [emoji]);
 
   // ,.......
   return (
@@ -486,7 +531,12 @@ function CommentSection({ showComment, setShowComment }) {
         {/* ----------- comments wrapper ---------- */}
         {true ? (
           <>
-            <section className="px-4 pb-[70px] h-[60vh] overflow-y-auto ">
+            <section
+              onClick={(e) => {
+                setShowEmoji(false);
+              }}
+              className="px-4 pb-[70px] h-[60vh] overflow-y-auto "
+            >
               <div>
                 <Comment wrapper={modalRef} />
 
@@ -536,12 +586,13 @@ function CommentSection({ showComment, setShowComment }) {
           <div className="bg-white py-1 px-3 rounded-3xl w-[calc(100%-50px)] flex justify-around border-neutral-300 border-2">
             <h5
               onInput={handleInput}
+              ref={textBoxRef}
               contentEditable
               className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] text-black min-h-[30px] max-h-[100px] outline-none font-normal"
             ></h5>
 
             <button
-              disabled={comment}
+              disabled={!comment}
               className={`w-[50px] text-blue-600 ${
                 comment ? "visible" : "invisible"
               }`}
@@ -550,12 +601,22 @@ function CommentSection({ showComment, setShowComment }) {
               Post
             </button>
 
-            <button className="text-black">
+            <button onClick={handleEmoji} className="text-black pointernone">
               <EmojiIcon />
             </button>
           </div>
         </form>
       </section>
+
+      {/* emoji box */}
+      <div
+        ref={emojiModalRef}
+        className={`fixed w-[90%] max-w-[348px] h-[400px drop-shadow-2xl ${
+          showEmoji ? "scale_sideways" : ""
+        }`}
+      >
+        {showEmoji && <Emoji setEmoji={setEmoji} />}
+      </div>
     </div>
   );
 }

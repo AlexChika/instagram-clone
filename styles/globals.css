@@ -72,6 +72,21 @@ img {
   border: 2px solid green;
 }
 
+/* general /emoji.js */
+emoji-picker {
+  --button-hover-background: rgb(214, 210, 210);
+  --indicator-color: rgb(98, 98, 248);
+  --border-color: rgb(205, 205, 205);
+  --background: white;
+}
+
+html.dark emoji-picker {
+  --button-hover-background: rgb(45, 43, 43);
+  --indicator-color: rgb(98, 98, 248);
+  --border-color: rgb(22, 21, 21);
+  --background: #414040;
+}
+
 /* desktop  >  layouts > layout.module.css */
 .arrow::after {
   border-color: transparent rgba(0, 0, 0, 0.2) transparent transparent;
