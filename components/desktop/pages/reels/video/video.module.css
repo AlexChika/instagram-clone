@@ -11,6 +11,7 @@
   -ms-scroll-snap-type: mandatory;
   scroll-snap-type: mandatory;
   -webkit-scroll-snap-type: mandatory;
+  scroll-behavior: smooth;
 }
 
 .reels__wrapper::-webkit-scrollbar {
@@ -25,6 +26,7 @@
   scroll-snap-align: center;
   max-width: calc(386px + 60px);
   max-height: calc(100% - 60px);
+  scroll-behavior: smooth;
   aspect-ratio: 0.65;
 }
 
@@ -50,7 +52,7 @@
 
 .user_detail_modal {
   opacity: 0;
-  visibility: hidden;
+  visibility: collapse;
   transition: opacity 0.2s linear;
   transform-origin: center;
 }

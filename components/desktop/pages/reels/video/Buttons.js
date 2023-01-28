@@ -40,11 +40,10 @@ import Image from "next/image";
 import Spinner from "components/general/Spinner";
 import Emoji from "components/general/Emoji";
 
-const Buttons = ({ params }) => {
-  const { fullScreen, setFullScreen } = params;
+const Buttons = ({ fullScreen, fullScreen_a, dispatch: d, liked, liked_a }) => {
   return (
     <div>
-      <Like />
+      <Like params={{ liked, d, liked_a }} />
 
       <Comments />
 
@@ -52,7 +51,7 @@ const Buttons = ({ params }) => {
 
       <Options />
 
-      <Aspect params={{ fullScreen, setFullScreen }} />
+      <Aspect params={{ fullScreen, fullScreen_a, d }} />
     </div>
   );
 };
@@ -64,13 +63,13 @@ export default Buttons;
 /* --------------------------------------- */
 
 const Like = ({ params }) => {
-  const [liked, setLiked] = useState(false);
+  const { liked, liked_a, d } = params;
   const [animation, setAnimation] = useState("scale_sideways");
 
   let likes;
 
   function handleLiked() {
-    setLiked(!liked);
+    liked_a(d);
     // .... maybe call firebase here
   }
 
@@ -183,8 +182,8 @@ const Options = () => {
           if (e.target !== e.currentTarget) return;
           setShowModal(false);
         }}
-        className={`absolute bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-[3] transition-opacity flex justify-center items-center  ${
-          showModal ? "visible opacity-[1]" : "invisible opacity-0"
+        className={`absolute bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-[3] flex justify-center items-center  ${
+          showModal ? "flex" : "hidden"
         }`}
       >
         {/* modal starts here.... */}
@@ -234,11 +233,11 @@ const Options = () => {
 /*              Aspect component          */
 /* --------------------------------------- */
 const Aspect = ({ params }) => {
-  const { fullScreen, setFullScreen } = params;
+  const { fullScreen, fullScreen_a, d } = params;
   const [animation, setAnimation] = useState("scale_sideways");
 
   function handleToggleAspectRatio() {
-    setFullScreen(!fullScreen);
+    fullScreen_a(d);
   }
 
   useEffect(() => {
@@ -310,8 +309,8 @@ function ShareModal({ params }) {
   return (
     <div
       onClick={closePopUp}
-      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-opacity flex justify-center items-center ${
-        shareModal ? "opacity-1 visible" : "opacity-0 invisible"
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] flex justify-center items-center ${
+        shareModal ? "flex" : "hidden"
       }`}
     >
       {/* .....content starts...*/}
@@ -506,8 +505,8 @@ function CommentSection({ showComment, setShowComment }) {
   return (
     <div
       onClick={closePopUp}
-      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-all flex justify-center items-center ${
-        showComment ? "opacity-1 visible" : "opacity-0 invisible"
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] flex justify-center items-center ${
+        showComment ? "flex" : "hidden"
       }`}
     >
       {/* .....content starts...*/}

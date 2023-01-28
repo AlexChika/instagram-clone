@@ -4,7 +4,7 @@ import SideBar from "./SideBar";
 
 const DesktopLayout = ({ children, NavTop }) => {
   return (
-    <main className={`${layout.main}`}>
+    <main className={`${layout.main} h-screen`}>
       {/* side bar */}
       <div className={`${layout.sideBar} hidden md:block`}>
         <SideBar />
@@ -18,7 +18,7 @@ const DesktopLayout = ({ children, NavTop }) => {
       )}
 
       {/* body */}
-      <div className={`${layout.body}`}>{children}</div>
+      <div className={`${layout.body} overflow-y-auto`}>{children}</div>
 
       {/* nav bottom */}
       <div className={`${layout.navBottom} md:hidden`}>

@@ -56,10 +56,6 @@ img {
 
 /* debuggers */
 
-.position_none {
-  position: unset !important;
-}
-
 .red {
   border: 2px solid red;
 }

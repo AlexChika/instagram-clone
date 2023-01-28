@@ -17,7 +17,7 @@ const SetHeight = (elementREf, sub = 44) => {
       if (width < 768) {
         element.style.height = `${_height - 44}px`;
       } else {
-        element.style.height = `${_height}px`;
+        element.style.height = `${_height - 3}px`;
       }
     }
 

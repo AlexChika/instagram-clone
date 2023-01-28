@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
-import { App } from "../../../../pages/_app";
+import { App } from "pages/_app";
 // import { ListIcon, StoryIcon } from "../../../../utils/icons";
 // app
 const MobileHomePage = () => {
