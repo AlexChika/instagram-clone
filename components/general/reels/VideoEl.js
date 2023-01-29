@@ -20,7 +20,7 @@ const VideoEl = ({ src = "/insta-vid.mp4", fullScreen }) => {
   /* ------- Effect for vid bg ------- */
   useEffect(() => {
     const video = videoRef.current;
-    video.style.background = getGradient();
+    // video.style.background = getGradient();
   }, []);
 
   // ....

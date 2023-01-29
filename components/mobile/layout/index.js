@@ -1,22 +1,56 @@
 import NavBottom from "./NavBottom";
+import SideBar from "./SideBar";
 import layout from "./layout.module.css";
-function MobileLayout({ children, TopNav, showBottomNav = true }) {
+function MobileLayout({ children, NavTop, showBottomNav = true }) {
   return (
-    <main>
-      {/* Top Navigation */}
-      {TopNav && <TopNav />}
+    <main className={`${layout.main} h-screen`}>
+      {/* ------ Top Navigation ... nav bar ----- */}
+      {NavTop && (
+        <div className={`${layout.navTop} md:hidden sticky top-0 z-10`}>
+          <NavTop />
+        </div>
+      )}
+
+      {/* Tablet side bar */}
+      <div className={`${layout.sideBar} hidden md:block`}>
+        <SideBar />
+      </div>
 
       {/* Page Content */}
-      <section
-        className={`relative top-0 bottom-0 right-0 left-0 max-w-3xl mx-auto`}
-      >
-        {children}
-      </section>
+      <div className={`${layout.body} overflow-y-auto`}>{children}</div>
 
       {/* bottom Navigation */}
-      {showBottomNav && <NavBottom />}
+      <div className="md:hidden">{showBottomNav && <NavBottom />}</div>
     </main>
   );
 }
 
 export default MobileLayout;
+
+// const DesktopLayout = ({ children, NavTop }) => {
+//   return (
+//     <main className={`${layout.main} h-screen`}>
+//       {/* side bar */}
+//       <div className={`${layout.sideBar} hidden md:block`}>
+//         <SideBar />
+//       </div>
+
+//       {/* top nav bar */}
+//       {NavTop && (
+//         <div className={`${layout.navTop} md:hidden sticky top-0 z-10`}>
+//           <NavTop />
+//         </div>
+//       )}
+
+//       {/* body */}
+//       <div className={`${layout.body} overflow-y-auto`}>{children}</div>
+
+//       {/* nav bottom */}
+//       <div className={`${layout.navBottom} md:hidden`}>
+//         <NavBottom />
+//       </div>
+//     </main>
+//   );
+// };
+
+// export default DesktopLayout;

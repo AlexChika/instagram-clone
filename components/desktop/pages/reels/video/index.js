@@ -44,7 +44,7 @@ const Video = (props) => {
         if (entry.isIntersecting) {
           setTimeout(() => {
             a.showButtons(dispatch, true);
-          }, 300);
+          }, 260);
         } else {
           a.showButtons(dispatch, false);
         }

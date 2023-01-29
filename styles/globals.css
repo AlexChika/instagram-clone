@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --object-fit: fill;
+  --object-fit: contain;
 }
 
 * {
@@ -34,6 +34,8 @@ html.dark {
 
 video {
   margin: 0 auto;
+  overflow-clip-margin: content-box;
+  overflow: clip;
   -o-object-fit: var(--object-fit);
   object-fit: var(--object-fit);
   background: linear-gradient(253deg, #ff55001a, #0797eb1a);
