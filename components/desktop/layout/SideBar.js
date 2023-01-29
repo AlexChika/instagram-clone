@@ -67,7 +67,7 @@ const _Links = [
 
 const SideBar = () => {
   return (
-    <div className="sticky h-screen flex flex-col justify-between py-10 pl-[1rem] xl:w-[250px] pr-4 xl:pr-8 border-r-[1px] border-gray-400">
+    <div className="sticky left-0 h-screen flex flex-col justify-between py-10 pl-[1rem] xl:w-[250px] pr-4 xl:pr-8 border-r-[1px] border-gray-400">
       <section>
         {/* instagram logo screen from 1264px */}
         <Link href="/" passHref>

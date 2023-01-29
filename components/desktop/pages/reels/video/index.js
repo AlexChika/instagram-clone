@@ -1,46 +1,83 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useReducer } from "react";
 import style from "./video.module.css";
 import VideoEl from "components/general/reels/VideoEl";
 import Overlay from "./VidOverlay";
 import Buttons from "./Buttons";
+import reducer from "./reducer";
+import { a } from "./reducer";
+
+const init_state = {
+  // video parent state....
+  fullscreen: true,
+  play: true,
+  showBtns: false,
+
+  //like ......
+  liked: false,
+  likes: 0,
+  // comments
+  comments: 0,
+}; //initial video state
 
 const Video = (props) => {
   const { muted, muteFn, loading, url, video } = props;
-  const [fullScreen, setFullScreen] = useState(true);
-  const [play, setPlay] = useState(true);
+  const [s, dispatch] = useReducer(reducer, init_state);
+  const wapperRef = useRef(null);
 
   function playpause() {
-    if (!video) return;
+    a.play(dispatch, video);
+  }
 
-    if (video.paused) {
-      video.dataset.stop = "";
-      video.play();
-      setPlay(true);
-    } else {
-      video.pause();
-      video.dataset.stop = "true";
-      setPlay(false);
+  /* ------- autoplay observer logic ------- */
+  useEffect(() => {
+    const vidEl = wapperRef.current;
+
+    let options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1,
+    };
+
+    function observerHandler(entries, observer) {
+      entries.forEach((entry) => {
+        // console.log(entry);
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            a.showButtons(dispatch, true);
+          }, 300);
+        } else {
+          a.showButtons(dispatch, false);
+        }
+      });
     }
 
-    // Note* the dataset stop is checked by the intersection observer to know if a video was paused by user so it doesnt call the play function
-  }
+    let observer = new IntersectionObserver(observerHandler, options);
 
-  function likeFn() {
-    setLiked(!liked);
-  }
+    observer.observe(vidEl);
+
+    return () => {};
+  }, []);
 
   return (
     <article
+      ref={wapperRef}
       className={`my-[16px] flex justify-between mx-auto ${style.video__wrapper}`}
     >
       <div className="flex-[1] relative">
-        <VideoEl fullScreen={fullScreen} src={url} />
-        <Overlay params={{ loading, playpause, play, muteFn, muted }} />
+        <VideoEl fullScreen={s.fullscreen} src={url} />
+        <Overlay params={{ loading, playpause, play: s.play, muteFn, muted }} />
       </div>
 
-      <div className="w-[60px] self-end">
-        {/* - Buttons => like comment message etc - */}
-        <Buttons params={{ fullScreen, setFullScreen }} />
+      <div className={`w-[60px] self-end`}>
+        {s.showBtns && (
+          <Buttons
+            fullScreen={s.fullscreen}
+            fullScreen_a={a.fullscreen}
+            dispatch={dispatch}
+            liked={s.liked}
+            liked_a={a.liked}
+          />
+        )}
       </div>
     </article>
   );
