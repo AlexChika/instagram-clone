@@ -37,3 +37,5 @@ export { default as EmojiIcon } from "./EmojiIcon";
 export { default as FollowIcon } from "./FollowIcon";
 export { default as VerifiedIcon } from "./VerifiedIcon";
 export { default as RightCurvedArrowIcon } from "./RightCurvedArrowIcon";
+export { default as PlusIconRound } from "./PlusIconRound";
+export { default as BookmarkIcon } from "./BookmarkIcon";

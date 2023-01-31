@@ -1,11 +1,12 @@
 import React from "react";
 
-const InstaIcon = ({ color }) => {
+const InstaIcon = ({ color, class: cs }) => {
   return (
     <svg
       aria-label="Instagram"
       color={color}
       fill="currentColor"
+      className={cs}
       // color="#262626"
       // fill="#262626"
       height="24"

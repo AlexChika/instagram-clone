@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
+import Stories from "./stories";
 import { App } from "pages/_app";
-// import { ListIcon, StoryIcon } from "../../../../utils/icons";
-// app
+import PicturePost from "./post";
+
+// app........
 const MobileHomePage = () => {
   const { changeTheme, theme } = App();
   const [height, setHeight] = useState(0);
@@ -14,13 +16,16 @@ const MobileHomePage = () => {
   };
 
   return (
-    <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
+    <MobileLayout showBottomNav={true} NavTop={HomeNavTop}>
+      <Stories />
+      <PicturePost />
+
       <section className="p-[10px] pb-[54px]">
-        <h2 className="text-lg font-extrabold">App in progress 25%...</h2>
+        <h2 className="text-lg font-extrabold">App in progress 30%...</h2>
         <br />
         <h5 className="font-bold">Pages Ready for review</h5>
         <h4 className="font-medium">1. Reels 60%</h4>
-        <h4 className="font-medium">1. Home 15%</h4>
+        <h4 className="font-medium">1. Home 35%</h4>
         <h4 className="font-medium">2. Search 7%</h4>
         <h4 className="font-medium">3. Explore 10%</h4> <br />
         <h5 className="font-bold">steps to completion</h5>
@@ -86,8 +91,3 @@ const MobileHomePage = () => {
 };
 
 export default MobileHomePage;
-{
-  /*
-      <ListIcon />
-      <StoryIcon /> */
-}

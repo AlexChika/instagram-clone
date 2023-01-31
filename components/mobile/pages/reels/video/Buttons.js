@@ -2,7 +2,7 @@
 /*All clickables and information on video body*/
 /* --------------------------------------- */
 
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { App } from "pages/_app";
 import IconHOC from "components/general/IconHOC";
 import Spinner from "components/general/Spinner";
@@ -205,20 +205,7 @@ const Aspect = ({ params }) => {
 /*              Options component          */
 /* --------------------------------------- */
 const Options = () => {
-  const { notify } = App();
   const [showModal, setShowModal] = useState(false);
-  const [shareModal, setShareModal] = useState(false);
-
-  function copyLink() {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText("post url here");
-      notify("Copied to clipboard");
-    } else {
-      notify("Sorry ...copy not supported on your browser");
-    }
-
-    setShowModal(false);
-  }
 
   //   ......
   return (
@@ -232,6 +219,28 @@ const Options = () => {
 
       {/* ----------- options overlay----------- */}
       {/* this is the first overlay of buttons like share to,copylink,cancel etc */}
+      <OptionsModal showModal={showModal} setShowModal={setShowModal} />
+    </>
+  );
+};
+
+/* --------- An options sub Modal -------- */
+function OptionsModal({ showModal, setShowModal, children }) {
+  const { notify } = App();
+  const [shareModal, setShareModal] = useState(false);
+
+  function copyLink() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText("post url here");
+      notify("Copied to clipboard");
+    } else {
+      notify("Sorry ...copy not supported on your browser");
+    }
+
+    setShowModal(false);
+  }
+  return (
+    <>
       <div
         onClick={(e) => {
           if (e.target !== e.currentTarget) return;
@@ -243,47 +252,58 @@ const Options = () => {
       >
         {/* modal starts here.... */}
         <div
-          className={`flex flex-col items-center bg-white w-[250px] text-black rounded-xl overflow-hidden ${
+          className={`flex flex-col items-center bg-white dark:bg-neutral-800 text-black dark:text-white min-w-[250px] w-[80%] m8x-w-[360px] rounded-xl overflow-hidden ${
             showModal ? "scale_down" : ""
           }`}
         >
-          <h4 className={`text-red-600 select-none ${video.options_btns}`}>
+          <h4
+            className={`text-red-500 select-none border-b-2 dark:border-neutral-700 border-gray-100 font-bold py-3 text-center w-full`}
+          >
             Take Action
           </h4>
 
+          {children}
+
           <Link href="/post">
-            <a className={video.options_btns}>Go to post</a>
+            <a className={video.options_btns}>
+              <span className="dark:border-neutral-700 border-gray-100">
+                Go to post
+              </span>
+            </a>
           </Link>
 
           <button
+            className={video.options_btns}
             onClick={() => {
-              setShowModal(false);
               setShareModal(true);
             }}
-            className={video.options_btns}
           >
-            Share to...
+            <span className="dark:border-neutral-700 border-gray-100">
+              Share to...
+            </span>
           </button>
 
           <button onClick={copyLink} className={video.options_btns}>
-            Copy link
+            <span className="dark:border-neutral-700 border-gray-100">
+              Copy link
+            </span>
           </button>
 
           <button
             onClick={() => setShowModal(false)}
             className={video.options_btns}
           >
-            Cancel
+            <span className="dark:border-neutral-700 border-gray-100">
+              Cancel
+            </span>
           </button>
         </div>
       </div>
 
-      {/* ---------- shareModal 0verlay --------- */}
-      {/* this is the second overlay when "share to" button is clicked */}
       <ShareModal params={{ shareModal, setShareModal, setShowModal }} />
     </>
   );
-};
+}
 
 /* ------- A comments sub component ------- */
 function CommentSection({ showComment, setShowComment }) {
@@ -311,18 +331,18 @@ function CommentSection({ showComment, setShowComment }) {
     >
       {/* .....content starts...*/}
       <section
-        className={`max-w-3xl left-[50%] translate-x-[-50%] dark:bg-[#414040] bg-white text-black dark:text-white absolute w-full bottom-0 py-4 pb-[44px] rounded-t-xl transition-transform ${
+        className={`max-w-3xl left-[50%] translate-x-[-50%] dark:bg-neutral-800 bg-white text-black dark:text-white absolute w-full bottom-0 py-4 pb-[44px] rounded-t-xl transition-transform ${
           showComment ? "translate-y-[0%]" : "translate-y-[100%]"
         }`}
       >
         {/* ----------- dashed gray line ---------- */}
         <span
           aria-hidden
-          className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-gray-800"
+          className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-neutral-700"
         ></span>
 
         {/* -------------- title here ------------- */}
-        <h3 className="text-center mt-3 border-b-2 dark:border-b-gray-600 border-b-gray-100 p-2 italic font-semibold">
+        <h3 className="text-center mt-3 border-b-2 dark:border-b-neutral-700 border-b-gray-100 p-2 italic font-semibold">
           Comments
         </h3>
 
@@ -361,7 +381,7 @@ function CommentSection({ showComment, setShowComment }) {
         {/* ------------- Comment box ------------- */}
         <form
           onSubmit={handleComment}
-          className="dark:bg-neutral-500 fixed bottom-[44px] z-[11] bg-neutral-200 text-center w-full flex justify-around items-center p-2"
+          className="dark:bg-neutral-800 border-y dark:border-neutral-700 fixed bottom-0 z-[11] bg-neutral-100 text-center w-full flex justify-around items-center p-2"
         >
           {/* image icon */}
           <div className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative">
@@ -374,11 +394,11 @@ function CommentSection({ showComment, setShowComment }) {
           </div>
 
           {/* input container */}
-          <div className="bg-white py-1 px-3 rounded-3xl w-[calc(100%-50px)] flex justify-around">
+          <div className="bg-white dark:bg-black py-1 px-3 rounded-3xl w-[calc(100%-50px)] flex justify-around">
             <h5
               onInput={handleInput}
               contentEditable
-              className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] text-black min-h-[30px] max-h-[100px] outline-none font-normal"
+              className="text-left max-w- overflow-y-auto w-[calc(100%-50px)]  min-h-[30px] max-h-[100px] outline-none font-normal"
             ></h5>
             <button
               disabled={comment}
@@ -396,7 +416,7 @@ function CommentSection({ showComment, setShowComment }) {
   );
 }
 
-/* ------- An Options (...) sub component ------- */
+/* ------- An OptionsModal (...) sub component ------- */
 function ShareModal({ params }) {
   const { notify } = App();
   const { shareModal, setShareModal } = params;
@@ -438,29 +458,29 @@ function ShareModal({ params }) {
   return (
     <div
       onClick={closePopUp}
-      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] transition-opacity ${
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[6] transition-opacity ${
         shareModal ? "opacity-1 visible" : "opacity-0 invisible"
       }`}
     >
       {/* .....content starts...*/}
       <section
-        className={`max-w-3xl left-[50%] translate-x-[-50%] dark:bg-[#414040] bg-white text-black dark:text-white absolute w-full bottom-0 py-4 pb-[44px] rounded-t-xl transition-transform ${
+        className={`max-w-3xl left-[50%] translate-x-[-50%] dark:bg-neutral-800 bg-white text-black dark:text-white absolute w-full bottom-0 py-4 pb-[10px] rounded-t-xl transition-transform ${
           shareModal ? "translate-y-[0%]" : "translate-y-[100%]"
         }`}
       >
         {/* ----------- dashed gray line ---------- */}
         <span
           aria-hidden
-          className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-gray-800"
+          className="block mx-auto w-12 h-1 bg-slate-200 dark:bg-neutral-700"
         ></span>
 
         {/* -------------- title here ------------- */}
-        <h3 className="text-center mt-3 border-b-2 dark:border-b-gray-600 border-b-gray-100 p-2 italic font-semibold">
+        <h3 className="text-center mt-3 border-b dark:border-b-neutral-700 border-b-gray-100 p-2 italic font-semibold">
           Share to...
         </h3>
 
         {/* ----------- buttons wrapper ---------- */}
-        <section className="pb-3 max-h-[67vh] overflow-y-auto">
+        <section className="max-h-[71vh] overflow-y-auto">
           <Link href="/messages" passHref>
             <a className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
               <span className="mr-5">{IconHOC(MessagingIcon, "none")}</span>
@@ -475,10 +495,10 @@ function ShareModal({ params }) {
             url={url}
             blankTarget={true}
           >
-            <button className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
+            <span className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
               <span className="mr-5">{IconHOC(FacebookIcon, "none")}</span>
               <h5>Share to Facebook</h5>
-            </button>
+            </span>
           </FacebookShareButton>
 
           <FacebookMessengerShareButton
@@ -487,10 +507,10 @@ function ShareModal({ params }) {
             blankTarget={true}
             style={{ width: "100%" }}
           >
-            <button className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
+            <span className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
               <span className="mr-5">{IconHOC(MessengerIcon, "none")}</span>
               <h5>Share to Messenger</h5>
-            </button>
+            </span>
           </FacebookMessengerShareButton>
 
           <WhatsappShareButton
@@ -500,10 +520,10 @@ function ShareModal({ params }) {
             blankTarget={true}
             separator=":: "
           >
-            <button className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
+            <span className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
               <span className="mr-5">{IconHOC(WhatsappIcon, "none")}</span>
               <h5>Share to WhatsApp</h5>
-            </button>
+            </span>
           </WhatsappShareButton>
 
           <TwitterShareButton
@@ -513,10 +533,10 @@ function ShareModal({ params }) {
             title="post tilte here"
             blankTarget={true}
           >
-            <button className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
+            <span className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
               <span className="mr-5">{IconHOC(TwitterIcon, "none")}</span>
               <h5>Share to Twitter</h5>
-            </button>
+            </span>
           </TwitterShareButton>
 
           <EmailShareButton
@@ -526,10 +546,10 @@ function ShareModal({ params }) {
             blankTarget={true}
             style={{ width: "100%" }}
           >
-            <button className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
+            <span className={`dark:hover:bg-gray-600 ${video.share_btns} `}>
               <span className="mr-5">{IconHOC(EmailIcon, "none")}</span>
               <h5>Share via Email</h5>
-            </button>
+            </span>
           </EmailShareButton>
 
           <button
@@ -622,3 +642,5 @@ const Comment = () => {
     </article>
   );
 };
+
+export { OptionsModal };

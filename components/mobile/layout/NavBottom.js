@@ -43,7 +43,7 @@ const _Links = [
 const NavBottom = () => {
   return (
     <footer
-      className="fixed z-10 bg-white dark:bg-black bottom-0 w-full border-t border-t-slate-300 dark:border-t-gray-700 h-[44px] py-2 px-5 md:px-0"
+      className="fixed z-[5] bg-white dark:bg-black bottom-0 w-full border-t border-t-slate-300 dark:border-t-gray-700 h-[44px] py-2 px-5 md:px-0"
       aria-label="navigation"
     >
       <div className="justify-between flex items-center max-w-3xl mx-auto">
