@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
+import Stories from "./stories";
 import { App } from "pages/_app";
+import PicturePost from "./picture-post";
 // import { ListIcon, StoryIcon } from "../../../../utils/icons";
 // app
 const MobileHomePage = () => {
@@ -14,7 +16,9 @@ const MobileHomePage = () => {
   };
 
   return (
-    <MobileLayout showBottomNav={true} TopNav={HomeNavTop}>
+    <MobileLayout showBottomNav={true} NavTop={HomeNavTop}>
+      <Stories />
+      <PicturePost />
       <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 25%...</h2>
         <br />

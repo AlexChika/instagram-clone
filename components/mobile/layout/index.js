@@ -5,11 +5,11 @@ function MobileLayout({ children, NavTop, showBottomNav = true }) {
   return (
     <main className={`${layout.main} h-screen`}>
       {/* ------ Top Navigation ... nav bar ----- */}
-      {NavTop && (
+      {/* {NavTop && (
         <div className={`${layout.navTop} md:hidden sticky top-0 z-10`}>
           <NavTop />
         </div>
-      )}
+      )} */}
 
       {/* Tablet side bar */}
       <div className={`${layout.sideBar} hidden md:block`}>
@@ -17,10 +17,22 @@ function MobileLayout({ children, NavTop, showBottomNav = true }) {
       </div>
 
       {/* Page Content */}
-      <div className={`${layout.body} overflow-y-auto`}>{children}</div>
+      <div className={`${layout.body} overflow-y-auto`}>
+        {NavTop && (
+          <div className={`md:hidden sticky top-0 z-10`}>
+            <NavTop />
+          </div>
+        )}
+
+        {children}
+      </div>
 
       {/* bottom Navigation */}
-      <div className="md:hidden">{showBottomNav && <NavBottom />}</div>
+      {showBottomNav && (
+        <div className={`${layout.navBottom} md:hidden`}>
+          <NavBottom />
+        </div>
+      )}
     </main>
   );
 }

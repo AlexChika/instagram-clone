@@ -1,0 +1,20 @@
+/* ----------- map to Story.js ----------- */
+.story {
+  background: #833ab4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+  background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+}
+
+.story_viewed {
+  background: grey;
+}
+
+/* --------------- Index.js -------------- */
+/* .stories__wrapper {
+} */
+
+.stories__wrapper::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
