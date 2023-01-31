@@ -13,7 +13,7 @@ const Header = () => {
     <>
       {/* -------------- Header... -------------- */}
       <div className="flex justify-between items-center px-4 border-b border-b-slate-300 dark:border-b-gray-700">
-        <div className="flex items-center py-3">
+        <div className="flex items-center py-2">
           {/* image... container*/}
           <Link href="/profile" passHref>
             <a

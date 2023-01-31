@@ -53,13 +53,10 @@ const HomeNavTop = () => {
         <div
           ref={instaLogoCon}
           onClick={() => setLogoDropDown(true)}
-          className={`flex items-center cursor-pointer group px-4 ${layout.pointerNone}`}
+          className={`flex items-center cursor-pointer px-4 ${layout.pointerNone}`}
         >
           <span>{IconHOC(InstaLogo, "none")}</span>
-          <span
-            aria-hidden="true"
-            className=" group-hover:visible invisible pl-2"
-          >
+          <span aria-hidden="true" className="pl-2 -mt-1">
             <span>{IconHOC(CaretDown, "none")}</span>
           </span>
         </div>
