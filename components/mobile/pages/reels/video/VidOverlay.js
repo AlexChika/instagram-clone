@@ -37,7 +37,7 @@ const Overlay = ({ params }) => {
       className="absolute top-0 bottom-0 right-0 left-0"
     >
       {/* ----------- Sound Indicator ----------- */}
-      {!loading && <SoundIndicator muted={muted} />}
+      <SoundIndicator muted={muted} />
 
       {/* ------------ Video Loading ------------ */}
       <Loading loading={loading} />

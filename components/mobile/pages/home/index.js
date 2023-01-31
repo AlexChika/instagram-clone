@@ -3,22 +3,86 @@ import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
 import Stories from "./stories";
 import { App } from "pages/_app";
-import PicturePost from "./post";
+import Post from "./post";
 
 // app........
 const MobileHomePage = () => {
   const { changeTheme, theme } = App();
+  const [muted, setMuted] = useState(true);
   const [height, setHeight] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [currentVideo, setCurrentVideo] = useState(null);
 
   const getHeight = () => {
     let height = window.innerHeight;
     setHeight(height);
   };
 
+  const muteFn = () => {
+    setMuted(!muted);
+    console.log("I fired");
+  };
+
+  function handleWaiting() {
+    setLoading(true);
+  }
+
+  function handlePlaying() {
+    setLoading(false);
+  }
+
+  /* ------- autoplay observer logic ------- */
+  useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="video-post"]`)];
+    let options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.65,
+    };
+
+    function observerHandler(entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.addEventListener("waiting", handleWaiting);
+          entry.target.addEventListener("playing", handlePlaying);
+          setCurrentVideo(entry.target);
+          if (!entry.target?.dataset?.stop) entry.target.play();
+        } else {
+          entry.target.removeEventListener("waiting", handleWaiting);
+          entry.target.removeEventListener("playing", handlePlaying);
+          entry.target.pause();
+        }
+      });
+    }
+
+    let observer = new IntersectionObserver(observerHandler, options);
+
+    vid.forEach((el) => {
+      observer.observe(el);
+    });
+    return () => {};
+  }, []); //vid urls dep here later
+
+  /* -------- mute and unmute logic -------- */
+  useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="video-post"]`)];
+
+    vid.forEach((vid) => {
+      vid.muted = muted;
+    });
+  }, [muted]);
+
   return (
     <MobileLayout showBottomNav={true} NavTop={HomeNavTop}>
-      <Stories />
-      <PicturePost />
+      <section className="max-w-3xl mx-auto">
+        <Stories />
+        <Post
+          video={currentVideo}
+          loading={loading}
+          muted={muted}
+          muteFn={muteFn}
+        />
+      </section>
 
       <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 30%...</h2>
