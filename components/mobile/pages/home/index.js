@@ -3,23 +3,94 @@ import MobileLayout from "../../layout";
 import HomeNavTop from "../../layout/HomeNavTop";
 import Stories from "./stories";
 import { App } from "pages/_app";
-import PicturePost from "./post";
+import Post from "./post";
+import OptionsModal from "../components/OptionsModal";
 
 // app........
 const MobileHomePage = () => {
   const { changeTheme, theme } = App();
-  const [height, setHeight] = useState(0);
 
-  const getHeight = () => {
-    let height = window.innerHeight;
-    setHeight(height);
+  // video states
+  const [muted, setMuted] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [currentVideo, setCurrentVideo] = useState(null);
+
+  // options modal state
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
+
+  const muteFn = () => {
+    setMuted(!muted);
+    console.log("I fired");
   };
+
+  function handleWaiting() {
+    setLoading(true);
+  }
+
+  function handlePlaying() {
+    setLoading(false);
+  }
+
+  /* ------- autoplay observer logic ------- */
+  useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="video-post"]`)];
+    let options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.65,
+    };
+
+    function observerHandler(entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.addEventListener("waiting", handleWaiting);
+          entry.target.addEventListener("playing", handlePlaying);
+          setCurrentVideo(entry.target);
+          if (!entry.target?.dataset?.stop) entry.target.play();
+        } else {
+          entry.target.removeEventListener("waiting", handleWaiting);
+          entry.target.removeEventListener("playing", handlePlaying);
+          entry.target.pause();
+        }
+      });
+    }
+
+    let observer = new IntersectionObserver(observerHandler, options);
+
+    vid.forEach((el) => {
+      observer.observe(el);
+    });
+    return () => {};
+  }, []); //vid urls dep here later
+
+  /* -------- mute and unmute logic -------- */
+  useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="video-post"]`)];
+
+    vid.forEach((vid) => {
+      vid.muted = muted;
+    });
+  }, [muted]);
 
   return (
     <MobileLayout showBottomNav={true} NavTop={HomeNavTop}>
-      <Stories />
-      <PicturePost />
+      <section className="max-w-3xl mx-auto">
+        <Stories />
+        <Post
+          video={currentVideo}
+          loading={loading}
+          muted={muted}
+          muteFn={muteFn}
+          setOptModal={setShowOptionsModal}
+        />
+      </section>
 
+      <OptionsModal
+        showModal={showOptionsModal}
+        setShowModal={setShowOptionsModal}
+      />
+
+      {/* temporal wahala */}
       <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 30%...</h2>
         <br />
@@ -33,10 +104,6 @@ const MobileHomePage = () => {
         <h4 className="font-medium">1. Building Desktop components 15%</h4>
         <h4 className="font-medium">2. implementing the backend 7%</h4>
         <h4 className="font-medium">3. connecting the dots 10%</h4>
-        <h3>Height = {height}</h3>
-        <button className="red" onClick={getHeight}>
-          Get Height
-        </button>
         <br />
         <button
           className="text-blue-600 font-bold italic border-2 border-blue-600 border-solid p-1 mx-auto block"

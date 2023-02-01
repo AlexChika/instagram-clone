@@ -1,13 +1,14 @@
+/* --------------------------------------- */
+/*      Picture and Video Posts Header     */
+/* --------------------------------------- */
+// This component is the Header for Video posts, picture posts and single video and picture post pages
+
 import IconHOC from "components/general/IconHOC";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import { ThreeDotsIcon, VerifiedIcon } from "utils/icons";
-import { OptionsModal } from "../../reels/video/Buttons";
 
-const Header = () => {
-  const [showModal, setShowModal] = useState(false);
-
+const Header = ({ showModal, showExtras = false }) => {
   // .....................
   return (
     <>
@@ -29,32 +30,38 @@ const Header = () => {
           </Link>
 
           {/* insta ... username */}
-          <p className="font-medium ">
+          <p className="font-medium flex items-center">
             <span>Alex_stars &nbsp;</span>
+
+            {showExtras && (
+              <>
+                {true && (
+                  <span className="mr-1">
+                    <VerifiedIcon class="w-[14px] h-[14px]" />
+                  </span>
+                )}
+
+                {false && (
+                  <>
+                    <span
+                      aria-hidden
+                      className="bg-black block dark:bg-white rounded-full w-[5px] h-[5px] mr-1"
+                    ></span>
+                    <span>Following</span>
+                  </>
+                )}
+              </>
+            )}
           </p>
         </div>
 
         {/* dots Icon */}
-        <button onClick={() => setShowModal(true)}>
+        <button onClick={() => showModal(true)}>
           {IconHOC(ThreeDotsIcon, "none")}
         </button>
       </div>
-
-      {/* ------------ Options ovrlay ------------ */}
-      <OptionsModal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 };
 
 export default Header;
-
-// name with verified badge
-//  <p className="font-extrabold flex items-center">
-//    <span>Alex_stars &nbsp;</span>
-
-//    {true && (
-//      <span>
-//        <VerifiedIcon class="w-[20px] h-[20px]" />
-//      </span>
-//    )}
-//  </p>;

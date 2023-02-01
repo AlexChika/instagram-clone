@@ -8,8 +8,8 @@
   border-radius: 50%;
   color: white;
   box-shadow: 1px 1px 5px gray;
-  -webkit-animation: rotate var(--rotate-speed) linear both infinite;
-  animation: rotate var(--rotate-speed) linear both infinite;
+  -webkit-animation: rotate 0.3s linear both infinite;
+  animation: rotate 0.3s linear both infinite;
 }
 
 .spinner span {

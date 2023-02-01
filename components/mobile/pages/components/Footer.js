@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+/* --------------------------------------- */
+/*      Picture and Video Posts Footer     */
+/* --------------------------------------- */
+// This component is the footer for Video posts, picture posts and single vide and picture post pages
+
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import IconHOC from "components/general/IconHOC";
 import {
   BookmarkIcon,
@@ -8,7 +14,19 @@ import {
 } from "utils/icons";
 
 const Footer = ({ usersComment = false }) => {
+  const router = useRouter();
   const [fullComment, setFullComment] = useState(false);
+  const [id, setId] = useState(null);
+
+  function goToComments() {
+    let url = `/p/${id}/comments`;
+    router.push(url);
+  }
+
+  useEffect(() => {
+    let { id: _id } = router.query;
+    setId(_id);
+  }, [router]); //there is gonna be another way of getting this id
 
   let str =
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, praesentium.";
@@ -18,7 +36,11 @@ const Footer = ({ usersComment = false }) => {
       <section className="flex justify-between items-center px-4 py-3">
         <div>
           <button className="mr-3">{IconHOC(HeartIcon, "none")}</button>
-          <button className="mr-3">{IconHOC(CommentIcon, "none")}</button>
+
+          <button onClick={goToComments} className="mr-3">
+            {IconHOC(CommentIcon, "none")}
+          </button>
+
           <button className="mr-3">{IconHOC(MessagingIcon, "none")}</button>
         </div>
         <button>{IconHOC(BookmarkIcon, "none")}</button>

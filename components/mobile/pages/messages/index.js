@@ -4,7 +4,7 @@ import MessagesNavTop from "../../layout/MessagesNavTop";
 // app
 const MessagesHomePage = () => {
   return (
-    <MobileLayout showBottomNav={true} TopNav={MessagesNavTop}>
+    <MobileLayout showBottomNav={true} NavTop={MessagesNavTop}>
       <h1 className="text-2xl">App in progress ...</h1>
       <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae fugiat
