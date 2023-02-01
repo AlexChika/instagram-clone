@@ -1,3 +1,8 @@
+/* --------------------------------------- */
+/*             Photo Component             */
+/* --------------------------------------- */
+// This component is the Photo content of Photo posts and single Photo post page
+
 import React, { useEffect, useState } from "react";
 import useImageSize from "utils/hooks/useImageSize";
 import Image from "next/image";

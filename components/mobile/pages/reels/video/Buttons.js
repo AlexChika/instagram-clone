@@ -36,6 +36,7 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from "next-share";
+import Comment from "../../general/Comment";
 
 function Buttons({ params }) {
   const { fs: fullScreen, sfs: setFullScreen, liked, setLiked } = params;
@@ -246,7 +247,7 @@ function OptionsModal({ showModal, setShowModal, children }) {
           if (e.target !== e.currentTarget) return;
           setShowModal(false);
         }}
-        className={`absolute bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-[3] transition-opacity flex justify-center items-center  ${
+        className={`fixed bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-[3] transition-opacity flex justify-center items-center  ${
           showModal ? "visible opacity-[1]" : "invisible opacity-0"
         }`}
       >
@@ -582,65 +583,5 @@ function ShareModal({ params }) {
     </div>
   );
 }
-
-/* --------- A Comment Component --------- */
-const Comment = () => {
-  const [liked, setLiked] = useState(false);
-  const [css, setCss] = useState("scale_sideways");
-
-  let text =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dicta tempore, accusamus debitis dolore minima distinctio reprehenderit in, quam aperiam error inventore. Dolores, ipsa eos!";
-
-  useEffect(() => {
-    setCss("scale_sideways");
-
-    setTimeout(() => {
-      setCss("");
-    }, [400]);
-  }, [liked]);
-
-  return (
-    <article className="flex justify-between items-start mt-4">
-      {/* image container*/}
-      <Link href="/profile" passHref>
-        <a className="w-8 h-8 max-w-[32px] rounded-full cursor-pointer relative flex-[0.15]">
-          <Image
-            className="rounded-full"
-            layout="fill"
-            src="/alex.png"
-            alt="user profile image"
-          />
-        </a>
-      </Link>
-
-      {/* comment texts */}
-      <div className="flex-[0.8] px-2">
-        <h5 className="text-sm -mt-2">
-          <span className="text-base font-medium">{"user's name"} &nbsp;</span>
-          {text}
-        </h5>
-
-        {/* comment details */}
-        <div className="flex text-sm opacity-50 mt-2">
-          <span className="mr-3">7w</span>
-          <span className="mr-3">100 likes</span>
-          <button className="font-medium" data-role="button">
-            reply
-          </button>
-        </div>
-      </div>
-
-      {/* like button  */}
-      <button
-        onClick={() => setLiked(!liked)}
-        className={`flex-[0.07] ${css} `}
-      >
-        {liked
-          ? IconHOC(HeartIconRed, "none", "h-[15px] w-[15px] text-[red]")
-          : IconHOC(HeartIcon, "none", "h-[15px] w-[15px] ")}
-      </button>
-    </article>
-  );
-};
 
 export { OptionsModal };

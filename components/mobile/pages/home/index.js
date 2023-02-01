@@ -9,14 +9,8 @@ import Post from "./post";
 const MobileHomePage = () => {
   const { changeTheme, theme } = App();
   const [muted, setMuted] = useState(true);
-  const [height, setHeight] = useState(0);
   const [loading, setLoading] = useState(true);
   const [currentVideo, setCurrentVideo] = useState(null);
-
-  const getHeight = () => {
-    let height = window.innerHeight;
-    setHeight(height);
-  };
 
   const muteFn = () => {
     setMuted(!muted);
@@ -97,10 +91,6 @@ const MobileHomePage = () => {
         <h4 className="font-medium">1. Building Desktop components 15%</h4>
         <h4 className="font-medium">2. implementing the backend 7%</h4>
         <h4 className="font-medium">3. connecting the dots 10%</h4>
-        <h3>Height = {height}</h3>
-        <button className="red" onClick={getHeight}>
-          Get Height
-        </button>
         <br />
         <button
           className="text-blue-600 font-bold italic border-2 border-blue-600 border-solid p-1 mx-auto block"

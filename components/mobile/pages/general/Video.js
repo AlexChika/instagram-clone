@@ -1,8 +1,13 @@
+/* --------------------------------------- */
+/*             Video Component             */
+/* --------------------------------------- */
+// This component is the Video content of Video posts and single Video post page
+
 import Loading from "components/general/reels/Loading";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PlayIcon, SpeakerOffIcon, SpeakerOnIcon } from "utils/icons";
 
-const Video = ({ src, muted, muteFn, video, loading }) => {
+const Video = ({ src, muted, muteFn, video, loading, id = Math.random() }) => {
   const [play, setPlay] = useState(true);
 
   function playpause() {
@@ -26,9 +31,10 @@ const Video = ({ src, muted, muteFn, video, loading }) => {
   return (
     <article className="relative">
       <video
+        data-id={id}
         data-vid="video-post"
         loop
-        className="w-full bg-black max-h-[80vh] h-auto  mx-auto object-contain"
+        className="w-full bg-black max-h-[80vh] md:max-h-[90vh] h-auto mx-auto object-contain"
       >
         <source src={src} type="video/mp4" />
 
