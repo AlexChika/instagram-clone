@@ -13,6 +13,8 @@ const Overlay = ({ params }) => {
     loading,
     setFullScreen: sfs,
     fullScreen: fs,
+    showOptModal,
+    showCmtModal,
   } = params;
 
   function muteFn(e) {
@@ -43,7 +45,9 @@ const Overlay = ({ params }) => {
       <Loading loading={loading} />
 
       {/* - Buttons => like comment message etc - */}
-      <Buttons params={{ fs, sfs, liked, setLiked }} />
+      <Buttons
+        params={{ fs, sfs, liked, setLiked, showCmtModal, showOptModal }}
+      />
     </div>
   );
 };

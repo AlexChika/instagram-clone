@@ -6,13 +6,9 @@
 import IconHOC from "components/general/IconHOC";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import { ThreeDotsIcon, VerifiedIcon } from "utils/icons";
-import { OptionsModal } from "../reels/video/Buttons";
 
-const Header = ({ showExtras = false }) => {
-  const [showModal, setShowModal] = useState(false);
-
+const Header = ({ showModal, showExtras = false }) => {
   // .....................
   return (
     <>
@@ -60,26 +56,12 @@ const Header = ({ showExtras = false }) => {
         </div>
 
         {/* dots Icon */}
-        <button onClick={() => setShowModal(true)}>
+        <button onClick={() => showModal(true)}>
           {IconHOC(ThreeDotsIcon, "none")}
         </button>
       </div>
-
-      {/* ------------ Options ovrlay ------------ */}
-      <OptionsModal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 };
 
 export default Header;
-
-// name with verified badge
-//  <p className="font-extrabold flex items-center">
-//    <span>Alex_stars &nbsp;</span>
-
-//    {true && (
-//      <span>
-//        <VerifiedIcon class="w-[20px] h-[20px]" />
-//      </span>
-//    )}
-//  </p>;

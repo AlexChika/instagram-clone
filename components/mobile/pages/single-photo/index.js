@@ -1,8 +1,8 @@
 import React from "react";
-import Photo from "../general/Photo";
-import Header from "../general/Header";
-import Footer from "../general/Footer";
-import Nav from "../general/Nav";
+import Photo from "../components/Photo";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 
 const SinglePhoto = () => {
   return (

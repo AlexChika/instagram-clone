@@ -1,29 +1,29 @@
 import React from "react";
-import Header from "../../general/Header";
-import Photo from "../../general/Photo";
-import Footer from "../../general/Footer";
-import Video from "../../general/Video";
+import Header from "../../components/Header";
+import Photo from "../../components/Photo";
+import Footer from "../../components/Footer";
+import Video from "../../components/Video";
 
-const Post = ({ muted, muteFn, loading, video }) => {
+const Post = ({ muted, muteFn, loading, video, setOptModal }) => {
   return (
     <>
       <>
-        <Header />
+        <Header showModal={setOptModal} />
         <Photo src="/test.jpg" />
         <Footer />
       </>
       <>
-        <Header />
+        <Header showModal={setOptModal} />
         <Photo src="/alex.png" />
         <Footer />
       </>
       <>
-        <Header />
+        <Header showModal={setOptModal} />
         <Photo src="https://images.pexels.com/photos/11534490/pexels-photo-11534490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
         <Footer />
       </>
       <>
-        <Header />
+        <Header showModal={setOptModal} />
         <Video
           video={video}
           muted={muted}
@@ -34,7 +34,7 @@ const Post = ({ muted, muteFn, loading, video }) => {
         <Footer />
       </>
       <>
-        <Header />
+        <Header showModal={setOptModal} />
         <Video
           video={video}
           muted={muted}
@@ -45,7 +45,7 @@ const Post = ({ muted, muteFn, loading, video }) => {
         <Footer />
       </>
       <>
-        <Header />
+        <Header showModal={setOptModal} />
         <Video
           video={video}
           muted={muted}
@@ -56,7 +56,7 @@ const Post = ({ muted, muteFn, loading, video }) => {
         <Footer />
       </>
       <>
-        <Header />
+        <Header showModal={setOptModal} />
         <Photo src="https://images.pexels.com/photos/9898727/pexels-photo-9898727.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
         <Footer />
       </>

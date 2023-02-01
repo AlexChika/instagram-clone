@@ -7,7 +7,7 @@ import Overlay from "./VidOverlay";
 import VideoEl from "components/general/reels/VideoEl";
 
 const Video = (props) => {
-  const { muted, muteFn, loading, url } = props;
+  const { muted, muteFn, loading, url, showOptModal, showCmtModal } = props;
   const [fullScreen, setFullScreen] = useState(true);
   // .............................
   // memoized list video dom elements
@@ -26,7 +26,15 @@ const Video = (props) => {
 
         {/* --------------- Overlay --------------- */}
         <Overlay
-          params={{ muteFn, muted, loading, setFullScreen, fullScreen }}
+          params={{
+            muteFn,
+            muted,
+            loading,
+            setFullScreen,
+            fullScreen,
+            showOptModal,
+            showCmtModal,
+          }}
         />
       </article>
     </>

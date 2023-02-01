@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "../general/Header";
-import Nav from "../general/Nav";
+import Header from "../components/Header";
+import Nav from "../components/Nav";
 import { useRouter } from "next/router";
-import Video from "../general/Video";
-import Footer from "../general/Footer";
+import Video from "../components/Video";
+import Footer from "../components/Footer";
 
 const SingleVideo = () => {
   const router = useRouter();

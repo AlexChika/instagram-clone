@@ -5,7 +5,7 @@
 
 // .......
 import React from "react";
-import Nav from "../general/Nav";
+import Nav from "../components/Nav";
 
 const ShareOverlay = () => {
   return (

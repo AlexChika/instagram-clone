@@ -1,7 +1,7 @@
 import React from "react";
-import Nav from "../general/Nav";
+import Nav from "../components/Nav";
 import CommentForm from "./CommentForm";
-import Comments from "../general/Comments";
+import Comments from "../components/Comments";
 import MobileLayout from "components/mobile/layout";
 
 const PostComments = () => {

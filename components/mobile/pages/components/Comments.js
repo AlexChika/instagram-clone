@@ -1,8 +1,14 @@
+/* --------------------------------------- */
+/*   An assembly of comments and replies   */
+/* --------------------------------------- */
+// a comments comonent for post comment page and reels comment modal that assembles comments and it replies.
+
 import React, { useState, useEffect } from "react";
 import Comment from "./Comment";
+import Spinner from "components/general/Spinner";
 
-const Comments = () => {
-  let comments = [
+const Comments = ({ commentsArray }) => {
+  let comments = commentsArray || [
     {
       comment: "some frst reply with funky texts",
       subComments: [
@@ -38,18 +44,26 @@ const Comments = () => {
   ];
 
   return (
-    <div>
-      {comments.map((obj, index) => {
-        const { comment, subComments } = obj;
-        return (
-          <div key={index}>
-            <Comment comment={comment} />
+    <>
+      {comments?.length > 0 ? (
+        <div>
+          {comments.map((obj, index) => {
+            const { comment, subComments } = obj;
+            return (
+              <div key={index}>
+                <Comment comment={comment} />
 
-            <SubComments subComments={subComments} />
-          </div>
-        );
-      })}
-    </div>
+                <SubComments subComments={subComments} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="h-[65vh] flex justify-center items-center">
+          <Spinner />
+        </div>
+      )}
+    </>
   );
 };
 

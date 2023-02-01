@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../../general/Header";
-import Video from "../../general/Video";
-import Footer from "../../general/Footer";
+import Header from "../../components/Header";
+import Video from "../../components/Video";
+import Footer from "../../components/Footer";
 
-const VideoPost = ({ muted, muteFn, loading, video }) => {
+const VideoPost = ({ src, setOptModal, muted, muteFn, loading, video }) => {
   return (
     <>
-      <Header />
+      <Header showModal={setOptModal} />
       <Video
         video={video}
         muted={muted}

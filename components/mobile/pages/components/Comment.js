@@ -1,5 +1,6 @@
 /* --------- A Comment Component --------- */
-// This is a single comment component, used in the post-coment page and reels page
+// This is a single comment component that feautures just the comment texts, its time like and etc, used in the post-coment page and reels page
+
 import IconHOC from "components/general/IconHOC";
 import Image from "next/image";
 import Link from "next/link";

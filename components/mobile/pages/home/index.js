@@ -4,13 +4,19 @@ import HomeNavTop from "../../layout/HomeNavTop";
 import Stories from "./stories";
 import { App } from "pages/_app";
 import Post from "./post";
+import OptionsModal from "../components/OptionsModal";
 
 // app........
 const MobileHomePage = () => {
   const { changeTheme, theme } = App();
+
+  // video states
   const [muted, setMuted] = useState(true);
   const [loading, setLoading] = useState(true);
   const [currentVideo, setCurrentVideo] = useState(null);
+
+  // options modal state
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
 
   const muteFn = () => {
     setMuted(!muted);
@@ -75,9 +81,16 @@ const MobileHomePage = () => {
           loading={loading}
           muted={muted}
           muteFn={muteFn}
+          setOptModal={setShowOptionsModal}
         />
       </section>
 
+      <OptionsModal
+        showModal={showOptionsModal}
+        setShowModal={setShowOptionsModal}
+      />
+
+      {/* temporal wahala */}
       <section className="p-[10px] pb-[54px]">
         <h2 className="text-lg font-extrabold">App in progress 30%...</h2>
         <br />

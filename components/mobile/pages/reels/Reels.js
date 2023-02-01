@@ -2,12 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import Video from "./video";
 import video from "./video/video.module.css";
 import SetHeight from "utils/hooks/mobileSetHeight";
+import OptionsModal from "../components/OptionsModal";
+import ReelsComment from "./ReelsComment";
 
 // app
 const Reels = () => {
   const ReelsREf = useRef(null);
   const [muted, setMuted] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
 
   //   func ...
   function muteFn() {
@@ -80,19 +84,35 @@ const Reels = () => {
   ];
 
   return (
-    <div ref={ReelsREf} className={video.reels__wrapper}>
-      {urls.map((url, index) => {
-        return (
-          <Video
-            muted={muted}
-            loading={loading}
-            muteFn={muteFn}
-            key={index}
-            url={url}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div ref={ReelsREf} className={video.reels__wrapper}>
+        {urls.map((url, index) => {
+          return (
+            <Video
+              muted={muted}
+              loading={loading}
+              muteFn={muteFn}
+              key={index}
+              url={url}
+              showOptModal={setShowOptionsModal}
+              showCmtModal={setShowCommentsModal}
+            />
+          );
+        })}
+      </div>
+
+      {/* comments section general here */}
+      <ReelsComment
+        showModal={showCommentsModal}
+        setShowModal={setShowCommentsModal}
+      />
+
+      {/* options modal general here too */}
+      <OptionsModal
+        showModal={showOptionsModal}
+        setShowModal={setShowOptionsModal}
+      />
+    </>
   );
 };
 

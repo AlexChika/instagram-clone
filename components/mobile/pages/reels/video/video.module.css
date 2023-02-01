@@ -41,17 +41,3 @@
   -webkit-filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.4));
   filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.4));
 }
-
-/* ---------- options component ---------- */
-.options_btns {
-  @apply w-full text-center;
-}
-
-.options_btns span {
-  @apply h-full block py-3 border-b-2 border-0;
-}
-
-/* - share to...an options sub component - */
-.share_btns {
-  @apply w-full px-4 py-2 flex items-center mt-3 hover:bg-gray-50;
-}

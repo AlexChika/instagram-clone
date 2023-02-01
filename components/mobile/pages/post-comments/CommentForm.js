@@ -33,7 +33,7 @@ const CommentForm = () => {
         <h5
           onInput={handleInput}
           contentEditable
-          className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] min-h-[30px] max-h-[100px] outline-none font-normal"
+          className="text-left overflow-y-auto w-[calc(100%-50px)] min-h-[30px] max-h-[100px] outline-none font-normal"
         ></h5>
         <button
           disabled={comment}
