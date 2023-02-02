@@ -39,3 +39,4 @@ export { default as VerifiedIcon } from "./VerifiedIcon";
 export { default as RightCurvedArrowIcon } from "./RightCurvedArrowIcon";
 export { default as PlusIconRound } from "./PlusIconRound";
 export { default as BookmarkIcon } from "./BookmarkIcon";
+export { default as CloseIcon } from "./CloseIcon";

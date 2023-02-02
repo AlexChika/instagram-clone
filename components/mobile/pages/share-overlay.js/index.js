@@ -5,14 +5,16 @@
 
 // .......
 import React from "react";
-import Nav from "../components/Nav";
+import ShareNav from "./ShareNav";
 
-const ShareOverlay = () => {
-  return (
-    <div className="">
-      <Nav title="Share" />
-    </div>
-  );
+const ShareOverlay = ({ showModal, setShowModal }) => {
+  if (showModal) {
+    return (
+      <div className="fixed z-[20] top-0 bottom-0 left-0 right-0 bg-white dark:bg-black">
+        <ShareNav setShowModal={setShowModal} />
+      </div>
+    );
+  }
 };
 
 export default ShareOverlay;

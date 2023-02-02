@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import MobileLayout from "../../layout";
-import HomeNavTop from "../../layout/HomeNavTop";
+import HomeNavTop from "components/mobile/layout/HomeNavTop";
 import Stories from "./stories";
 import { App } from "pages/_app";
 import Post from "./post";
 import OptionsModal from "../components/OptionsModal";
+import ShareOverlay from "../share-overlay.js";
 
 // app........
 const MobileHomePage = () => {
@@ -17,6 +18,7 @@ const MobileHomePage = () => {
 
   // options modal state
   const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const muteFn = () => {
     setMuted(!muted);
@@ -82,6 +84,7 @@ const MobileHomePage = () => {
           muted={muted}
           muteFn={muteFn}
           setOptModal={setShowOptionsModal}
+          setShrModal={setShowShareModal}
         />
       </section>
 
@@ -90,18 +93,23 @@ const MobileHomePage = () => {
         setShowModal={setShowOptionsModal}
       />
 
+      <ShareOverlay
+        showModal={showShareModal}
+        setShowModal={setShowShareModal}
+      />
+
       {/* temporal wahala */}
       <section className="p-[10px] pb-[54px]">
-        <h2 className="text-lg font-extrabold">App in progress 30%...</h2>
+        <h2 className="text-lg font-extrabold">App in progress 35%...</h2>
         <br />
         <h5 className="font-bold">Pages Ready for review</h5>
         <h4 className="font-medium">1. Reels 60%</h4>
-        <h4 className="font-medium">1. Home 35%</h4>
+        <h4 className="font-medium">1. Home 60%</h4>
         <h4 className="font-medium">2. Search 7%</h4>
         <h4 className="font-medium">3. Explore 10%</h4> <br />
         <h5 className="font-bold">steps to completion</h5>
-        <h4 className="font-medium">1. Building Mobile components 30%</h4>
-        <h4 className="font-medium">1. Building Desktop components 15%</h4>
+        <h4 className="font-medium">1. Building Mobile components 40%</h4>
+        <h4 className="font-medium">1. Building Desktop components 20%</h4>
         <h4 className="font-medium">2. implementing the backend 7%</h4>
         <h4 className="font-medium">3. connecting the dots 10%</h4>
         <br />

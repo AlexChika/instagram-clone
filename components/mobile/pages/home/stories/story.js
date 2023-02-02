@@ -5,9 +5,9 @@ import { PlusIconRound } from "utils/icons";
 
 const Story = () => {
   return (
-    <article className="flex flex-col items-center self-center w-[59px] mr-4 ">
+    <article className="flex flex-col items-center self-center w-[64px] mr-4 ">
       <div
-        className={`${story.story} flex justify-center items-center rounded-full w-[59px] h-[59px]`}
+        className={`${story.story} flex justify-center items-center rounded-full w-[64px] h-[64px]`}
       >
         <div className="relative w-[95%] h-[95%] bg-green-500 rounded-full border-2 dark:border-black border-white cursor-pointer">
           <Image
@@ -19,7 +19,7 @@ const Story = () => {
         </div>
       </div>
       <p
-        className={`w-[59px] text-[12px] overflow-x-hidden text-clip text-center whitespace-nowrap`}
+        className={`w-[64px] text-[12px] overflow-x-hidden text-clip text-center whitespace-nowrap`}
       >
         vaneelah
       </p>
@@ -33,9 +33,9 @@ const UserStory = () => {
       {false ? (
         <Story />
       ) : (
-        <article className="relative flex flex-col items-center self-center w-[59px] mr-4 pointernone">
+        <article className="relative flex flex-col items-center self-center w-[64px] mr-4 pointernone">
           <button
-            className={` flex justify-center items-center w-[59px] h-[59px] relative`}
+            className={` flex justify-center items-center w-[64px] h-[64px] relative`}
           >
             <Image
               className="rounded-full"
@@ -50,7 +50,7 @@ const UserStory = () => {
           </button>
 
           <p
-            className={`w-[59px] text-[12px] overflow-x-hidden text-clip text-center whitespace-nowrap`}
+            className={`w-[64px] text-[12px] overflow-x-hidden text-clip text-center whitespace-nowrap`}
           >
             Your story
           </p>

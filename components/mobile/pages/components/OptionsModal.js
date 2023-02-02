@@ -27,7 +27,7 @@ import general from "./general.module.css";
 import IconHOC from "components/general/IconHOC";
 
 // .........................
-function OptionsModal({ showModal, setShowModal, children }) {
+function OptionsModal({ showModal, setShowModal, reels = false }) {
   const { notify } = App();
   const [shareModal, setShareModal] = useState(false);
 
@@ -55,7 +55,7 @@ function OptionsModal({ showModal, setShowModal, children }) {
       >
         {/* modal starts here.... */}
         <div
-          className={`flex flex-col items-center bg-white dark:bg-neutral-800 text-black dark:text-white min-w-[250px] w-[80%] max-w-[360px] rounded-xl overflow-hiden ${
+          className={`flex flex-col items-center bg-white dark:bg-neutral-800 text-black dark:text-white min-w-[250px] w-[80%] max-w-[360px] rounded-xl overflow-hidden ${
             showModal ? "scale_down" : ""
           }`}
         >
@@ -65,7 +65,21 @@ function OptionsModal({ showModal, setShowModal, children }) {
             Take Action
           </h4>
 
-          {children}
+          {!reels && (
+            <>
+              <button className={general.options_btns}>
+                <span className="dark:border-neutral-700 border-gray-100 text-red-500 font-bold">
+                  UnFollow
+                </span>
+              </button>
+
+              <button className={general.options_btns}>
+                <span className="dark:border-neutral-700 border-gray-100">
+                  Add to favourites
+                </span>
+              </button>
+            </>
+          )}
 
           <Link href="/post">
             <a className={general.options_btns}>
@@ -96,9 +110,7 @@ function OptionsModal({ showModal, setShowModal, children }) {
             onClick={() => setShowModal(false)}
             className={general.options_btns}
           >
-            <span className="dark:border-neutral-700 border-gray-100">
-              Cancel
-            </span>
+            <span className="border-transparent">Cancel</span>
           </button>
         </div>
       </div>

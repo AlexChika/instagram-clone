@@ -3,12 +3,12 @@ import Header from "../../components/Header";
 import Photo from "../../components/Photo";
 import Footer from "../../components/Footer";
 
-const PhotoPost = (setOptModal) => {
+const PhotoPost = ({ setOptModal, setShrModal }) => {
   return (
     <>
       <Header showModal={setOptModal} />
       <Photo src="/test.jpg" />
-      <Footer />
+      <Footer showModal={setShrModal} />
     </>
   );
 };
