@@ -24,7 +24,7 @@ import {
 import IconHOC from "components/general/IconHOC";
 
 /* --------------------------------------- */
-const OptionsModal = ({ showModal, setShowModal }) => {
+const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
   const { notify } = App();
   const [shareModal, setShareModal] = useState(false);
 
@@ -54,15 +54,31 @@ const OptionsModal = ({ showModal, setShowModal }) => {
       >
         {/* modal starts here.... */}
         <div
-          className={`flex flex-col items-center bg-white w-[250px] sm:w-[350px] text-black rounded-xl overflow-hidden ${
+          className={`flex flex-col items-center  bg-white dark:bg-neutral-800 text-black dark:text-white min-w-[250px] w-[80%] max-w-[360px] rounded-xl overflow-hidden ${
             showModal ? "scale_down" : ""
           }`}
         >
           <h4
-            className={`text-red-600 select-none dark:border-neutral-700 border-gray-100 w-full text-center h-full block py-3 border-b-2 border-0`}
+            className={`text-red-500 select-none font-bold dark:border-neutral-700 border-gray-100 w-full text-center h-full block py-3 border-b-2 border-0`}
           >
             Take Action
           </h4>
+
+          {!reels && (
+            <>
+              <button className="w-full text-center font-bold">
+                <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0 text-red-500">
+                  UnFollow
+                </span>
+              </button>
+
+              <button className="w-full text-center">
+                <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0">
+                  Add to favourites
+                </span>
+              </button>
+            </>
+          )}
 
           <Link href="/post">
             <a className="w-full text-center">
@@ -93,9 +109,7 @@ const OptionsModal = ({ showModal, setShowModal }) => {
             onClick={() => setShowModal(false)}
             className="w-full text-center"
           >
-            <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0">
-              Cancel
-            </span>
+            <span className="h-full block py-3">Cancel</span>
           </button>
         </div>
       </div>

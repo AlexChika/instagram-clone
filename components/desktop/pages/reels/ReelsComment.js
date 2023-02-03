@@ -77,6 +77,29 @@ function ReelsComment({ showModal, setShowModal }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emoji]);
 
+  useEffect(() => {
+    let placeholder = "Add a comment";
+    const textBox = textBoxRef.current;
+
+    function onFocus(e) {
+      const value = e.target.textContent;
+      value === placeholder && (e.target.textContent = "");
+    }
+
+    function onBlur(e) {
+      const value = e.target.textContent;
+      value === "" && (e.target.textContent = placeholder);
+    }
+
+    textBox.addEventListener("focus", onFocus);
+    textBox.addEventListener("blur", onBlur);
+
+    return () => {
+      textBox.removeEventListener("focus", onFocus);
+      textBox.removeEventListener("blur", onBlur);
+    };
+  }, []);
+
   // ,.......
   return (
     <div
@@ -99,48 +122,19 @@ function ReelsComment({ showModal, setShowModal }) {
             className="text-xl font-bold px-2 absolute right-[20px]"
             onClick={() => setShowModal(false)}
           >
-            {IconHOC(CloseIcon, "none")}
+            {IconHOC(CloseIcon, "none", "w-[22px] h-[22px]")}
           </button>
         </h3>
 
         {/* ----------- comments wrapper ---------- */}
-        {true ? (
-          <>
-            <section
-              onClick={(e) => {
-                setShowEmoji(false);
-              }}
-              className="px-4 pb-[70px] h-[60vh] overflow-y-auto "
-            >
-              <div>
-                <Comment wrapper={modalRef} />
-
-                {/* replies wrapper*/}
-                <div className="w-[85%] ml-auto mt-5">
-                  <button className="font-bold text-sm opacity-50">
-                    <span>__</span>
-                    <span> view replies ({"6"})</span>
-                  </button>
-
-                  {/* replies */}
-                  <div className="mt-2">
-                    <Comment wrapper={modalRef} />
-                    <Comment wrapper={modalRef} />
-                    <Comment wrapper={modalRef} />
-                    <Comment wrapper={modalRef} />
-                    <Comment wrapper={modalRef} />
-                  </div>
-                </div>
-              </div>
-            </section>
-          </>
-        ) : (
-          <>
-            <div className="h-[60vh] flex justify-center items-center">
-              <Spinner />
-            </div>
-          </>
-        )}
+        <section
+          onClick={(e) => {
+            setShowEmoji(false);
+          }}
+          className="px-4 pb-[70px] h-[60vh] overflow-y-auto "
+        >
+          <Comments wrapper={modalRef} />
+        </section>
 
         {/* ------------- Comment box ------------- */}
         <form
@@ -158,12 +152,13 @@ function ReelsComment({ showModal, setShowModal }) {
           </div>
 
           {/* input container */}
-          <div className="bg-white py-1 px-3 rounded-3xl w-[calc(100%-50px)] flex justify-around border-neutral-300 border-2">
+          <div className="bg-white dark:bg-black py-1 px-3 rounded-3xl w-[calc(100%-50px)] flex justify-around border-neutral-300 border-2">
             <h5
               onInput={handleInput}
+              placeholder="hello"
               ref={textBoxRef}
               contentEditable
-              className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] text-black min-h-[30px] max-h-[100px] outline-none font-normal"
+              className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] text-black dark:text-white min-h-[30px] max-h-[100px] z-[3] outline-none font-normal"
             ></h5>
 
             <button
@@ -178,7 +173,6 @@ function ReelsComment({ showModal, setShowModal }) {
 
             <button onClick={handleEmoji} className="text-black pointernone">
               {IconHOC(EmojiIcon, "none")}
-              {/* <EmojiIcon /> */}
             </button>
           </div>
         </form>
@@ -198,9 +192,8 @@ function ReelsComment({ showModal, setShowModal }) {
 }
 
 /* --------A Single Reels Specific Comment Component-------- */
-const Comment = ({ wrapper }) => {
+const Comment = ({ wrapper, comment }) => {
   const userModalRef = useRef(null);
-  const [showModal, setShowModal] = useState(false);
   const [liked, setLiked] = useState(false);
   const [css, setCss] = useState("scale_sideways");
 
@@ -251,7 +244,7 @@ const Comment = ({ wrapper }) => {
 
   /* ----------- Comment wrapper ----------- */
   return (
-    <article className={`flex mt-3 ${video.comment_wrapper}`}>
+    <article className={`flex mt-5 ${video.comment_wrapper}`}>
       {/* image container*/}
       <Link href="/profile" passHref>
         <a
@@ -292,7 +285,7 @@ const Comment = ({ wrapper }) => {
       {/* like button  */}
       <button
         onClick={() => setLiked(!liked)}
-        className={`w-8 flex flex-col items-center ${css} `}
+        className={`w-8 flex flex-col self-center items-center ${css} `}
       >
         {liked
           ? IconHOC(HeartIconRed, "none", "h-[20px] w-[20px] text-[red]")
@@ -389,3 +382,109 @@ const Comment = ({ wrapper }) => {
 };
 
 export default ReelsComment;
+
+/* -- Collection of comments and replies - */
+const Comments = ({ wrapper, commentsArray }) => {
+  let comments = commentsArray || [
+    {
+      comment: "some frst reply with funky texts",
+      subComments: [
+        { comment: "other replies to humour" },
+        { comment: "more replies here and there" },
+        { comment: "some more replies hmmmmmm" },
+        { comment: "additional replies out of context" },
+      ],
+    },
+    {
+      comment: "another line of comment from a kind man",
+      subComments: [],
+    },
+    {
+      comment: "just some more replies from a truh persperctive",
+      subComments: [],
+    },
+    {
+      comment: "A funny annoying replies from an ignorant lady",
+      subComments: [
+        {
+          comment: "hahhahhaa keep deceiving yourself ...",
+        },
+        {
+          comment: "not funny bro . why would you call me an idiot",
+        },
+        {
+          comment:
+            "get a life. idiot!... some one is loosing some serious patience here and there",
+        },
+      ],
+    },
+  ];
+
+  return (
+    <>
+      {comments?.length > 0 ? (
+        <div>
+          {comments.map((obj, index) => {
+            const { comment, subComments } = obj;
+            return (
+              <div key={index}>
+                <Comment wrapper={wrapper} comment={comment} />
+
+                <SubComments wrapper={wrapper} subComments={subComments} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="h-[65vh] flex justify-center items-center">
+          <Spinner />
+        </div>
+      )}
+    </>
+  );
+};
+
+// a map for comments under comments
+function SubComments({ wrapper, subComments }) {
+  const [viewReplies, setViewReplies] = useState(0);
+  const [remainingReplies, setRemainingReplies] = useState(subComments.length);
+
+  function handleViewReply() {
+    let replies = viewReplies;
+    replies = Math.min(viewReplies + 5, subComments.length);
+    setViewReplies(replies);
+  }
+
+  useEffect(() => {
+    let remaining = subComments.length - viewReplies;
+    setRemainingReplies(remaining);
+  }, [viewReplies, subComments]);
+
+  //   .................
+  return (
+    <>
+      {subComments.length > 0 && (
+        <div className="w-[85%] ml-auto mt-5">
+          <button onClick={handleViewReply}>
+            <span>__</span>
+            <span className="opacity-50">
+              view replies ({remainingReplies})
+            </span>
+          </button>
+
+          {/* replies */}
+          {viewReplies > 0 && (
+            <div>
+              {subComments.slice(0, viewReplies).map((obj, ind) => {
+                const { comment } = obj;
+                return (
+                  <Comment wrapper={wrapper} key={ind} comment={comment} />
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}

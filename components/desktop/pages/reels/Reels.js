@@ -112,6 +112,7 @@ const Reels = () => {
       />
 
       <OptionsModal
+        reels
         showModal={showOptionsModal}
         setShowModal={setShowOptionsModal}
       />
