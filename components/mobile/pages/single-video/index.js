@@ -4,6 +4,9 @@ import Nav from "../components/Nav";
 import { useRouter } from "next/router";
 import Video from "../components/Video";
 import Footer from "../components/Footer";
+import OptionsModal from "../components/OptionsModal";
+import MobileLayout from "components/mobile/layout";
+import ShareOverlay from "../share-overlay.js";
 
 const SingleVideo = () => {
   const router = useRouter();
@@ -11,6 +14,8 @@ const SingleVideo = () => {
   const [loading, setLoading] = useState(true);
   const [video, setVideo] = useState(null);
   const [id, setId] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [showShrModal, setShrOptModal] = useState(false);
 
   function mutedFn() {
     setMuted(!muted);
@@ -57,19 +62,25 @@ const SingleVideo = () => {
   }, [id]);
 
   return (
-    <div>
-      <Nav title={"Video"} />
-      <Header showExtras={true} />
-      <Video
-        id={id}
-        muted={muted}
-        muteFn={mutedFn}
-        loading={loading}
-        video={video}
-        src="/insta-vid1.mp4"
-      />
-      <Footer />
-    </div>
+    <MobileLayout showBottomNav>
+      <section className="max-w-3xl mx-auto pb-14 md:pb-3">
+        <Nav title={"Video"} />
+        <Header showModal={setShowModal} showExtras={true} />
+        <Video
+          id={id}
+          muted={muted}
+          muteFn={mutedFn}
+          loading={loading}
+          video={video}
+          src="/insta-vid1.mp4"
+        />
+        <Footer showModal={setShrOptModal} />{" "}
+      </section>
+
+      <OptionsModal showModal={showModal} setShowModal={setShowModal} />
+
+      <ShareOverlay showModal={showShrModal} setShowModal={setShrOptModal} />
+    </MobileLayout>
   );
 };
 
