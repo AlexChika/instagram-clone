@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../../components/Header";
-import Photo from "../../components/Photo";
-import Footer from "../../components/Footer";
+import Header from "../../general/Header";
+import Photo from "../../general/Photo";
+import Footer from "../../general/Footer";
 
 const PhotoPost = ({ setOptModal, setShrModal }) => {
   return (

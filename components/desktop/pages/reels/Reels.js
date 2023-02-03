@@ -2,15 +2,21 @@ import { useEffect, useState, useRef } from "react";
 import video from "./video/video.module.css";
 import SetHeight from "utils/hooks/desktopSetHight";
 import Video from "./video";
+import ReelsComment from "./ReelsComment";
+import OptionsModal from "../general/OptionsModal";
 
 // ......
 const Reels = () => {
   const ReelsREf = useRef(null);
 
-  //   local state
+  //   local state video
   const [currentVideo, setCurrentVideo] = useState(null);
   const [muted, setMuted] = useState(true);
   const [loading, setLoading] = useState(true);
+
+  // modal states
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
 
   //   functions
   function muteFn() {
@@ -82,20 +88,34 @@ const Reels = () => {
   ];
 
   return (
-    <div ref={ReelsREf} className={video.reels__wrapper}>
-      {urls.map((url, index) => {
-        return (
-          <Video
-            muted={muted}
-            loading={loading}
-            muteFn={muteFn}
-            video={currentVideo}
-            key={index}
-            url={url}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div ref={ReelsREf} className={video.reels__wrapper}>
+        {urls.map((url, index) => {
+          return (
+            <Video
+              muted={muted}
+              loading={loading}
+              muteFn={muteFn}
+              video={currentVideo}
+              key={index}
+              url={url}
+              setShowCommentModal={setShowCommentModal}
+              setShowOptionsModal={setShowOptionsModal}
+            />
+          );
+        })}
+      </div>
+
+      <ReelsComment
+        showModal={showCommentModal}
+        setShowModal={setShowCommentModal}
+      />
+
+      <OptionsModal
+        showModal={showOptionsModal}
+        setShowModal={setShowOptionsModal}
+      />
+    </>
   );
 };
 

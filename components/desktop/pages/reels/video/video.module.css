@@ -31,21 +31,8 @@
 }
 
 /* --------------------------------------- */
-/*        Buttons @ video/Buttons.js       */
+/*         Reels Comment component         */
 /* --------------------------------------- */
-
-/* ---------- options component ---------- */
-.options_btns {
-  @apply w-full block py-4 border-0 border-b border-b-gray-300 text-center;
-  border-bottom: 2px solid whitesmoke;
-}
-
-/* - share modal an options subcomponent - */
-.share_btns {
-  @apply w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50;
-}
-
-/* ---------- Comment component ---------- */
 .user_image_name {
   cursor: pointer;
 }

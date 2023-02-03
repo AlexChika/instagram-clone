@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Video from "./video";
 import video from "./video/video.module.css";
 import SetHeight from "utils/hooks/mobileSetHeight";
-import OptionsModal from "../components/OptionsModal";
+import OptionsModal from "../general/OptionsModal";
 import ReelsComment from "./ReelsComment";
 
 // app
