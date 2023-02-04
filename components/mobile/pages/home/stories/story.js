@@ -5,7 +5,10 @@ import { PlusIconRound } from "utils/icons";
 
 const Story = () => {
   return (
-    <article className="flex flex-col items-center self-center w-[64px] mr-4 ">
+    <article
+      data-name="story"
+      className="flex flex-col items-center self-center w-[64px] mr-4 "
+    >
       <div
         className={`${story.story} flex justify-center items-center rounded-full w-[64px] h-[64px]`}
       >
@@ -33,7 +36,10 @@ const UserStory = () => {
       {false ? (
         <Story />
       ) : (
-        <article className="relative flex flex-col items-center self-center w-[64px] mr-4 pointernone">
+        <article
+          data-name="story"
+          className="relative flex flex-col items-center self-center w-[64px] mr-4 pointernone"
+        >
           <button
             className={` flex justify-center items-center w-[64px] h-[64px] relative`}
           >
