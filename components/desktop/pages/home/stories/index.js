@@ -8,6 +8,7 @@ const Stories = () => {
   const [leftArrow, setLeftArrow] = useState(false);
   const [rightArrow, setRightArrow] = useState(false);
 
+  // effect for showing and hiding arrows on the story
   useEffect(() => {
     const stories = [...document.querySelectorAll("[data-name='story']")];
     let first = stories[0]; //this represent the first story element;
@@ -40,6 +41,35 @@ const Stories = () => {
     });
   }, []); //dependency when stories changes
 
+  let idx = 0;
+  const options = {
+    behavior: "smooth",
+    block: "nearest",
+    inline: "start",
+  };
+
+  function scrollLeft() {
+    const stories = [...document.querySelectorAll("[data-name='story']")];
+
+    idx = idx - 6;
+    if (idx < 0) {
+      idx = 0;
+    }
+
+    stories[idx].scrollIntoView(options);
+  }
+
+  function scrollRight() {
+    const stories = [...document.querySelectorAll("[data-name='story']")];
+
+    idx = idx + 6;
+    if (idx >= stories.length) {
+      idx = idx - 6;
+    }
+
+    stories[idx].scrollIntoView(options);
+  }
+
   // .............................
   return (
     <div
@@ -52,17 +82,21 @@ const Stories = () => {
       })}
 
       {leftArrow && (
-        <button className="sticky w-6 h-6 translate-y-[-50%] top-[50%] right-[calc(100%-40px)] p-[6px] bg-neutral-500 dark:bg-white flex items-center justify-center rounded-full">
-          <CaretLeftIcon class={"text-white dark:text-black"} />
+        <button
+          onClick={scrollLeft}
+          className="sticky w-6 h-6 translate-y-[-50%] top-[50%] right-[calc(100%-40px)] p-[6px] bg-white flex items-center justify-center rounded-full drop-shadow-lg"
+        >
+          <CaretLeftIcon class={"text-neutral-400"} />
         </button>
       )}
 
       {rightArrow && (
-        <button className=" sticky w-6 h-6 translate-y-[-50%] top-[50%] right-[20px] p-[6px] bg-neutral-500 dark:bg-white flex items-center justify-center rounded-full">
+        <button
+          onClick={scrollRight}
+          className=" sticky w-6 h-6 translate-y-[-50%] top-[50%] right-[20px] p-[6px] bg-white flex items-center justify-center rounded-full drop-shadow-lg"
+        >
           {/* serving as right icon (rotated) */}
-          <CaretLeftIcon
-            class={"rotate-[180deg] text-[transparent] dark:text-black"}
-          />
+          <CaretLeftIcon class={"rotate-[180deg] text-neutral-400"} />
         </button>
       )}
     </div>

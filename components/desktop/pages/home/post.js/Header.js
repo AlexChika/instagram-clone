@@ -8,12 +8,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ThreeDotsIcon, VerifiedIcon } from "utils/icons";
 
-const Header = ({ showModal, showExtras = false }) => {
+const Header = ({ showModal }) => {
   // .....................
   return (
     <>
       {/* -------------- Header... -------------- */}
-      <div className="flex justify-between items-center px-4 border-b border-b-slate-300 dark:border-b-gray-700">
+      <div className="flex justify-between items-center px-4">
         <div className="flex items-center py-2">
           {/* image... container*/}
           <Link href="/profile" passHref>
@@ -30,29 +30,14 @@ const Header = ({ showModal, showExtras = false }) => {
           </Link>
 
           {/* insta ... username */}
-          <p className="font-medium flex items-center">
-            <span>Alex_stars &nbsp;</span>
+          <p className="font-medium flex items-center mr-2">Dev_Arise</p>
 
-            {showExtras && (
-              <>
-                {true && (
-                  <span className="mr-1">
-                    <VerifiedIcon class="w-[14px] h-[14px]" />
-                  </span>
-                )}
+          <span
+            className="self-center mr-2 h-1 w-1 rounded-full dark:bg-neutral-300 bg-neutral-400"
+            aria-hidden
+          ></span>
 
-                {false && (
-                  <>
-                    <span
-                      aria-hidden
-                      className="bg-black block dark:bg-white rounded-full w-[5px] h-[5px] mr-1"
-                    ></span>
-                    <span>Following</span>
-                  </>
-                )}
-              </>
-            )}
-          </p>
+          <span className="dark:text-neutral-300 text-neutral-400">{"3h"}</span>
         </div>
 
         {/* dots Icon */}
@@ -65,3 +50,4 @@ const Header = ({ showModal, showExtras = false }) => {
 };
 
 export default Header;
+// border-b border-b-slate-300 dark:border-b-gray-700

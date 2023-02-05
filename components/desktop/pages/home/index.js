@@ -11,10 +11,10 @@ const DesktopHomePage = () => {
 
   return (
     <DesktopLayout NavTop={HomeNavTop}>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center pb-14 md:pb-5">
         <section className="flex justify-center">
           {/* --------- main app components --------- */}
-          <div className="max-w-[470px] w-screen h-screen lg:mr-16">
+          <div className="max-w-[470px] w-screen min-h-screen lg:mr-16">
             <Stories />
             <Post />
           </div>
