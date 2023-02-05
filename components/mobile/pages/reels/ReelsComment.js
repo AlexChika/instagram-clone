@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Comments from "../general/Comments";
 
 function ReelsComment({ showModal, setShowModal }) {
   const [comment, setComment] = useState("");
+  const textBoxRef = useRef(null);
   function closePopUp(e) {
     if (e.target !== e.currentTarget) return;
     setShowModal(false);
@@ -16,6 +17,33 @@ function ReelsComment({ showModal, setShowModal }) {
   const handleInput = (e) => {
     setComment(e.currentTarget.textContent.trim());
   };
+
+  useEffect(() => {
+    let placeholder = "Add a comment";
+    const textBox = textBoxRef.current;
+    textBox.blur();
+
+    function onFocus(e) {
+      const value = e.target.textContent;
+      value === placeholder &&
+        ((e.target.textContent = ""), e.target.classList.add("color"));
+    }
+
+    function onBlur(e) {
+      const value = e.target.textContent;
+      value === "" &&
+        ((e.target.textContent = placeholder),
+        e.target.classList.remove("color"));
+    }
+
+    textBox.addEventListener("focus", onFocus);
+    textBox.addEventListener("blur", onBlur);
+
+    return () => {
+      textBox.removeEventListener("focus", onFocus);
+      textBox.removeEventListener("blur", onBlur);
+    };
+  }, []);
 
   // ,.......
   return (
@@ -65,10 +93,13 @@ function ReelsComment({ showModal, setShowModal }) {
           {/* input container */}
           <div className="bg-white dark:bg-black py-1 px-3 rounded-3xl w-[calc(100%-50px)] flex justify-around border border-neutral-200 dark:border-neutral-800">
             <h5
+              ref={textBoxRef}
               onInput={handleInput}
               contentEditable
-              className="text-left overflow-y-auto w-[calc(100%-50px)]  min-h-[30px] max-h-[100px] outline-none font-normal"
-            ></h5>
+              className="text-left overflow-y-auto w-[calc(100%-50px)]  min-h-[30px] max-h-[100px] outline-none font-normal text-gray-500"
+            >
+              Add a comment
+            </h5>
             <button
               disabled={comment}
               className={` w-[50px] ${

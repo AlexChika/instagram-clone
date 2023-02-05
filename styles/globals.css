@@ -6,6 +6,7 @@
   --object-fit: contain;
 }
 
+/* scroll bars */
 @media screen and (max-width: 1000px) {
   ::-webkit-scrollbar {
     width: 3px;
@@ -24,6 +25,7 @@
     background: rgb(15, 50, 59);
   }
 }
+
 @media screen and (min-width: 1000px) {
   ::-webkit-scrollbar {
     width: 5px;
@@ -40,7 +42,6 @@
     background: rgb(15, 50, 59);
   }
 }
-/* background: rgb(80, 80, 114); */
 
 * {
   margin: 0;
@@ -135,6 +136,13 @@ html.dark .arrow::after {
 /* ---------------- utils ---------------- */
 .pointernone * {
   pointer-events: none;
+}
+.color {
+  color: black;
+}
+
+html.dark .color {
+  color: white;
 }
 
 /* --------------------------------------- */

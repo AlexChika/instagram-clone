@@ -77,18 +77,23 @@ function ReelsComment({ showModal, setShowModal }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emoji]);
 
+  // comment placeholder
   useEffect(() => {
     let placeholder = "Add a comment";
     const textBox = textBoxRef.current;
+    textBox.blur();
 
     function onFocus(e) {
       const value = e.target.textContent;
-      value === placeholder && (e.target.textContent = "");
+      value === placeholder &&
+        ((e.target.textContent = ""), e.target.classList.add("color"));
     }
 
     function onBlur(e) {
       const value = e.target.textContent;
-      value === "" && (e.target.textContent = placeholder);
+      value === "" &&
+        ((e.target.textContent = placeholder),
+        e.target.classList.remove("color"));
     }
 
     textBox.addEventListener("focus", onFocus);
@@ -158,8 +163,10 @@ function ReelsComment({ showModal, setShowModal }) {
               placeholder="hello"
               ref={textBoxRef}
               contentEditable
-              className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] text-black dark:text-white min-h-[30px] max-h-[100px] z-[3] outline-none font-normal"
-            ></h5>
+              className="text-left max-w- overflow-y-auto w-[calc(100%-50px)] dark:text-white min-h-[30px] max-h-[100px] z-[3] outline-none font-normal text-gray-500"
+            >
+              Add a comment
+            </h5>
 
             <button
               disabled={!comment}
