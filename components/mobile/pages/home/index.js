@@ -4,7 +4,7 @@ import HomeNavTop from "components/mobile/layout/HomeNavTop";
 import Stories from "./stories";
 import { App } from "pages/_app";
 import Post from "./post";
-import OptionsModal from "../components/OptionsModal";
+import OptionsModal from "../general/OptionsModal";
 import ShareOverlay from "../share-overlay.js";
 
 // app........

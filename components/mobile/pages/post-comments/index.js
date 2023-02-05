@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Nav from "../components/Nav";
+import Nav from "../general/Nav";
 import CommentForm from "./CommentForm";
-import Comments from "../components/Comments";
+import Comments from "../general/Comments";
 import MobileLayout from "components/mobile/layout";
 import ShareOverlay from "../share-overlay.js";
 

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import Comments from "../components/Comments";
+import Comments from "../general/Comments";
 
 function ReelsComment({ showModal, setShowModal }) {
   const [comment, setComment] = useState("");
@@ -88,35 +88,3 @@ function ReelsComment({ showModal, setShowModal }) {
 }
 
 export default ReelsComment;
-//   {
-//     true ? (
-//       <>
-//         <section className="px-4 pb-[60px] h-[65vh] overflow-y-auto">
-//           {/* comments */}
-//           <div>
-//             <Comment />
-
-//             {/* replies wrapper*/}
-//             <div className="w-[85%] ml-auto mt-5">
-//               <button>
-//                 <span>__</span>
-//                 <span> view replies ({"6"})</span>
-//               </button>
-
-//               {/* replies */}
-//               <div>
-//                 <Comment />
-//                 <Comment />
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       </>
-//     ) : (
-//       <>
-//         <div className="h-[65vh] flex justify-center items-center">
-//           <Spinner />
-//         </div>
-//       </>
-//     );
-//   }

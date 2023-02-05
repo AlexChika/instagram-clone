@@ -1,11 +1,12 @@
 import React from "react";
 
-const CaretLeftIcon = ({ color }) => {
+const CaretLeftIcon = ({ color, class: cs }) => {
   return (
     <svg
       aria-label="Back"
       color={color}
       fill="currentColor"
+      className={cs}
       style={{
         rotate: "270deg",
       }}

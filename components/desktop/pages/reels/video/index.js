@@ -20,7 +20,15 @@ const init_state = {
 }; //initial video state
 
 const Video = (props) => {
-  const { muted, muteFn, loading, url, video } = props;
+  const {
+    muted,
+    muteFn,
+    loading,
+    url,
+    video,
+    setShowCommentModal,
+    setShowOptionsModal,
+  } = props;
   const [s, dispatch] = useReducer(reducer, init_state);
   const wapperRef = useRef(null);
 
@@ -69,15 +77,17 @@ const Video = (props) => {
       </div>
 
       <div className={`w-[60px] self-end`}>
-        {s.showBtns && (
-          <Buttons
-            fullScreen={s.fullscreen}
-            fullScreen_a={a.fullscreen}
-            dispatch={dispatch}
-            liked={s.liked}
-            liked_a={a.liked}
-          />
-        )}
+        <Buttons
+          fullScreen={s.fullscreen}
+          fullScreen_a={a.fullscreen}
+          dispatch={dispatch}
+          liked={s.liked}
+          liked_a={a.liked}
+          setShowCommentModal={setShowCommentModal}
+          setShowOptionsModal={setShowOptionsModal}
+        />
+        {/* {s.showBtns && (
+        )} */}
       </div>
     </article>
   );
