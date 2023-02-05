@@ -60,7 +60,7 @@ function OptionsModal({ showModal, setShowModal, reels = false }) {
           }`}
         >
           <h4
-            className={`text-red-500 select-none border-b-2 dark:border-neutral-700 border-gray-100 font-bold py-3 text-center w-full`}
+            className={`text-red-500 select-none border-b dark:border-neutral-700 border-gray-100 font-bold py-3 text-center w-full`}
           >
             Take Action
           </h4>

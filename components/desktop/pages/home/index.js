@@ -1,39 +1,148 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import DesktopLayout from "components/desktop/layout";
 import HomeNavTop from "components/desktop/layout/HomeNavTop";
 import Stories from "./stories";
 import { App } from "pages/_app";
 import Post from "./post.js";
+import HomeEmoji from "components/general/home/HomeEmoji";
+import OptionsModal from "../general/OptionsModal";
 
 // ..........
 const DesktopHomePage = () => {
   const { changeTheme } = App();
+
+  // emoji states and refs
+  const homePageRef = useRef(null);
+  const [emoji, setEmoji] = useState("");
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [position, setPosition] = useState({});
+
+  // options modal state
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+
+  // video states
+  const [muted, setMuted] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [currentVideo, setCurrentVideo] = useState(null);
+
+  const muteFn = () => {
+    setMuted(!muted);
+  };
+
+  function handleWaiting() {
+    setLoading(true);
+  }
+
+  function handlePlaying() {
+    setLoading(false);
+  }
+
+  /* ------- autoplay observer logic ------- */
+  useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="video-post"]`)];
+    let options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.65,
+    };
+
+    function observerHandler(entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.addEventListener("waiting", handleWaiting);
+          entry.target.addEventListener("playing", handlePlaying);
+          setCurrentVideo(entry.target);
+          if (!entry.target?.dataset?.stop) entry.target.play();
+        } else {
+          entry.target.removeEventListener("waiting", handleWaiting);
+          entry.target.removeEventListener("playing", handlePlaying);
+          entry.target.pause();
+        }
+      });
+    }
+
+    let observer = new IntersectionObserver(observerHandler, options);
+
+    vid.forEach((el) => {
+      observer.observe(el);
+    });
+    return () => {};
+  }, []); //vid urls dep here later
+
+  /* -------- mute and unmute logic -------- */
+  useEffect(() => {
+    const vid = [...document.querySelectorAll(`[data-vid="video-post"]`)];
+
+    vid.forEach((vid) => {
+      vid.muted = muted;
+    });
+  }, [muted]);
+
+  // emoji effect
+  useEffect(() => {
+    if (!emoji) return;
+    const { setEmoji: set } = position;
+    if (set) {
+      set(emoji);
+      setEmoji("");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [emoji]);
 
   return (
     <DesktopLayout NavTop={HomeNavTop}>
       <div className="flex justify-center items-center pb-14 md:pb-5">
         <section className="flex justify-center">
           {/* --------- main app components --------- */}
-          <div className="max-w-[470px] w-screen min-h-screen lg:mr-16">
+          <div
+            ref={homePageRef}
+            className="max-w-[470px] w-screen min-h-screen lg:mr-16 relative"
+          >
             <Stories />
-            <Post />
+            <Post
+              video={currentVideo}
+              loading={loading}
+              muted={muted}
+              muteFn={muteFn}
+              setOptModal={setShowOptionsModal}
+              setShrModal={setShowShareModal}
+              emojis={{
+                showEmoji,
+                setShowEmoji,
+                setPosition,
+                homePageRef,
+              }}
+            />
+
+            {/* universal options modal */}
+            <OptionsModal
+              showModal={showOptionsModal}
+              setShowModal={setShowOptionsModal}
+            />
+
+            {/* universal emoji */}
+            <HomeEmoji
+              position={position}
+              showEmoji={showEmoji}
+              setEmoji={setEmoji}
+            />
           </div>
 
           {/* side items like username, about and etc */}
           <div className="w-[320px] hidden lg:block">
-            <h1>Desktop build in progress</h1> <br />
             <section className="p-[10px] pb-[54px]">
-              <h2 className="text-lg font-extrabold">App in progress 25%...</h2>
+              <h2 className="text-lg font-extrabold">App in progress 40%...</h2>
               <br />
               <h5 className="font-bold">Pages Ready for review</h5>
               <h4 className="font-medium">1. Reels 60%</h4>
-              <h4 className="font-medium">2. Home 15%</h4>
-              <h4 className="font-medium">3. Search 7%</h4>
-              <h4 className="font-medium">4. Explore 10%</h4> <br />
+              <h4 className="font-medium">1. Home 60%</h4>
+              <h4 className="font-medium">2. Search 7%</h4>
+              <h4 className="font-medium">3. Explore 10%</h4> <br />
               <h5 className="font-bold">steps to completion</h5>
-              <h4 className="font-medium">1. Building Mobile components 30%</h4>
+              <h4 className="font-medium">1. Building Mobile components 40%</h4>
               <h4 className="font-medium">
-                1. Building Desktop components 15%
+                1. Building Desktop components 20%
               </h4>
               <h4 className="font-medium">2. implementing the backend 7%</h4>
               <h4 className="font-medium">3. connecting the dots 10%</h4>
@@ -84,7 +193,7 @@ const DesktopHomePage = () => {
               <br />
               <a
                 className="text-purple-700 italic"
-                href="https://en.wikipedia.org/wiki/Blindmen_and_an_elephant"
+                href="https://en.wikipedia.org/wiki/Blind_men_and_an_elephant"
               >
                 wikipedia source..
               </a>

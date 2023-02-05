@@ -11,6 +11,7 @@ const VideoPost = ({
   muteFn,
   loading,
   video,
+  emojis,
 }) => {
   return (
     <>
@@ -22,7 +23,7 @@ const VideoPost = ({
         loading={loading}
         src="/insta-vid5.mp4"
       />
-      <Footer showModal={setShrModal} />
+      <Footer emojis={emojis} showModal={setShrModal} />
     </>
   );
 };

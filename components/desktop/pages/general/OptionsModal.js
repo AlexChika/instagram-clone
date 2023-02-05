@@ -1,5 +1,6 @@
 /* --------------------------------------- */
 /*              Options component          */
+// used at the home page and reel pages
 
 import {
   EmailShareButton,
@@ -12,6 +13,7 @@ import Link from "next/link";
 import { App } from "pages/_app";
 import { useState } from "react";
 import {
+  CloseIcon,
   EmailIcon,
   FacebookIcon,
   LinkIcon,
@@ -42,7 +44,6 @@ const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
   //   ......
   return (
     <>
-      {/* this is the first overlay of buttons like share to,copylink,cancel etc */}
       <div
         onClick={(e) => {
           if (e.target !== e.currentTarget) return;
@@ -59,7 +60,7 @@ const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
           }`}
         >
           <h4
-            className={`text-red-500 select-none font-bold dark:border-neutral-700 border-gray-100 w-full text-center h-full block py-3 border-b-2 border-0`}
+            className={`text-red-500 select-none font-bold dark:border-neutral-700 border-gray-100 w-full text-center h-full block py-3 border-b border-0`}
           >
             Take Action
           </h4>
@@ -67,13 +68,13 @@ const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
           {!reels && (
             <>
               <button className="w-full text-center font-bold">
-                <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0 text-red-500">
+                <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0 text-red-500">
                   UnFollow
                 </span>
               </button>
 
               <button className="w-full text-center">
-                <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0">
+                <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
                   Add to favourites
                 </span>
               </button>
@@ -82,7 +83,7 @@ const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
 
           <Link href="/post">
             <a className="w-full text-center">
-              <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0">
+              <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
                 Go to post
               </span>
             </a>
@@ -94,13 +95,13 @@ const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
             }}
             className={"w-full text-center"}
           >
-            <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0">
+            <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
               Share to...
             </span>
           </button>
 
           <button onClick={copyLink} className="w-full text-center">
-            <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b-2 border-0">
+            <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
               Copy link
             </span>
           </button>
@@ -171,7 +172,7 @@ function ShareModal({ params }) {
     >
       {/* .....content starts...*/}
       <section
-        className={`absolute w-[90%] max-w-[400px] dark:bg-[#414040] bg-white text-black dark:text-white rounded-xl ${
+        className={`absolute bg-white dark:bg-neutral-800 text-black dark:text-white min-w-[250px] w-[80%] max-w-[360px] rounded-xl ${
           shareModal ? "scale_down" : ""
         }`}
       >
@@ -179,13 +180,13 @@ function ShareModal({ params }) {
         <h3 className="border-b-2 dark:border-b-gray-600 border-b-gray-100 italic p-2 relative text-center">
           <span className="text-center font-semibold">Share to...</span>
           <button
-            className="text-xl font-bold px-2 absolute right-[20px]"
+            className="font-bold px-2 absolute right-[20px]"
             onClick={() => {
               setShareModal(false);
               setShowModal(false);
             }}
           >
-            X
+            {IconHOC(CloseIcon, "none", "w-5 h-5")}
           </button>
         </h3>
 
@@ -193,7 +194,7 @@ function ShareModal({ params }) {
         <section className="pb-3 h-[50vh] overflow-y-auto">
           <Link href="/messages" passHref>
             <a
-              className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
+              className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
             >
               <span className="mr-5">{IconHOC(MessagingIcon, "none")}</span>
               <h5>Share to Direct</h5>
@@ -208,7 +209,7 @@ function ShareModal({ params }) {
             blankTarget={true}
           >
             <span
-              className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
+              className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
             >
               <span className="mr-5">{IconHOC(FacebookIcon, "none")}</span>
               <h5>Share to Facebook</h5>
@@ -222,7 +223,7 @@ function ShareModal({ params }) {
             style={{ width: "100%" }}
           >
             <span
-              className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
+              className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
             >
               <span className="mr-5">{IconHOC(MessengerIcon, "none")}</span>
               <h5>Share to Messenger</h5>
@@ -237,7 +238,7 @@ function ShareModal({ params }) {
             separator=":: "
           >
             <span
-              className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
+              className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
             >
               <span className="mr-5">{IconHOC(WhatsappIcon, "none")}</span>
               <h5>Share to WhatsApp</h5>
@@ -252,7 +253,7 @@ function ShareModal({ params }) {
             blankTarget={true}
           >
             <span
-              className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
+              className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
             >
               <span className="mr-5">{IconHOC(TwitterIcon, "none")}</span>
               <h5>Share to Twitter</h5>
@@ -267,7 +268,7 @@ function ShareModal({ params }) {
             style={{ width: "100%" }}
           >
             <span
-              className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
+              className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50`}
             >
               <span className="mr-5">{IconHOC(EmailIcon, "none")}</span>
               <h5>Share via Email</h5>
@@ -275,7 +276,7 @@ function ShareModal({ params }) {
           </EmailShareButton>
 
           <button
-            className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50 `}
+            className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50 `}
             onClick={copyLink}
           >
             <span className="mr-5">{IconHOC(LinkIcon, "none")}</span>
@@ -283,7 +284,7 @@ function ShareModal({ params }) {
           </button>
 
           <button
-            className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50 `}
+            className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50 `}
             onClick={seeAll}
           >
             <span className="mr-5">
@@ -293,7 +294,7 @@ function ShareModal({ params }) {
           </button>
 
           <button
-            className={`dark:hover:bg-gray-600 w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50 `}
+            className={`dark:hover:bg-black w-full px-4 py-3 flex items-center mt-3 hover:bg-gray-50 `}
             onClick={() => {
               setShareModal(false);
               setShowModal(false);

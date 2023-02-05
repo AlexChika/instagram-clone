@@ -34,7 +34,7 @@ const Video = ({ src, muted, muteFn, video, loading, id = Math.random() }) => {
         data-id={id}
         data-vid="video-post"
         loop
-        className="w-full bg-black max-h-[82vh] md:max-h-[90vh] h-auto mx-auto object-contain"
+        className="w-full bg-black max-h-[85vh] h-auto mx-auto object-contain"
       >
         <source src={src} type="video/mp4" />
 

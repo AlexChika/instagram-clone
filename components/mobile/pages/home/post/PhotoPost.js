@@ -3,12 +3,12 @@ import Header from "../../general/Header";
 import Photo from "../../general/Photo";
 import Footer from "../../general/Footer";
 
-const PhotoPost = ({ setOptModal, setShrModal }) => {
+const PhotoPost = ({ emojis, setOptModal, setShrModal }) => {
   return (
     <>
       <Header showModal={setOptModal} />
       <Photo src="/test.jpg" />
-      <Footer showModal={setShrModal} />
+      <Footer emojis={emojis} showModal={setShrModal} />
     </>
   );
 };

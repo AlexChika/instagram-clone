@@ -30,7 +30,7 @@ const Header = ({ showModal }) => {
           </Link>
 
           {/* insta ... username */}
-          <p className="font-medium flex items-center mr-2">Dev_Arise</p>
+          <p className="font-medium flex items-center mr-2">dev_arise</p>
 
           <span
             className="self-center mr-2 h-1 w-1 rounded-full dark:bg-neutral-300 bg-neutral-400"
@@ -50,4 +50,3 @@ const Header = ({ showModal }) => {
 };
 
 export default Header;
-// border-b border-b-slate-300 dark:border-b-gray-700

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import MobileLayout from "../../layout";
 import HomeNavTop from "components/mobile/layout/HomeNavTop";
 import Stories from "./stories";
@@ -6,10 +6,17 @@ import { App } from "pages/_app";
 import Post from "./post";
 import OptionsModal from "../general/OptionsModal";
 import ShareOverlay from "../share-overlay.js";
+import HomeEmoji from "components/general/home/HomeEmoji";
 
 // app........
 const MobileHomePage = () => {
   const { changeTheme, theme } = App();
+
+  // emoji states and refs
+  const homePageRef = useRef(null);
+  const [emoji, setEmoji] = useState("");
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [position, setPosition] = useState({});
 
   // video states
   const [muted, setMuted] = useState(true);
@@ -74,10 +81,22 @@ const MobileHomePage = () => {
     });
   }, [muted]);
 
+  // emoji effect
+  useEffect(() => {
+    if (!emoji) return;
+    const { setEmoji: set } = position;
+    if (set) {
+      set(emoji);
+      setEmoji("");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [emoji]);
+
   return (
     <MobileLayout showBottomNav={true} NavTop={HomeNavTop}>
-      <section className="max-w-3xl mx-auto">
+      <section ref={homePageRef} className="max-w-[650px] mx-auto relative">
         <Stories />
+
         <Post
           video={currentVideo}
           loading={loading}
@@ -85,6 +104,19 @@ const MobileHomePage = () => {
           muteFn={muteFn}
           setOptModal={setShowOptionsModal}
           setShrModal={setShowShareModal}
+          emojis={{
+            showEmoji,
+            setShowEmoji,
+            setPosition,
+            homePageRef,
+          }}
+        />
+
+        {/* universal emoji */}
+        <HomeEmoji
+          position={position}
+          showEmoji={showEmoji}
+          setEmoji={setEmoji}
         />
       </section>
 

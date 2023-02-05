@@ -4,7 +4,7 @@
 }
 
 .options_btns span {
-  @apply h-full block py-3 border-b-2 border-0;
+  @apply h-full block py-3 border-b border-0;
 }
 
 /* - share to...an options sub component - */
