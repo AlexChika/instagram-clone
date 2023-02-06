@@ -14,14 +14,18 @@ const SinglePhoto = () => {
   // ..............
   return (
     <MobileLayout showBottomNav>
-      <section className="max-w-[735px] mx-auto pb-14 md:pb-3">
+      <section className="max-w-[725px] mx-auto pb-14 md:pb-3">
         <Nav title={"Post"} />
-        <Header showModal={setShowOptModal} showExtras={true} />
+        <Header showModal={setShowOptModal} showExtras />
         <Photo src="/alex.png" />
         <Footer showModal={setShrOptModal} />
       </section>
 
-      <OptionsModal showModal={showOptModal} setShowModal={setShowOptModal} />
+      <OptionsModal
+        showModal={showOptModal}
+        setShowModal={setShowOptModal}
+        currentPost
+      />
 
       <ShareOverlay showModal={showShrModal} setShowModal={setShrOptModal} />
     </MobileLayout>

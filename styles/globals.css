@@ -137,12 +137,19 @@ html.dark .arrow::after {
 .pointernone * {
   pointer-events: none;
 }
+
 .color {
   color: black;
 }
 
 html.dark .color {
   color: white;
+}
+
+.hide__scroll__bar::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
 }
 
 /* --------------------------------------- */

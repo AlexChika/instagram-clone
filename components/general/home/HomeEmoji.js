@@ -18,7 +18,7 @@ const HomeEmoji = ({ showEmoji, setEmoji, position }) => {
         showEmoji ? "scale_sideways block" : "hidden"
       }`}
     >
-      {showEmoji && <Emoji setEmoji={setEmoji} />}
+      <Emoji setEmoji={setEmoji} />
     </div>
   );
 };

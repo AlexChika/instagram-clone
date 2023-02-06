@@ -26,12 +26,26 @@ import {
 import IconHOC from "components/general/IconHOC";
 import { useRouter } from "next/router";
 
+/*
+Parameter Description
+1 postData : a data object containing info about the particular post being clicked on when the options button is clicked
+
+2 showModal: a state that shows or hodes the option modal
+
+3 setShowModal: a set state function that sets the state of the option modal
+
+4 reels: a boolean that determines if this options modal is used in a reels page. this is to hide some buttons in the modal that are irrelevant in the reels page
+
+4 current post: a boolean that hides the go to post button whenever we are in an individual post page since this moda is used also in the individual post page
+*/
+
 /* --------------------------------------- */
 const OptionsModal = ({
   postData = {},
   showModal,
   setShowModal,
   reels = false,
+  currentPost = false,
 }) => {
   const { notify } = App();
   const router = useRouter();
@@ -95,11 +109,13 @@ const OptionsModal = ({
             </>
           )}
 
-          <button onClick={goToPost} className="w-full text-center">
-            <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
-              Go to post
-            </span>
-          </button>
+          {!currentPost && (
+            <button onClick={goToPost} className="w-full text-center">
+              <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
+                Go to post
+              </span>
+            </button>
+          )}
 
           <button
             onClick={() => {
