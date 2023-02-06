@@ -23,7 +23,7 @@ const VideoPost = ({
         loading={loading}
         src="/insta-vid5.mp4"
       />
-      <Footer emojis={emojis} showModal={setShrModal} />
+      <Footer commentBox emojis={emojis} showModal={setShrModal} />
     </>
   );
 };

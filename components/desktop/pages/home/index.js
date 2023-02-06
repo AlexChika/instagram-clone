@@ -100,6 +100,7 @@ const DesktopHomePage = () => {
             className="max-w-[470px] w-screen min-h-screen lg:mr-16 relative"
           >
             <Stories />
+
             <Post
               video={currentVideo}
               loading={loading}

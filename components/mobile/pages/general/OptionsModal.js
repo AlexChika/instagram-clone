@@ -25,10 +25,17 @@ import {
 } from "utils/icons";
 import general from "./general.module.css";
 import IconHOC from "components/general/IconHOC";
+import { useRouter } from "next/router";
 
 // .........................
-function OptionsModal({ showModal, setShowModal, reels = false }) {
+function OptionsModal({
+  postData = {},
+  showModal,
+  setShowModal,
+  reels = false,
+}) {
   const { notify } = App();
+  const router = useRouter();
   const [shareModal, setShareModal] = useState(false);
 
   function copyLink() {
@@ -40,6 +47,13 @@ function OptionsModal({ showModal, setShowModal, reels = false }) {
     }
 
     setShowModal(false);
+  }
+
+  function goToPost() {
+    // post data or current post could be universal obj accessible to headers
+    // const { id } = postData;
+    let _id = "12345"; //temp id
+    router.push(`/p/${_id}`);
   }
 
   return (
@@ -81,13 +95,11 @@ function OptionsModal({ showModal, setShowModal, reels = false }) {
             </>
           )}
 
-          <Link href="/post">
-            <a className={general.options_btns}>
-              <span className="dark:border-neutral-700 border-gray-100">
-                Go to post
-              </span>
-            </a>
-          </Link>
+          <button onClick={goToPost} className={general.options_btns}>
+            <span className="dark:border-neutral-700 border-gray-100">
+              Go to post
+            </span>
+          </button>
 
           <button
             className={general.options_btns}

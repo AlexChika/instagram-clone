@@ -13,7 +13,7 @@ const Nav = ({ title, showModal, sharebtn = false }) => {
   const router = useRouter();
 
   return (
-    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 h-11">
+    <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-center bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 h-11">
       <div className="flex justify-between px-4 w-full py-1 max-w-3xl mx-auto">
         <button onClick={() => router.back()} className="text-xs">
           {IconHOC(CaretLeftIcon, "none")}

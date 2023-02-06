@@ -104,6 +104,3 @@ const HomeNavTop = () => {
 };
 
 export default HomeNavTop;
-// ${
-//                 plusIconDropDown ? layout.showDropDown : layout.hideDropDown
-//               }

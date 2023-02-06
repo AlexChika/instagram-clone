@@ -10,10 +10,12 @@ import ShareOverlay from "../share-overlay.js";
 const SinglePhoto = () => {
   const [showOptModal, setShowOptModal] = useState(false);
   const [showShrModal, setShrOptModal] = useState(false);
+
+  // ..............
   return (
     <MobileLayout showBottomNav>
-      <section className="max-w-3xl mx-auto pb-14 md:pb-3">
-        <Nav title={"Photo"} />
+      <section className="max-w-[735px] mx-auto pb-14 md:pb-3">
+        <Nav title={"Post"} />
         <Header showModal={setShowOptModal} showExtras={true} />
         <Photo src="/alex.png" />
         <Footer showModal={setShrOptModal} />

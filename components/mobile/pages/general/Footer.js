@@ -15,7 +15,12 @@ import {
   MessagingIcon,
 } from "utils/icons";
 
-const Footer = ({ emojis, showModal, usersComment = false }) => {
+const Footer = ({
+  emojis = {},
+  showModal,
+  commentBox = false,
+  usersComment = false,
+}) => {
   const router = useRouter();
   const { showEmoji, setShowEmoji, setPosition, homePageRef } = emojis;
 
@@ -84,6 +89,7 @@ const Footer = ({ emojis, showModal, usersComment = false }) => {
 
   // effect sets place holder text to editable element h5
   useEffect(() => {
+    if (!commentBox) return;
     let placeholder = "Add a comment";
     const textBox = textBoxRef.current;
     textBox.blur();
@@ -108,7 +114,7 @@ const Footer = ({ emojis, showModal, usersComment = false }) => {
       textBox.removeEventListener("focus", onFocus);
       textBox.removeEventListener("blur", onBlur);
     };
-  }, []);
+  }, [commentBox]);
 
   useEffect(() => {
     setAnimation("scale_sideways");
@@ -187,32 +193,34 @@ const Footer = ({ emojis, showModal, usersComment = false }) => {
         </span>
 
         {/* ------------- comment box ------------- */}
-        <div className="hidden md:block border-b border-b-neutral-200 dark:border-b-neutral-800 mt-1 w-full">
-          <div className="bg-white dark:bg-black py-1 rounded-3xl flex justify-around">
-            <h5
-              ref={textBoxRef}
-              onInput={handleInput}
-              contentEditable
-              className="text-left overflow-y-auto w-[calc(100%-50px)] min-h-[30px] max-h-[100px] outline-none font-normal text-gray-500"
-            >
-              Add a comment
-            </h5>
+        {commentBox && (
+          <div className="hidden md:block border-b border-b-neutral-200 dark:border-b-neutral-800 mt-1 w-full">
+            <div className="bg-white dark:bg-black py-1 rounded-3xl flex justify-around">
+              <h5
+                ref={textBoxRef}
+                onInput={handleInput}
+                contentEditable
+                className="text-left overflow-y-auto w-[calc(100%-50px)] min-h-[30px] max-h-[100px] outline-none font-normal text-gray-500"
+              >
+                Add a comment
+              </h5>
 
-            <button
-              disabled={comment}
-              className={`w-[50px] ${
-                comment ? "text-blue-600 opacity-1" : "opacity-0"
-              }`}
-              type="submit"
-            >
-              Post
-            </button>
+              <button
+                disabled={comment}
+                className={`w-[50px] ${
+                  comment ? "text-blue-600 opacity-1" : "opacity-0"
+                }`}
+                type="submit"
+              >
+                Post
+              </button>
 
-            <button onClick={handleEmoji} className="pointernone">
-              {IconHOC(EmojiIcon, "none", "h-4 w-4 opacity-50")}
-            </button>
+              <button onClick={handleEmoji} className="pointernone">
+                {IconHOC(EmojiIcon, "none", "h-4 w-4 opacity-50")}
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </>
   );

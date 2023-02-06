@@ -18,17 +18,17 @@ const Post = ({
       <>
         <Header showModal={setOptModal} />
         <Photo src="/test.jpg" />
-        <Footer emojis={emojis} showModal={setShrModal} />
+        <Footer commentBox emojis={emojis} showModal={setShrModal} />
       </>
       <>
         <Header showModal={setOptModal} />
         <Photo src="/alex.png" />
-        <Footer emojis={emojis} showModal={setShrModal} />
+        <Footer commentBox emojis={emojis} showModal={setShrModal} />
       </>
       <>
         <Header showModal={setOptModal} />
         <Photo src="https://images.pexels.com/photos/11534490/pexels-photo-11534490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-        <Footer emojis={emojis} showModal={setShrModal} />
+        <Footer commentBox emojis={emojis} showModal={setShrModal} />
       </>
       <>
         <Header showModal={setOptModal} />
@@ -39,7 +39,7 @@ const Post = ({
           loading={loading}
           src="/insta-vid5.mp4"
         />
-        <Footer emojis={emojis} showModal={setShrModal} />
+        <Footer commentBox emojis={emojis} showModal={setShrModal} />
       </>
       <>
         <Header showModal={setOptModal} />
@@ -50,7 +50,7 @@ const Post = ({
           loading={loading}
           src="/insta-vid1.mp4"
         />
-        <Footer emojis={emojis} showModal={setShrModal} />
+        <Footer commentBox emojis={emojis} showModal={setShrModal} />
       </>
       <>
         <Header showModal={setOptModal} />
@@ -61,12 +61,12 @@ const Post = ({
           loading={loading}
           src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         />
-        <Footer emojis={emojis} showModal={setShrModal} />
+        <Footer commentBox emojis={emojis} showModal={setShrModal} />
       </>
       <>
         <Header showModal={setOptModal} />
         <Photo src="https://images.pexels.com/photos/9898727/pexels-photo-9898727.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-        <Footer emojis={emojis} showModal={setShrModal} />
+        <Footer commentBox emojis={emojis} showModal={setShrModal} />
       </>
     </>
   );

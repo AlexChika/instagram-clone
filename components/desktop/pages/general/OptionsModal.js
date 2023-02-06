@@ -24,10 +24,17 @@ import {
   WhatsappIcon,
 } from "utils/icons";
 import IconHOC from "components/general/IconHOC";
+import { useRouter } from "next/router";
 
 /* --------------------------------------- */
-const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
+const OptionsModal = ({
+  postData = {},
+  showModal,
+  setShowModal,
+  reels = false,
+}) => {
   const { notify } = App();
+  const router = useRouter();
   const [shareModal, setShareModal] = useState(false);
 
   function copyLink() {
@@ -39,6 +46,13 @@ const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
     }
 
     setShowModal(false);
+  }
+
+  function goToPost() {
+    // post data or current post could be universal obj accessible to headers
+    // const { id } = postData;
+    let _id = "12345"; //temp id
+    router.push(`/p/${_id}`);
   }
 
   //   ......
@@ -81,13 +95,11 @@ const OptionsModal = ({ showModal, setShowModal, reels = false }) => {
             </>
           )}
 
-          <Link href="/post">
-            <a className="w-full text-center">
-              <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
-                Go to post
-              </span>
-            </a>
-          </Link>
+          <button onClick={goToPost} className="w-full text-center">
+            <span className="dark:border-neutral-700 border-gray-100 h-full block py-3 border-b border-0">
+              Go to post
+            </span>
+          </button>
 
           <button
             onClick={() => {

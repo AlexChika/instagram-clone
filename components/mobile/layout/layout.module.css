@@ -16,35 +16,3 @@
   visibility: hidden;
   transform: translateY(-100%) translateX(var(--translate-x));
 }
-
-/* map to layout/index.js */
-.main {
-  display: grid;
-  grid-template-columns: 1fr;
-  overflow-y: auto;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "body"
-    "navBottom";
-
-  position: relative;
-}
-
-.main .body {
-  grid-area: body;
-}
-
-.main .navBottom {
-  grid-area: navBottom;
-}
-
-.main .sideBar {
-  grid-area: sideBar;
-}
-
-@media screen and (min-width: 768px) {
-  .main {
-    grid-template-columns: auto 1fr;
-    grid-template-areas: "sideBar body";
-  }
-}

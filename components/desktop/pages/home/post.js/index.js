@@ -37,6 +37,18 @@ const Post = ({
 
       <>
         <Header showModal={setOptModal} />
+        <Video
+          video={video}
+          muted={muted}
+          muteFn={muteFn}
+          loading={loading}
+          src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        />
+        <Footer emojis={emojis} />
+      </>
+
+      <>
+        <Header showModal={setOptModal} />
         <div className="border dark:border-neutral-800 border-neutral-100 rounded">
           <Video
             video={video}

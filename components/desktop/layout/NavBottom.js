@@ -49,7 +49,7 @@ const _Links = [
 const NavBottom = () => {
   return (
     <div
-      className="fixed z-10 bg-white dark:bg-black bottom-0 w-full justify-around flex items-center border-t border-t-slate-300 h-[44px] py-2 px-2"
+      className="fixed z-10 bg-white dark:bg-black bottom-0 w-full justify-around flex items-center border-t border-t-slate-300 dark:border-t-gray-700 h-[44px] py-2 px-2"
       aria-label="navigation"
     >
       {_Links.map((link, index) => {

@@ -8,7 +8,7 @@ const PhotoPost = ({ emojis, setOptModal, setShrModal }) => {
     <>
       <Header showModal={setOptModal} />
       <Photo src="/test.jpg" />
-      <Footer emojis={emojis} showModal={setShrModal} />
+      <Footer commentBox emojis={emojis} showModal={setShrModal} />
     </>
   );
 };
