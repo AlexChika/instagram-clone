@@ -23,17 +23,13 @@ const Photo = ({ src }) => {
   }, [loading, size]);
 
   return (
-    <>
-      <div>
-        <Image
-          layout="responsive"
-          src={src}
-          width={imageSize.width}
-          height={imageSize.height}
-          alt="post title"
-        />
-      </div>
-    </>
+    <Image
+      layout="responsive"
+      src={src}
+      width={imageSize.width}
+      height={imageSize.height}
+      alt="post title"
+    />
   );
 };
 

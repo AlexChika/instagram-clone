@@ -2,29 +2,31 @@ import layout from "./layout.module.css";
 import NavBottom from "./NavBottom";
 import SideBar from "./SideBar";
 
-const DesktopLayout = ({ children, NavTop }) => {
+const DesktopLayout = ({ children, NavTop, showBottomNav = true }) => {
   return (
-    <main className={`${layout.main} h-screen`}>
-      {/* side bar */}
-      <div className={`${layout.sideBar} hidden md:block`}>
-        <SideBar />
-      </div>
-
+    <>
       {/* top nav bar */}
       {NavTop && (
-        <div className={`${layout.navTop} md:hidden sticky top-0 z-10`}>
+        <div
+          className={`${layout.navTop} sticky md:hidden right-0 left-0 top-0 z-10`}
+        >
           <NavTop />
         </div>
       )}
 
-      {/* body */}
-      <div className={`${layout.body} overflow-y-auto`}>{children}</div>
+      <main className="flex flex-col md:flex-row">
+        <SideBar />
+
+        <div className={`w-full`}>{children}</div>
+      </main>
 
       {/* nav bottom */}
-      <div className={`${layout.navBottom} md:hidden`}>
-        <NavBottom />
-      </div>
-    </main>
+      {showBottomNav && (
+        <div className={`md:hidden`}>
+          <NavBottom />
+        </div>
+      )}
+    </>
   );
 };
 

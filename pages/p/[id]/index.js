@@ -4,6 +4,7 @@ import { App } from "pages/_app";
 import FlashScreen from "components/general/FlashScreen";
 import _getServerSideProps from "utils/helpers/getServerSideProps";
 import MobileSinglePhoto from "components/mobile/pages/single-photo";
+import DesktopSinglePhoto from "components/desktop/pages/single-photo";
 
 // ....................
 const SinglePhotoPage = ({ isMobile }) => {
@@ -16,8 +17,11 @@ const SinglePhotoPage = ({ isMobile }) => {
 
   if (isMobile) return <MobileSinglePhoto />;
 
-  if (!isMobile) return <Error title="Sorry this page does not exist.." />;
+  if (!isMobile) return <DesktopSinglePhoto />;
 };
 
 export default SinglePhotoPage;
 export const getServerSideProps = _getServerSideProps;
+{
+  /* <Error title="Sorry this page does not exist.." />; */
+}

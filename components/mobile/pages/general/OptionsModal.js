@@ -25,10 +25,31 @@ import {
 } from "utils/icons";
 import general from "./general.module.css";
 import IconHOC from "components/general/IconHOC";
+import { useRouter } from "next/router";
+
+/*
+Parameter Description
+1 postData : a data object containing info about the particular post being clicked on when the options button is clicked
+
+2 showModal: a state that shows or hodes the option modal
+
+3 setShowModal: a set state function that sets the state of the option modal
+
+4 reels: a boolean that determines if this options modal is used in a reels page. this is to hide some buttons in the modal that are irrelevant in the reels page
+
+4 current post: a boolean that hides the go to post button whenever we are in an individual post page since this moda is used also in the individual post page
+*/
 
 // .........................
-function OptionsModal({ showModal, setShowModal, reels = false }) {
+function OptionsModal({
+  postData = {},
+  showModal,
+  setShowModal,
+  reels = false,
+  currentPost = false,
+}) {
   const { notify } = App();
+  const router = useRouter();
   const [shareModal, setShareModal] = useState(false);
 
   function copyLink() {
@@ -40,6 +61,13 @@ function OptionsModal({ showModal, setShowModal, reels = false }) {
     }
 
     setShowModal(false);
+  }
+
+  function goToPost() {
+    // post data or current post could be universal obj accessible to headers
+    // const { id } = postData;
+    let _id = "12345"; //temp id
+    router.push(`/p/${_id}`);
   }
 
   return (
@@ -81,13 +109,13 @@ function OptionsModal({ showModal, setShowModal, reels = false }) {
             </>
           )}
 
-          <Link href="/post">
-            <a className={general.options_btns}>
+          {!currentPost && (
+            <button onClick={goToPost} className={general.options_btns}>
               <span className="dark:border-neutral-700 border-gray-100">
                 Go to post
               </span>
-            </a>
-          </Link>
+            </button>
+          )}
 
           <button
             className={general.options_btns}

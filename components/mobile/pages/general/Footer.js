@@ -1,7 +1,9 @@
 /* --------------------------------------- */
 /*      Picture and Video Posts Footer     */
 /* --------------------------------------- */
-// This component is the footer for Video posts, picture posts and single vide and picture post pages
+// This component is the footer for Video posts, picture posts found in the home page
+
+// The PostPageFooter is for post footers found in individual post pages of photo posts and video posts
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
@@ -15,7 +17,12 @@ import {
   MessagingIcon,
 } from "utils/icons";
 
-const Footer = ({ emojis, showModal, usersComment = false }) => {
+const Footer = ({
+  emojis = {},
+  showModal,
+  mobile = false,
+  usersComment = false,
+}) => {
   const router = useRouter();
   const { showEmoji, setShowEmoji, setPosition, homePageRef } = emojis;
 
@@ -86,7 +93,7 @@ const Footer = ({ emojis, showModal, usersComment = false }) => {
   useEffect(() => {
     let placeholder = "Add a comment";
     const textBox = textBoxRef.current;
-    textBox.blur();
+    textBox.textContent = "Add a comment";
 
     function onFocus(e) {
       const value = e.target.textContent;

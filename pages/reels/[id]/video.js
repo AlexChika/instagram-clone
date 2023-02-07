@@ -4,6 +4,7 @@ import { App } from "pages/_app";
 import FlashScreen from "components/general/FlashScreen";
 import _getServerSideProps from "utils/helpers/getServerSideProps";
 import MobileSingleVideo from "components/mobile/pages/single-video";
+import DesktopSingleVideo from "components/desktop/pages/single-video";
 
 // ....................
 const SingleVideoPage = ({ isMobile }) => {
@@ -16,7 +17,7 @@ const SingleVideoPage = ({ isMobile }) => {
 
   if (isMobile) return <MobileSingleVideo />;
 
-  if (!isMobile) return <Error title="Sorry this page does not exist.." />;
+  if (!isMobile) return <DesktopSingleVideo />;
 };
 
 export default SingleVideoPage;

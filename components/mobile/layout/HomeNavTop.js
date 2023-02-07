@@ -47,13 +47,13 @@ const HomeNavTop = () => {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-10 flex items-center justify-center bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 h-11">
+    <nav className="flex items-center justify-center bg-white dark:bg-black border-b border-b-slate-300 dark:border-b-gray-700 h-11">
       <div className="flex justify-between items-center relative w-full max-w-3xl mx-auto">
         {/* left - side => insta logo container*/}
         <div
           ref={instaLogoCon}
           onClick={() => setLogoDropDown(true)}
-          className={`flex items-center cursor-pointer px-4 ${layout.pointerNone}`}
+          className={`flex items-center cursor-pointer px-4 pointernone`}
         >
           <span>{IconHOC(InstaLogo, "none")}</span>
           <span aria-hidden="true" className="pl-2 -mt-1">
@@ -64,7 +64,7 @@ const HomeNavTop = () => {
         {/* right side icons */}
         <div className="relative flex justify-between items-center w-16 mr-6">
           <span
-            className={`cursor-pointer ${layout.pointerNone}`}
+            className={`cursor-pointer pointernone`}
             onClick={() => setPlusIconDropDown(true)}
             ref={plusIconCon}
           >

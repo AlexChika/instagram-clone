@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import Header from "../general/Header";
-import Nav from "../general/Nav";
-import Video from "../general/Video";
-import Footer from "../general/PostPageFooter";
-import Comments from "../general/Comments";
+import DesktopLayout from "components/desktop/layout";
+import Header from "components/mobile/pages/general/Header";
+import Nav from "components/mobile/pages/general/Nav";
 import OptionsModal from "../general/OptionsModal";
-import MobileLayout from "components/mobile/layout";
-import ShareOverlay from "../share-overlay.js";
+// import ShareOverlay from "../share-overlay.js";
+import Footer from "components/mobile/pages/general/PostPageFooter";
+import Comments from "components/mobile/pages/general/Comments";
+import Video from "components/mobile/pages/general/Video";
+import Link from "next/link";
+import Image from "next/image";
+import IconHOC from "components/general/IconHOC";
+import { ReelsWhiteIcon, CommentIcon, HeartIcon } from "utils/icons";
 
 const SingleVideo = () => {
   const router = useRouter();
@@ -103,8 +107,9 @@ const SingleVideo = () => {
     };
   }, []);
 
+  // .......................
   return (
-    <MobileLayout showBottomNav>
+    <DesktopLayout>
       <div className="min-[725px]:w-[95%] max-w-[815px] mx-auto top-0 z-[5] sticky">
         <Nav title={"Video"} />
       </div>
@@ -121,7 +126,8 @@ const SingleVideo = () => {
             video={video}
             src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
           />
-          <Footer showModal={setShrOptModal} />
+          {/* <Footer showModal={setShrOptModal} /> */}
+          <Footer />
         </section>
       )}
 
@@ -158,11 +164,15 @@ const SingleVideo = () => {
               </div>
 
               <div className="border-b border-b-slate-300 dark:border-b-neutral-700">
-                <Footer commentBox showModal={setShrOptModal} />
+                {/* <Footer showModal={setShrOptModal} /> */}
+                <Footer commentBox />
               </div>
             </article>
           </section>
         )}
+
+        {/* ----- more posts from same account ---- */}
+        <MorePost />
       </div>
 
       <OptionsModal
@@ -171,9 +181,63 @@ const SingleVideo = () => {
         currentPost
       />
 
-      <ShareOverlay showModal={showShrModal} setShowModal={setShrOptModal} />
-    </MobileLayout>
+      {/* <ShareOverlay showModal={showShrModal} setShowModal={setShrOptModal} /> */}
+    </DesktopLayout>
   );
 };
 
 export default SingleVideo;
+
+function MorePost() {
+  return (
+    <section className="max-w-[815px] mx-auto pt-10 my-10 border-t border-t-slate-300 dark:border-t-neutral-700">
+      <p className="mb-3">
+        <span className="opacity-50 mr-1">More posts from</span>
+        <span className="font-semi-bold">{"dev_arise"}</span>
+      </p>
+
+      <div className="grid grid-cols-3 gap-3">
+        {[1, 2, 3, 4, 5, 6].map((data, ind) => {
+          return <MorePostCard key={ind} ind={ind} />;
+        })}
+      </div>
+    </section>
+  );
+}
+
+function MorePostCard({ ind, src }) {
+  useEffect(() => {
+    //   first check if link is video or post photo and manipulate the link
+
+    return () => {
+      // second
+    };
+  }, []);
+
+  return (
+    <Link href={`/reels/${ind}/video`} passHref>
+      <a className="relative aspect-square group">
+        <Image layout="fill" src="/test.jpg" alt="some text here" />
+
+        <div className="bg-[rgba(0,0,0,0.2)] absolute top-0 bottom-0 left-0 right-0 z-[2] flex justify-center items-center invisible group-hover:visible">
+          <div className="flex">
+            <span className="text-white flex items-center font-bold mr-2">
+              {IconHOC(HeartIcon, "none", "text-white mr-1")} {"300"}
+            </span>
+
+            <span className="text-white flex items-center font-bold ml-2">
+              {IconHOC(CommentIcon, "none", "text-white mr-1")} {"300"}
+            </span>
+          </div>
+        </div>
+
+        {/* if card is  a video */}
+        <span className="absolute z-[3] top-[10px] left-[10px]">
+          {IconHOC(ReelsWhiteIcon, "none", "drop-shadow-lg")}
+        </span>
+      </a>
+    </Link>
+  );
+}
+
+export { MorePost };

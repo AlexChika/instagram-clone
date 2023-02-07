@@ -1,12 +1,12 @@
+import DesktopLayout from "components/desktop/layout";
+import Header from "components/mobile/pages/general/Header";
+import Nav from "components/mobile/pages/general/Nav";
 import React, { useState, useEffect, useRef } from "react";
-import Photo from "../general/Photo";
-import Header from "../general/Header";
-import Footer from "../general/PostPageFooter";
-import Nav from "../general/Nav";
 import OptionsModal from "../general/OptionsModal";
-import MobileLayout from "components/mobile/layout";
-import ShareOverlay from "../share-overlay.js";
-import Comments from "../general/Comments";
+import Photo from "components/mobile/pages/general/Photo";
+import Footer from "components/mobile/pages/general/PostPageFooter";
+import Comments from "components/mobile/pages/general/Comments";
+import { MorePost } from "../single-video";
 
 const SinglePhoto = () => {
   const [showOptModal, setShowOptModal] = useState(false);
@@ -32,22 +32,24 @@ const SinglePhoto = () => {
       call();
     }, 500);
   });
-  // ..............
+
+  // .......................
   return (
-    <MobileLayout showBottomNav>
+    <DesktopLayout>
       <div className="min-[725px]:w-[95%] max-w-[815px] mx-auto top-0 z-[5] sticky">
         <Nav title={"Post"} />
       </div>
 
       {/* ------------ mobile screens ----------- */}
-      <section className="min-[725px]:hidden pb-[54px] max-w-[725px] mx-auto">
+      <section className="min-[725px]:hidden pb-[44px] max-w-[725px] mx-auto">
         <Header showModal={setShowOptModal} showExtras />
         <Photo src="/alex.png" />
-        <Footer showModal={setShrOptModal} />
+        {/* <Footer showModal={setShrOptModal} /> */}
+        <Footer />
       </section>
 
       {/* ---------- tablet and desktop --------- */}
-      <div className="px-5 pb-2">
+      <div className="px-5">
         <section className="hidden min-[725px]:flex max-w-[815px] mx-auto mt-5 w-full border border-slate-300 dark:border-neutral-700">
           {/* -------------- post photo ------------- */}
           <article
@@ -55,6 +57,7 @@ const SinglePhoto = () => {
             className="w-[58%] min-h-[450px] self-center"
           >
             <Photo src="/insta-icon-svg.svg" />
+            {/* <Photo src="/test.jpg" /> */}
           </article>
 
           {/* ------------- post details ------------ */}
@@ -70,10 +73,14 @@ const SinglePhoto = () => {
             </div>
 
             <div className="border-b border-b-slate-300 dark:border-b-neutral-700">
-              <Footer commentBox showModal={setShrOptModal} />
+              {/* <Footer showModal={setShrOptModal} /> */}
+              <Footer commentBox />
             </div>
           </article>
         </section>
+
+        {/* ----- more posts from same account ---- */}
+        <MorePost />
       </div>
 
       <OptionsModal
@@ -82,8 +89,8 @@ const SinglePhoto = () => {
         currentPost
       />
 
-      <ShareOverlay showModal={showShrModal} setShowModal={setShrOptModal} />
-    </MobileLayout>
+      {/* <ShareOverlay showModal={showShrModal} setShowModal={setShrOptModal} /> */}
+    </DesktopLayout>
   );
 };
 
