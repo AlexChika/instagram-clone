@@ -18,7 +18,7 @@ import {
 } from "utils/icons";
 import Emoji from "components/general/Emoji";
 
-const PostPageFooter = ({ showModal }) => {
+const PostPageFooter = ({ showModal, commentBox = false }) => {
   const router = useRouter();
   const [showEmoji, setShowEmoji] = useState(false);
 
@@ -27,7 +27,6 @@ const PostPageFooter = ({ showModal }) => {
   const [liked, setLiked] = useState(false);
 
   //   comment box and emoji states and refs
-  const textBoxRef = useRef(null);
   const emojiModalRef = useRef(null);
   const [comment, setComment] = useState(""); //user comment
   const [emoji, setEmoji] = useState(""); //emoji character
@@ -102,7 +101,7 @@ const PostPageFooter = ({ showModal }) => {
   return (
     <>
       {/* -------------- icons wrap ------------- */}
-      <section className="flex justify-between items-center px-4 py-3 mt-1">
+      <section className="flex justify-between items-center px-4 py-2 mt-1">
         <div>
           <button onClick={likePost} className={`mr-3 ${animation}`}>
             {liked
@@ -123,7 +122,7 @@ const PostPageFooter = ({ showModal }) => {
       </section>
 
       {/* ---------- likes and comments --------- */}
-      <section className="px-4 flex flex-col items-start mb-4">
+      <section className="px-4 flex flex-col items-start py2">
         <span className="font-semibold">{"923,00"} likes</span>
 
         {/* ---------- view all comments ---------- */}
@@ -136,28 +135,31 @@ const PostPageFooter = ({ showModal }) => {
       </section>
 
       {/* ------------- comment box ------------- */}
-      <div className="flex items-center px-3 border-t border-t-slate-300 dark:border-t-neutral-700 w-full">
-        <button onClick={handleEmoji}>
-          {IconHOC(EmojiIcon, "none", "h-5 w-5")}
-        </button>
+      {commentBox && (
+        <div className="flex items-center px-3 border-t mt-2 border-t-slate-300 dark:border-t-neutral-700 w-full">
+          <button onClick={handleEmoji}>
+            {IconHOC(EmojiIcon, "none", "h-5 w-5")}
+          </button>
 
-        <textarea
-          onChange={handleInput}
-          value={comment}
-          className="resize-none flex flex-grow hide__scroll__bar max-h-[80px] h-[40px] p-0 w-full px-2 overflow-y-auto"
-          placeholder="Add a comment..."
-        ></textarea>
+          <textarea
+            // rows="1.5"
+            onChange={handleInput}
+            value={comment}
+            className="resize-none hide__scroll__bar p-0 w-full px-2 pt-4 "
+            placeholder="Add a comment..."
+          ></textarea>
 
-        <button
-          disabled={comment}
-          className={`w-[50px] p-2 ${
-            comment ? "text-blue-600" : "text-blue-200"
-          }`}
-          type="submit"
-        >
-          Post
-        </button>
-      </div>
+          <button
+            disabled={comment}
+            className={`w-[50px] ${
+              comment ? "text-blue-600" : "text-blue-200"
+            }`}
+            type="submit"
+          >
+            Post
+          </button>
+        </div>
+      )}
 
       {/* ------------- emoji modal ------------- */}
       <div
@@ -171,27 +173,4 @@ const PostPageFooter = ({ showModal }) => {
 };
 
 export default PostPageFooter;
-
-//  {
-//    /* ------------- UserComment  ------------ */
-//  }
-//  {
-//    usersComment && (
-//      <div>
-//        <span className="font-semibold">{"User's_name"} &nbsp;</span>
-//        {fullComment ? (
-//          <span>{str}</span>
-//        ) : (
-//          <span>
-//            {str.substring(0, 50)} <br />
-//            <button
-//              onClick={() => setFullComment(true)}
-//              className="text-neutral-500"
-//            >
-//              ...more
-//            </button>
-//          </span>
-//        )}
-//      </div>
-//    );
-//  }
+// max-h-[80px] h-[40px] resize-none
