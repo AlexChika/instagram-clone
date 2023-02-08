@@ -22,6 +22,3 @@ const SinglePhotoPage = ({ isMobile }) => {
 
 export default SinglePhotoPage;
 export const getServerSideProps = _getServerSideProps;
-{
-  /* <Error title="Sorry this page does not exist.." />; */
-}

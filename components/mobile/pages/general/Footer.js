@@ -17,12 +17,7 @@ import {
   MessagingIcon,
 } from "utils/icons";
 
-const Footer = ({
-  emojis = {},
-  showModal,
-  mobile = false,
-  usersComment = false,
-}) => {
+const Footer = ({ emojis = {}, showModal, usersComment = false }) => {
   const router = useRouter();
   const { showEmoji, setShowEmoji, setPosition, homePageRef } = emojis;
 

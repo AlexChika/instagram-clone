@@ -23,9 +23,9 @@ const Footer = ({ emojis, showModal, usersComment = true }) => {
   const textBoxRef = useRef(null);
   const [comment, setComment] = useState(""); //user comment
   const [emoji, setEmoji] = useState(""); //emoji character
+
   function goToComments() {
-    let url = `/p/${id}/comments`;
-    router.push(url);
+    setCommentModal(true);
   }
 
   function likePost() {
@@ -132,6 +132,7 @@ const Footer = ({ emojis, showModal, usersComment = true }) => {
 
   let str =
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, praesentium.";
+
   return (
     <>
       {/* -------------- icons wrap ------------- */}

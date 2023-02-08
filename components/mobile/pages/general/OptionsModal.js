@@ -77,7 +77,7 @@ function OptionsModal({
           if (e.target !== e.currentTarget) return;
           setShowModal(false);
         }}
-        className={`fixed bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-[3] flex justify-center items-center  ${
+        className={`fixed bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-50 red flex justify-center items-center  ${
           showModal ? "flex" : "hidden"
         }`}
       >
@@ -191,7 +191,7 @@ function ShareModal({ params }) {
   return (
     <div
       onClick={closePopUp}
-      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[6] transition-opacity ${
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-50 transition-opacity ${
         shareModal ? "opacity-1 visible" : "opacity-0 invisible"
       }`}
     >

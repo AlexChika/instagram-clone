@@ -6,6 +6,7 @@ import { App } from "pages/_app";
 import Post from "./post.js";
 import HomeEmoji from "components/general/home/HomeEmoji";
 import OptionsModal from "../general/OptionsModal";
+import PostComments from "../post-comments";
 
 // ..........
 const DesktopHomePage = () => {
@@ -115,6 +116,8 @@ const DesktopHomePage = () => {
                 homePageRef,
               }}
             />
+
+            <PostComments />
 
             {/* universal options modal */}
             <OptionsModal
