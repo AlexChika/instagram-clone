@@ -4,7 +4,7 @@ import PhotoComments from "./PhotoComments";
 let url =
   process.env.NODE_ENV == "development"
     ? "http://localhost:3000/"
-    : "https://insta-cloned/";
+    : "https://insta-cloned.vercel.app";
 
 const PostComments = ({ postData, showModal, setShowModal }) => {
   function closeModal(e) {
