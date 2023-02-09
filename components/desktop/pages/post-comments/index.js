@@ -37,3 +37,4 @@ const PostComments = ({ postData, showModal, setShowModal }) => {
 };
 
 export default PostComments;
+export { default as DesktopPostComments } from "./CommentRedirect";
