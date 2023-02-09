@@ -12,7 +12,7 @@ import {
 let base =
   process.env.NODE_ENV == "development"
     ? "http://localhost:3000"
-    : "https://insta-cloned";
+    : "https://insta-cloned.vercel.app";
 
 const Footer = ({ emojis, shareModal, commentModal, usersComment = true }) => {
   const { showEmoji, setShowEmoji, setPosition, homePageRef } = emojis;
