@@ -31,11 +31,6 @@ const PostPageFooter = ({ showModal, commentBox = false }) => {
   const [comment, setComment] = useState(""); //user comment
   const [emoji, setEmoji] = useState(""); //emoji character
 
-  function goToComments() {
-    let url = `/p/${id}/comments`;
-    router.push(url);
-  }
-
   function likePost() {
     setLiked(!liked);
   }
@@ -109,9 +104,7 @@ const PostPageFooter = ({ showModal, commentBox = false }) => {
               : IconHOC(HeartIcon, "none")}
           </button>
 
-          <button onClick={goToComments} className="mr-3">
-            {IconHOC(CommentIcon, "none")}
-          </button>
+          <button className="mr-3">{IconHOC(CommentIcon, "none")}</button>
 
           <button onClick={() => showModal(true)} className="mr-3">
             {IconHOC(MessagingIcon, "none")}
@@ -126,9 +119,7 @@ const PostPageFooter = ({ showModal, commentBox = false }) => {
         <span className="font-semibold">{"923,00"} likes</span>
 
         {/* ---------- view all comments ---------- */}
-        <button onClick={goToComments} className="text-neutral-500">
-          view all {"20"} comments
-        </button>
+        <button className="text-neutral-500">view all {"20"} comments</button>
         <span className="text-neutral-500 uppercase text-[11px]">
           3 hours ago
         </span>

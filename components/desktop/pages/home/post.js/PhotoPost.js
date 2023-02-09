@@ -3,13 +3,16 @@ import Header from "./Header";
 import Photo from "components/mobile/pages/general/Photo";
 import Footer from "./Footer";
 
-const PhotoPost = ({ emojis, setOptModal, setShrModal }) => {
+const PhotoPost = ({ emojis, setCmtModal, setOptModal, setShrModal }) => {
   return (
     <>
       <Header showModal={setOptModal} />
       <Photo src="/test.jpg" />
-      {/* <Footer emojis={emojis} showModal={setShrModal} /> */}
-      <Footer emojis={emojis} />
+      <Footer
+        shareModal={setShrModal}
+        commentModal={setCmtModal}
+        emojis={emojis}
+      />
     </>
   );
 };

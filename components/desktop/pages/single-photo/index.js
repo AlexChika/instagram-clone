@@ -17,6 +17,7 @@ const SinglePhoto = () => {
 
   useEffect(() => {
     function call() {
+      if (!photoWrapper.current || !commentWrapper.current) return;
       let height = photoWrapper.current.getBoundingClientRect().height;
 
       let commentHeight = height - 235;
@@ -24,7 +25,7 @@ const SinglePhoto = () => {
     }
 
     let interval;
-    let count = 1;
+    let count = 0;
     interval = setInterval(() => {
       count++;
 
@@ -44,8 +45,7 @@ const SinglePhoto = () => {
       <section className="min-[725px]:hidden pb-[44px] max-w-[725px] mx-auto">
         <Header showModal={setShowOptModal} showExtras />
         <Photo src="/alex.png" />
-        {/* <Footer showModal={setShrOptModal} /> */}
-        <Footer />
+        <Footer showModal={setShrOptModal} />
       </section>
 
       {/* ---------- tablet and desktop --------- */}
@@ -73,8 +73,7 @@ const SinglePhoto = () => {
             </div>
 
             <div className="border-b border-b-slate-300 dark:border-b-neutral-700">
-              {/* <Footer showModal={setShrOptModal} /> */}
-              <Footer commentBox />
+              <Footer commentBox showModal={setShrOptModal} />
             </div>
           </article>
         </section>

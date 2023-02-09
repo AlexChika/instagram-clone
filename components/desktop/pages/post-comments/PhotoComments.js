@@ -14,21 +14,23 @@ function PhotoComments() {
 
   useEffect(() => {
     function call() {
-      let height = photoWrapper.current.getBoundingClientRect().height;
+      if (!photoWrapper.current || !commentWrapper.current) return;
+
+      let height = photoWrapper.current?.getBoundingClientRect()?.height;
 
       let commentHeight = height - 235;
       commentWrapper.current.style.height = `${commentHeight}px`;
     }
 
     let interval;
-    let count = 1;
+    let count = 0;
     interval = setInterval(() => {
       count++;
 
       if (count > 2) clearInterval(interval);
       call();
     }, 500);
-  });
+  }, []);
 
   return (
     <>

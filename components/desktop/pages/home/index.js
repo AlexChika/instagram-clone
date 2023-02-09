@@ -20,6 +20,7 @@ const DesktopHomePage = () => {
 
   // options modal state
   const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
 
   // video states
@@ -109,6 +110,7 @@ const DesktopHomePage = () => {
               muteFn={muteFn}
               setOptModal={setShowOptionsModal}
               setShrModal={setShowShareModal}
+              setCmtModal={setShowCommentModal}
               emojis={{
                 showEmoji,
                 setShowEmoji,
@@ -117,7 +119,10 @@ const DesktopHomePage = () => {
               }}
             />
 
-            <PostComments />
+            <PostComments
+              showModal={showCommentModal}
+              setShowModal={setShowCommentModal}
+            />
 
             {/* universal options modal */}
             <OptionsModal

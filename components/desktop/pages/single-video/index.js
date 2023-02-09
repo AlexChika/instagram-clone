@@ -49,35 +49,37 @@ const SingleVideo = () => {
 
   //   mute and unmute fn
   useEffect(() => {
-    const _video = document.querySelector(`[data-id="${id}"]`);
-    if (_video) {
-      _video.muted = muted;
-    }
-  }, [muted, id, width]);
+    const videos = [...document.querySelectorAll(`[data-id="video_comments"]`)];
+
+    videos.forEach((video) => {
+      video.muted = muted;
+    });
+  }, [muted]);
 
   /* -------- video event listeners -------- */
   useEffect(() => {
-    const _video = document.querySelector(`[data-id="${id}"]`);
+    const videos = [...document.querySelectorAll(`[data-id="video_comments"]`)];
 
-    if (!_video) return;
-    setVideo(_video);
+    videos.forEach((video) => {
+      video.pause();
+      video.addEventListener("playing", handlePlaying);
+      video.addEventListener("waiting", handleWaiting);
+    });
 
-    _video.play();
-
-    _video.addEventListener("playing", handlePlaying);
-    _video.addEventListener("waiting", handleWaiting);
+    video?.play(); //video set on the state
 
     return () => {
-      _video.removeEventListener("playing", handlePlaying);
-      _video.removeEventListener("waiting", handleWaiting);
+      videos.forEach((video) => {
+        video.removeEventListener("playing", handlePlaying);
+        video.removeEventListener("waiting", handleWaiting);
+      });
     };
-  }, [id, width]);
+  }, [video]);
 
   //   effect sets the height of
   useEffect(() => {
     function call() {
-      if (width < 725) return;
-
+      if (!VideoWrapper.current || !commentWrapper.current) return;
       let height = VideoWrapper.current?.getBoundingClientRect()?.height;
 
       let commentHeight = height - 235;
@@ -95,11 +97,18 @@ const SingleVideo = () => {
   }, [width]);
 
   useEffect(() => {
-    setWidth(window.innerWidth);
+    const videos = [...document.querySelectorAll(`[data-id="video_comments"]`)];
 
     function handleResize() {
       setWidth(window.innerWidth);
+      if (window.innerWidth < 725) {
+        setVideo(videos[0]);
+      } else {
+        setVideo(videos[1]);
+      }
     }
+
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -115,61 +124,54 @@ const SingleVideo = () => {
       </div>
 
       {/* ------------ mobile screens ----------- */}
-      {width < 725 && (
-        <section className="min-[725px]:hidden pb-[44px] max-w-[725px] mx-auto">
-          <Header showModal={setShowOptModal} showExtras />
-          <Video
-            id={id}
-            muted={muted}
-            muteFn={mutedFn}
-            loading={loading}
-            video={video}
-            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-          />
-          {/* <Footer showModal={setShrOptModal} /> */}
-          <Footer />
-        </section>
-      )}
+      <section className="min-[725px]:hidden pb-[44px] max-w-[725px] mx-auto">
+        <Header showModal={setShowOptModal} showExtras />
+        <Video
+          id={"video_comments"}
+          muted={muted}
+          muteFn={mutedFn}
+          loading={loading}
+          video={video}
+          src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        />
+        <Footer showModal={setShrOptModal} />
+      </section>
 
       {/* ---------- tablet and desktop --------- */}
       <div className="px-5">
-        {width > 725 && (
-          <section className="hidden min-[725px]:flex max-w-[815px] mx-auto mt-5 w-full border border-slate-300 dark:border-neutral-700">
-            {/* -------------- post video ------------- */}
-            <article
-              ref={VideoWrapper}
-              className="w-[58%] min-h-[450px] flex items-center justify-center self-center"
+        <section className="hidden min-[725px]:flex max-w-[815px] mx-auto mt-5 w-full border border-slate-300 dark:border-neutral-700">
+          {/* -------------- post video ------------- */}
+          <article
+            ref={VideoWrapper}
+            className="w-[58%] min-h-[450px] flex items-center justify-center self-center"
+          >
+            <Video
+              id={"video_comments"}
+              muted={muted}
+              muteFn={mutedFn}
+              loading={loading}
+              video={video}
+              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            />
+          </article>
+
+          {/* ------------- post details ------------ */}
+          <article className="w-[42%] border-l border-l-slate-300 dark:border-l-gray-700 ">
+            <Header showModal={setShowOptModal} showExtras />
+
+            {/* ------------ post comments ------------ */}
+            <div
+              ref={commentWrapper}
+              className="overflow-y-auto hide__scroll__bar px-4 py-1 border-b border-b-slate-300 dark:border-b-neutral-700"
             >
-              <Video
-                id={id}
-                muted={muted}
-                muteFn={mutedFn}
-                loading={loading}
-                video={video}
-                //   src="/insta-vid1.mp4"
-                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-              />
-            </article>
+              <Comments />
+            </div>
 
-            {/* ------------- post details ------------ */}
-            <article className="w-[42%] border-l border-l-slate-300 dark:border-l-gray-700 ">
-              <Header showModal={setShowOptModal} showExtras />
-
-              {/* ------------ post comments ------------ */}
-              <div
-                ref={commentWrapper}
-                className="overflow-y-auto hide__scroll__bar px-4 py-1 border-b border-b-slate-300 dark:border-b-neutral-700"
-              >
-                <Comments />
-              </div>
-
-              <div className="border-b border-b-slate-300 dark:border-b-neutral-700">
-                {/* <Footer showModal={setShrOptModal} /> */}
-                <Footer commentBox />
-              </div>
-            </article>
-          </section>
-        )}
+            <div className="border-b border-b-slate-300 dark:border-b-neutral-700">
+              <Footer commentBox showModal={setShrOptModal} />
+            </div>
+          </article>
+        </section>
 
         {/* ----- more posts from same account ---- */}
         <MorePost />
