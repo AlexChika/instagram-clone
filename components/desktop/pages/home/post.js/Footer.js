@@ -9,8 +9,12 @@ import {
   HeartIconRed,
   MessagingIcon,
 } from "utils/icons";
+let base =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:3000"
+    : "https://insta-cloned";
 
-const Footer = ({ emojis, showModal, usersComment = true }) => {
+const Footer = ({ emojis, shareModal, commentModal, usersComment = true }) => {
   const { showEmoji, setShowEmoji, setPosition, homePageRef } = emojis;
 
   const router = useRouter();
@@ -23,9 +27,16 @@ const Footer = ({ emojis, showModal, usersComment = true }) => {
   const textBoxRef = useRef(null);
   const [comment, setComment] = useState(""); //user comment
   const [emoji, setEmoji] = useState(""); //emoji character
+
   function goToComments() {
-    let url = `/p/${id}/comments`;
-    router.push(url);
+    let state = {};
+    let id = 123;
+    let title = "post title here";
+    const url = `${base}/p/${id}`;
+    console.log(url);
+    window.history.pushState(state, title, url);
+
+    commentModal(true);
   }
 
   function likePost() {
@@ -132,6 +143,7 @@ const Footer = ({ emojis, showModal, usersComment = true }) => {
 
   let str =
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, praesentium.";
+
   return (
     <>
       {/* -------------- icons wrap ------------- */}
@@ -147,7 +159,7 @@ const Footer = ({ emojis, showModal, usersComment = true }) => {
             {IconHOC(CommentIcon, "none")}
           </button>
 
-          <button onClick={() => showModal(true)} className="mr-3">
+          <button onClick={() => shareModal(true)} className="mr-3">
             {IconHOC(MessagingIcon, "none")}
           </button>
         </div>

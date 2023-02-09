@@ -77,7 +77,7 @@ const OptionsModal = ({
           if (e.target !== e.currentTarget) return;
           setShowModal(false);
         }}
-        className={`fixed bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-[5] flex justify-center items-center  ${
+        className={`fixed bg-[#000000cc] top-0 left-0 bottom-0 right-0 z-50 flex justify-center items-center  ${
           showModal ? "flex" : "hidden"
         }`}
       >
@@ -194,7 +194,7 @@ function ShareModal({ params }) {
   return (
     <div
       onClick={closePopUp}
-      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-[5] flex justify-center items-center ${
+      className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000080] dark:bg-[#000000cc] z-50 flex justify-center items-center ${
         shareModal ? "flex" : "hidden"
       }`}
     >

@@ -6,6 +6,7 @@ import { App } from "pages/_app";
 import Post from "./post.js";
 import HomeEmoji from "components/general/home/HomeEmoji";
 import OptionsModal from "../general/OptionsModal";
+import PostComments from "../post-comments";
 
 // ..........
 const DesktopHomePage = () => {
@@ -19,6 +20,7 @@ const DesktopHomePage = () => {
 
   // options modal state
   const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
 
   // video states
@@ -108,12 +110,18 @@ const DesktopHomePage = () => {
               muteFn={muteFn}
               setOptModal={setShowOptionsModal}
               setShrModal={setShowShareModal}
+              setCmtModal={setShowCommentModal}
               emojis={{
                 showEmoji,
                 setShowEmoji,
                 setPosition,
                 homePageRef,
               }}
+            />
+
+            <PostComments
+              showModal={showCommentModal}
+              setShowModal={setShowCommentModal}
             />
 
             {/* universal options modal */}

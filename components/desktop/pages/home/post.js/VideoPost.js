@@ -7,6 +7,7 @@ const VideoPost = ({
   src,
   setShrModal,
   setOptModal,
+  setCmtModal,
   muted,
   muteFn,
   loading,
@@ -23,8 +24,11 @@ const VideoPost = ({
         loading={loading}
         src="/insta-vid5.mp4"
       />
-      {/* <Footer emojis={emojis} showModal={setShrModal} /> */}
-      <Footer emojis={emojis} />
+      <Footer
+        shareModal={setShrModal}
+        commentModal={setCmtModal}
+        emojis={emojis}
+      />
     </>
   );
 };

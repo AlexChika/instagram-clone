@@ -11,6 +11,7 @@ const Post = ({
   video,
   setOptModal,
   setShrModal,
+  setCmtModal,
   emojis,
 }) => {
   return (
@@ -20,7 +21,11 @@ const Post = ({
         <div className="border dark:border-neutral-800 border-neutral-100 rounded">
           <Photo src="/test.jpg" />
         </div>
-        <Footer emojis={emojis} />
+        <Footer
+          shareModal={setShrModal}
+          commentModal={setCmtModal}
+          emojis={emojis}
+        />
       </>
 
       <>
@@ -32,7 +37,11 @@ const Post = ({
           loading={loading}
           src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         />
-        <Footer emojis={emojis} />
+        <Footer
+          shareModal={setShrModal}
+          commentModal={setCmtModal}
+          emojis={emojis}
+        />
       </>
 
       <>
@@ -44,7 +53,11 @@ const Post = ({
           loading={loading}
           src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         />
-        <Footer emojis={emojis} />
+        <Footer
+          shareModal={setShrModal}
+          commentModal={setCmtModal}
+          emojis={emojis}
+        />
       </>
 
       <>
@@ -58,7 +71,11 @@ const Post = ({
             src="/insta-vid3.mp4"
           />
         </div>
-        <Footer emojis={emojis} />
+        <Footer
+          shareModal={setShrModal}
+          commentModal={setCmtModal}
+          emojis={emojis}
+        />
       </>
 
       <>
@@ -66,7 +83,11 @@ const Post = ({
         <div className="border dark:border-neutral-800 border-neutral-100 rounded">
           <Photo src="https://images.pexels.com/photos/11534490/pexels-photo-11534490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
         </div>
-        <Footer emojis={emojis} />
+        <Footer
+          shareModal={setShrModal}
+          commentModal={setCmtModal}
+          emojis={emojis}
+        />
       </>
       <>
         <Header showModal={setOptModal} />
@@ -79,7 +100,11 @@ const Post = ({
             src="/insta-vid.mp4"
           />
         </div>
-        <Footer emojis={emojis} />
+        <Footer
+          shareModal={setShrModal}
+          commentModal={setCmtModal}
+          emojis={emojis}
+        />
       </>
     </div>
   );
